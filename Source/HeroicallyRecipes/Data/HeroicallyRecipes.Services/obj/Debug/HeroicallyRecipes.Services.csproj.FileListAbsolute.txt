@@ -1,0 +1,15 @@
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Services\bin\Debug\HeroicallyRecipes.Services.dll
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Services\bin\Debug\HeroicallyRecipes.Services.pdb
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Services\obj\Debug\HeroicallyRecipes.Services.csprojResolveAssemblyReference.cache
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Services\obj\Debug\HeroicallyRecipes.Services.dll
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Services\obj\Debug\HeroicallyRecipes.Services.pdb
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Services\bin\Debug\HeroicallyRecipes.Data.dll
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Services\bin\Debug\HeroicallyRecipes.Models.dll
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Services\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Services\bin\Debug\EntityFramework.dll
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Services\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Services\bin\Debug\HeroicallyRecipes.Data.pdb
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Services\bin\Debug\HeroicallyRecipes.Models.pdb
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Services\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Services\bin\Debug\EntityFramework.xml
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Services\bin\Debug\Microsoft.AspNet.Identity.Core.xml

@@ -1,0 +1,14 @@
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Models\bin\Debug\HeroicallyRecipes.Models.dll.config
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Models\bin\Debug\HeroicallyRecipes.Models.dll
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Models\bin\Debug\HeroicallyRecipes.Models.pdb
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Models\bin\Debug\EntityFramework.dll
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Models\bin\Debug\EntityFramework.SqlServer.dll
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Models\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Models\bin\Debug\EntityFramework.xml
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Models\bin\Debug\EntityFramework.SqlServer.xml
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Models\obj\Debug\HeroicallyRecipes.Models.dll
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Models\obj\Debug\HeroicallyRecipes.Models.pdb
+D:\Telerik Academy\MVC\2016\MVC 2016 Individual Project\Source\HeroicallyRecipes\Data\HeroicallyRecipes.Models\obj\Debug\HeroicallyRecipes.Models.csprojResolveAssemblyReference.cache
