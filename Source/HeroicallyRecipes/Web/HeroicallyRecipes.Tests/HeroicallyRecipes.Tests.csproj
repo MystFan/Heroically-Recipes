@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A4863DD7-477E-41C1-AEB3-D360C817B3D1}</ProjectGuid>
+    <ProjectGuid>{99F0F2EF-6E84-4041-9302-D388FA3C946B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HeroicallyRecipes.Tests</RootNamespace>
@@ -36,7 +36,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <HintPath>..\..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -49,14 +53,46 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestObjects\MemoryRepository.cs" />
+    <Compile Include="TestObjects\TestObjectFactory.cs" />
+    <Compile Include="UsersServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\HeroicallyRecipes.Data\HeroicallyRecipes.Data.csproj">
+      <Project>{a12833f2-3d20-41be-8b49-391daa39381b}</Project>
+      <Name>HeroicallyRecipes.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\HeroicallyRecipes.Models\HeroicallyRecipes.Models.csproj">
+      <Project>{c731c909-11a0-4cc6-bdbc-905c83181d69}</Project>
+      <Name>HeroicallyRecipes.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\HeroicallyRecipes.Services\HeroicallyRecipes.Services.csproj">
+      <Project>{6de0b6bc-166f-4107-88ef-eba6923cd4cc}</Project>
+      <Name>HeroicallyRecipes.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HeroicallyRecipes.Web.Infrastructure\HeroicallyRecipes.Web.Infrastructure.csproj">
+      <Project>{95bfd582-c014-41e2-8f88-d928ad2e8d39}</Project>
+      <Name>HeroicallyRecipes.Web.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HeroicallyRecipes.Web.Models\HeroicallyRecipes.Web.Models.csproj">
+      <Project>{369f7dc8-9e18-4ab4-9cb2-839348f775f2}</Project>
+      <Name>HeroicallyRecipes.Web.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HeroicallyRecipes.Web\HeroicallyRecipes.Web.csproj">
+      <Project>{672d927e-7b86-42b9-b6aa-5828288d7c94}</Project>
+      <Name>HeroicallyRecipes.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>
