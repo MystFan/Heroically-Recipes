@@ -276,6 +276,7 @@
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Users\Models\" />
     <Folder Include="Areas\Users\Views\UsersBase\" />
+    <Folder Include="images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
