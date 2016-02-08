@@ -1,7 +1,12 @@
-﻿
+﻿@model IEnumerable<HeroicallyRecipes.Models.User>
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Profile Index</h2>
 
+@foreach (var item in Model)
+{
+    <h1>@item.Email</h1>
+}
