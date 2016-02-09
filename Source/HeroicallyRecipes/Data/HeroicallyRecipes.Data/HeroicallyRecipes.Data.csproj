@@ -60,6 +60,7 @@
     <Compile Include="HeroicallyRecipesDbContext.cs" />
     <Compile Include="IHeroicallyRecipesDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\SeedData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EfGenericRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
