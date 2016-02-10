@@ -12,7 +12,7 @@
         public static void RegisterMappings()
         {
             var types = Assembly.GetExecutingAssembly().GetExportedTypes();
-            var viewModelTypes = Assembly.Load("HeroicallyRecipes.Web").GetExportedTypes();
+            var viewModelTypes = Assembly.Load("HeroicallyRecipes.Web.Models").GetExportedTypes();
 
             LoadStandardMappings(types);
             LoadStandardMappings(viewModelTypes);
