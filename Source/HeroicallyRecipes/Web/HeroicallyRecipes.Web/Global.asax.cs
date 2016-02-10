@@ -15,6 +15,7 @@ namespace HeroicallyRecipes.Web
             ViewEnginesConfig.RegisterEngines();
             AutoMapperConfig.RegisterMappings();
             DatabaseConfig.Initialize();
+            SeedConfig.Seed();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

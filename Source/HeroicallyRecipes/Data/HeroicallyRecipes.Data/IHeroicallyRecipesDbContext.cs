@@ -10,6 +10,8 @@
 
         IDbSet<Category> Categories { get; set; }
 
+        IDbSet<Ingredient> Ingredients { get; set; }
+
         IDbSet<RecipeImage> RecipeImages { get; set; }
 
         IDbSet<Tag> Tags { get; set; }

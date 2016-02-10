@@ -6,7 +6,11 @@
 
         public const int RecipeTitleMinLength = 3;
 
-        public const int RecipeContentMinLength = 100;
+        public const int RecipePreparationMinLength = 100;
+
+        public const int IngredientMinLength = 5;
+
+        public const int IngredientMaxLength = 500;
 
         public const int TagMinLength = 3;
 
@@ -18,7 +22,7 @@
 
         public const int RatingMaxValue = 10;
 
-        public const int ImageNameMinLength = 100;
+        public const int ImageNameMinLength = 2;
 
         public const int ImageNameMaxLength = 100;
 

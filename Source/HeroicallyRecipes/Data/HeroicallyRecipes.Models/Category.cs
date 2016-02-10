@@ -1,6 +1,7 @@
 ﻿namespace HeroicallyRecipes.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.ComponentModel.DataAnnotations;
     using HeroicallyRecipes.Common.Validation;
 
@@ -17,6 +18,7 @@
         public int Id { get; set; }
 
         [Required]
+        [Index(IsUnique = true)]
         [StringLength(ModelConstants.CategoryNameMaxLength, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = ModelConstants.CategoryNameMinLength)]
         public string Name { get; set; }
 

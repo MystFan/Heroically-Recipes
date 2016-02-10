@@ -15,6 +15,8 @@
 
         public virtual IDbSet<Category> Categories { get; set; }
 
+        public virtual IDbSet<Ingredient> Ingredients { get; set; }
+
         public virtual IDbSet<RecipeImage> RecipeImages { get; set; }
 
         public virtual IDbSet<Tag> Tags { get; set; }

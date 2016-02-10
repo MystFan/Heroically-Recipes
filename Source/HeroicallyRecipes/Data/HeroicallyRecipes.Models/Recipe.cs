@@ -9,7 +9,8 @@
     {
         private ICollection<Tag> tags;
         private ICollection<Rating> ratings;
-        public ICollection<RecipeImage> images;
+        private ICollection<RecipeImage> images;
+        private ICollection<Ingredient> ingredients;
 
         public Recipe()
         {
@@ -17,6 +18,7 @@
             this.tags = new HashSet<Tag>();
             this.ratings = new HashSet<Rating>();
             this.images = new HashSet<RecipeImage>();
+            this.ingredients = new HashSet<Ingredient>();
         }
 
         [Key]
@@ -28,8 +30,8 @@
         public string Title { get; set; }
 
         [Required]
-        [MinLength(ModelConstants.RecipeContentMinLength)]
-        public string Content { get; set; }
+        [MinLength(ModelConstants.RecipePreparationMinLength)]
+        public string Preparation { get; set; }
 
         [Required]
         public DateTime CreatedOn { get; set; }
@@ -60,6 +62,12 @@
         {
             get { return this.images; }
             set { this.images = value; }
+        }
+
+        public virtual ICollection<Ingredient> Ingredients
+        {
+            get { return this.ingredients; }
+            set { this.ingredients = value; }
         }
     }
 }
