@@ -23,12 +23,3 @@ textarea {
     max-width: 280px;
 }
 
-.carousel-indicators li{
-    height: 180px;
-    width: 100%;
-}
-
-.carousel-indicators li img {
-    max-width:100%;
-    max-height:50%;
-}

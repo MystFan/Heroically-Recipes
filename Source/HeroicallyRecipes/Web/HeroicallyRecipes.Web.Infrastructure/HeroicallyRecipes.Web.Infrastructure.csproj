@@ -50,18 +50,6 @@
       <HintPath>..\..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Ninject.Extensions.Conventions, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Ninject.Extensions.Conventions.3.2.0.0\lib\net45-full\Ninject.Extensions.Conventions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -89,9 +77,9 @@
       <Project>{a12833f2-3d20-41be-8b49-391daa39381b}</Project>
       <Name>HeroicallyRecipes.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\HeroicallyRecipes.Services\HeroicallyRecipes.Services.csproj">
-      <Project>{6de0b6bc-166f-4107-88ef-eba6923cd4cc}</Project>
-      <Name>HeroicallyRecipes.Services</Name>
+    <ProjectReference Include="..\..\Services\HeroicallyRecipes.Services.Data\HeroicallyRecipes.Services.Data.csproj">
+      <Project>{5886b247-1b50-42a3-bb97-b09a94945eb9}</Project>
+      <Name>HeroicallyRecipes.Services.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

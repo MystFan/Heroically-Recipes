@@ -11,8 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using HeroicallyRecipes.Web.Models;
-using HeroicallyRecipes.Models;
 using HeroicallyRecipes.Data;
+using HeroicallyRecipes.Data.Models;
 
 namespace HeroicallyRecipes.Web
 {

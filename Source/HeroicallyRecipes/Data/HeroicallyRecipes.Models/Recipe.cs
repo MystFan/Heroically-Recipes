@@ -1,11 +1,11 @@
-﻿namespace HeroicallyRecipes.Models
+﻿namespace HeroicallyRecipes.Data.Models
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using HeroicallyRecipes.Common.Validation;
 
-    public class Recipe
+    public class Recipe : BaseModel<int>
     {
         private ICollection<Tag> tags;
         private ICollection<Rating> ratings;
@@ -14,16 +14,15 @@
 
         public Recipe()
         {
-            this.Id = Guid.NewGuid();
+            this.ViewId = Guid.NewGuid();
             this.tags = new HashSet<Tag>();
             this.ratings = new HashSet<Rating>();
             this.images = new HashSet<RecipeImage>();
             this.ingredients = new HashSet<Ingredient>();
         }
 
-        [Key]
         [Required]
-        public Guid Id { get; set; }
+        public Guid ViewId { get; set; }
 
         [Required]
         [StringLength(ModelConstants.RecipeTitleMaxLength, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = ModelConstants.RecipeTitleMinLength)]
@@ -33,14 +32,9 @@
         [MinLength(ModelConstants.RecipePreparationMinLength)]
         public string Preparation { get; set; }
 
-        [Required]
-        public DateTime CreatedOn { get; set; }
-
         public int CategoryId { get; set; }
         
         public Category Category { get; set; }
-
-        public bool IsDeleted { get; set; }
 
         public string UserId { get; set; }
 

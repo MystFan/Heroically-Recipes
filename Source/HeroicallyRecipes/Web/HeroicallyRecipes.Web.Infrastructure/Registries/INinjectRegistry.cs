@@ -1,9 +1,9 @@
 ﻿namespace HeroicallyRecipes.Web.Infrastructure.Registries
 {
-    using Ninject;
+    //using Ninject;
 
     public interface INinjectRegistry
     {
-        void Register(IKernel kernel);
+        //void Register(IKernel kernel);
     }
 }

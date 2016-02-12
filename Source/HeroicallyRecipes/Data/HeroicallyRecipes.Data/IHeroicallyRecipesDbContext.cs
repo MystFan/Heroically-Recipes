@@ -2,7 +2,7 @@
 {
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using HeroicallyRecipes.Models;
+    using HeroicallyRecipes.Data.Models;
 
     public interface IHeroicallyRecipesDbContext
     {

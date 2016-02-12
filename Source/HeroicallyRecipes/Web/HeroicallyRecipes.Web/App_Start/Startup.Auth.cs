@@ -6,7 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using HeroicallyRecipes.Web.Models;
-using HeroicallyRecipes.Models;
+using HeroicallyRecipes.Data.Models;
 using HeroicallyRecipes.Data;
 
 namespace HeroicallyRecipes.Web

@@ -3,7 +3,7 @@
     using System.Linq;
     using System.Web.Mvc;
     using AutoMapper.QueryableExtensions;
-    using HeroicallyRecipes.Services.Contracts;
+    using HeroicallyRecipes.Services.Data.Contracts;
     using HeroicallyRecipes.Web.Models.RecipeViewModels;
 
     public class HomeController : Controller

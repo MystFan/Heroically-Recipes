@@ -2,7 +2,7 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using HeroicallyRecipes.Services.Contracts;
+    using HeroicallyRecipes.Services.Data.Contracts;
 
     public class ProfileController : UsersBaseController
     {

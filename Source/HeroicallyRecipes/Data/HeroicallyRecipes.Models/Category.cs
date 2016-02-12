@@ -1,11 +1,11 @@
-﻿namespace HeroicallyRecipes.Models
+﻿namespace HeroicallyRecipes.Data.Models
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.ComponentModel.DataAnnotations;
     using HeroicallyRecipes.Common.Validation;
 
-    public class Category
+    public class Category : BaseModel<int>
     {
         private ICollection<Recipe> recipes;
 
@@ -13,9 +13,6 @@
         {
             this.recipes = new HashSet<Recipe>();
         }
-
-        [Key]
-        public int Id { get; set; }
 
         [Required]
         [Index(IsUnique = true)]

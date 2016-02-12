@@ -1,7 +1,7 @@
-﻿namespace HeroicallyRecipes.Services.Contracts
+﻿namespace HeroicallyRecipes.Services.Data.Contracts
 {
     using System.Linq;
-    using HeroicallyRecipes.Models;
+    using HeroicallyRecipes.Data.Models;
 
     public interface IRecipeService : IService
     {

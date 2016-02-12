@@ -13,6 +13,7 @@ namespace HeroicallyRecipes.Web
         protected void Application_Start()
         {
             ViewEnginesConfig.RegisterEngines();
+            AutofacConfig.RegisterAutofac();
             AutoMapperConfig.RegisterMappings();
             DatabaseConfig.Initialize();
             SeedConfig.Seed();

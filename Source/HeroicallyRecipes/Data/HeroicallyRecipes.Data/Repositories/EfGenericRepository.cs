@@ -6,7 +6,7 @@
 
     public class EfGenericRepository<T> : IRepository<T> where T : class
     {
-        public EfGenericRepository(IHeroicallyRecipesDbContext context)
+        public EfGenericRepository(DbContext context)
         {
             if (context == null)
             {
@@ -19,7 +19,7 @@
 
         protected IDbSet<T> DbSet { get; set; }
 
-        protected IHeroicallyRecipesDbContext Context { get; set; }
+        protected DbContext Context { get; set; }
 
         public virtual IQueryable<T> All()
         {

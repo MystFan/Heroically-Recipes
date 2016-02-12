@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using Moq;
 
-namespace HeroicallyRecipes.Tests
+namespace HeroicallyRecipes.Web.Tests
 {
     public class UsersServiceTests
     {

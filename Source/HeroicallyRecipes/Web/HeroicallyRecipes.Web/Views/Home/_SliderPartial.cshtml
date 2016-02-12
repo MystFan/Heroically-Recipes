@@ -9,7 +9,7 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img src="@Url.Action("GetImage", "Home", new { id = Model.FirstOrDefault().Id})" class="img-responsive" />
+            <img src="@Url.Action("GetImage", "Home", new { id = Model.FirstOrDefault().ViewId})" class="img-responsive" />
             <div class="carousel-caption">
                 <p>
                     @Model.FirstOrDefault().Title
@@ -19,7 +19,7 @@
         @for (int i = 1; i < ((List<HeroicallyRecipes.Web.Models.RecipeViewModels.RecipeHomeViewModel>)Model).Count(); i++)
         {
             <div class="item">
-                <img src="@Url.Action("GetImage", "Home", new { id = Model[i].Id})" class="img-responsive" />
+                <img src="@Url.Action("GetImage", "Home", new { id = Model[i].ViewId})" class="img-responsive" />
                 <div class="carousel-caption">
                     <p>
                         @Model[i].Title

@@ -1,10 +1,9 @@
-﻿namespace HeroicallyRecipes.Services
+﻿namespace HeroicallyRecipes.Services.Data
 {
-    using System;
     using System.Linq;
-    using Data.Repositories;
-    using HeroicallyRecipes.Services.Contracts;
-    using Models;
+    using HeroicallyRecipes.Services.Data.Contracts;
+    using HeroicallyRecipes.Data.Models;
+    using HeroicallyRecipes.Data.Repositories;
 
     public class UsersService : IUsersService
     {

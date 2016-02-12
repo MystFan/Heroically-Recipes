@@ -1,4 +1,4 @@
-﻿namespace HeroicallyRecipes.Models
+﻿namespace HeroicallyRecipes.Data.Models
 {
     using System.Collections.Generic;
     using System.Security.Claims;

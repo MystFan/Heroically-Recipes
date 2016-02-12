@@ -1,15 +1,15 @@
-﻿namespace HeroicallyRecipes.Services
+﻿namespace HeroicallyRecipes.Services.Data
 {
     using System.Linq;
-    using HeroicallyRecipes.Models;
-    using HeroicallyRecipes.Services.Contracts;
+    using HeroicallyRecipes.Services.Data.Contracts;
     using HeroicallyRecipes.Data.Repositories;
+    using HeroicallyRecipes.Data.Models;
 
     public class RecipeService : IRecipeService
     {
-        private IRepository<Recipe> recipes;
+        private IDbRepository<Recipe> recipes;
 
-        public RecipeService(IRepository<Recipe> recipes)
+        public RecipeService(IDbRepository<Recipe> recipes)
         {
             this.recipes = recipes;
         }

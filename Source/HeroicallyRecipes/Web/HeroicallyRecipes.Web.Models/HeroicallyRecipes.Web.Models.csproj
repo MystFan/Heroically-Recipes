@@ -86,9 +86,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\HeroicallyRecipes.Models\HeroicallyRecipes.Models.csproj">
+    <ProjectReference Include="..\..\Data\HeroicallyRecipes.Models\HeroicallyRecipes.Data.Models.csproj">
       <Project>{c731c909-11a0-4cc6-bdbc-905c83181d69}</Project>
-      <Name>HeroicallyRecipes.Models</Name>
+      <Name>HeroicallyRecipes.Data.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\HeroicallyRecipes.Web.Infrastructure\HeroicallyRecipes.Web.Infrastructure.csproj">
       <Project>{95bfd582-c014-41e2-8f88-d928ad2e8d39}</Project>

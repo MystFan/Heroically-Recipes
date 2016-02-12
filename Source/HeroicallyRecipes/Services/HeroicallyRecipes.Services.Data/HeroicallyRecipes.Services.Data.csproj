@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C731C909-11A0-4CC6-BDBC-905C83181D69}</ProjectGuid>
+    <ProjectGuid>{5886B247-1B50-42A3-BB97-B09A94945EB9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HeroicallyRecipes.Models</RootNamespace>
-    <AssemblyName>HeroicallyRecipes.Models</AssemblyName>
+    <RootNamespace>HeroicallyRecipes.Services.Data</RootNamespace>
+    <AssemblyName>HeroicallyRecipes.Services.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,24 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -57,23 +40,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Category.cs" />
-    <Compile Include="Ingredient.cs" />
+    <Compile Include="Contracts\IImagesService.cs" />
+    <Compile Include="Contracts\IRecipeService.cs" />
+    <Compile Include="Contracts\IService.cs" />
+    <Compile Include="Contracts\IUsersService.cs" />
+    <Compile Include="ImagesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rating.cs" />
-    <Compile Include="Recipe.cs" />
-    <Compile Include="RecipeImage.cs" />
-    <Compile Include="Tag.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="RecipeService.cs" />
+    <Compile Include="UsersService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Common\HeroicallyRecipes.Common\HeroicallyRecipes.Common.csproj">
-      <Project>{01eedf06-c998-4a8d-9aa2-0cc09ca8b649}</Project>
-      <Name>HeroicallyRecipes.Common</Name>
+    <ProjectReference Include="..\..\Data\HeroicallyRecipes.Data\HeroicallyRecipes.Data.csproj">
+      <Project>{a12833f2-3d20-41be-8b49-391daa39381b}</Project>
+      <Name>HeroicallyRecipes.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\HeroicallyRecipes.Models\HeroicallyRecipes.Data.Models.csproj">
+      <Project>{c731c909-11a0-4cc6-bdbc-905c83181d69}</Project>
+      <Name>HeroicallyRecipes.Data.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

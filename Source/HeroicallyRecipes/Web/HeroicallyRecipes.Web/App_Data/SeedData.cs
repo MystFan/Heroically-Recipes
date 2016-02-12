@@ -4,7 +4,7 @@
     using System.Linq;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using HeroicallyRecipes.Models;
+    using HeroicallyRecipes.Data.Models;
     using System.IO;
     using System.Collections.Generic;
     using System.Web;
@@ -55,7 +55,8 @@
             {
                 var category = new Category
                 {
-                    Name = categories[i]
+                    Name = categories[i],
+                    CreatedOn = DateTime.UtcNow
                 };
 
                 context.Categories.Add(category);
