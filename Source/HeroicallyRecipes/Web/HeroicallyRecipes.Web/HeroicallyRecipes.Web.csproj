@@ -216,6 +216,7 @@
     <Compile Include="Areas\Users\Controllers\UsersBaseController.cs" />
     <Compile Include="Areas\Users\UsersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
@@ -320,6 +321,10 @@
     <ProjectReference Include="..\..\Services\HeroicallyRecipes.Services.Data\HeroicallyRecipes.Services.Data.csproj">
       <Project>{5886b247-1b50-42a3-bb97-b09a94945eb9}</Project>
       <Name>HeroicallyRecipes.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\HeroicallyRecipes.Services.Web\HeroicallyRecipes.Services.Web.csproj">
+      <Project>{320d99e2-83db-4d3b-8313-c89c037ce5d5}</Project>
+      <Name>HeroicallyRecipes.Services.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\HeroicallyRecipes.Web.Infrastructure\HeroicallyRecipes.Web.Infrastructure.csproj">
       <Project>{95bfd582-c014-41e2-8f88-d928ad2e8d39}</Project>

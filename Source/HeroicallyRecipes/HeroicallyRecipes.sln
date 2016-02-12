@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeroicallyRecipes.Services.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeroicallyRecipes.Web.Tests", "Tests\HeroicallyRecipes.Web.Tests\HeroicallyRecipes.Web.Tests.csproj", "{B9F95287-E084-4335-8108-A2CA9971B418}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeroicallyRecipes.Services.Web", "Services\HeroicallyRecipes.Services.Web\HeroicallyRecipes.Services.Web.csproj", "{320D99E2-83DB-4D3B-8313-C89C037CE5D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{B9F95287-E084-4335-8108-A2CA9971B418}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9F95287-E084-4335-8108-A2CA9971B418}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9F95287-E084-4335-8108-A2CA9971B418}.Release|Any CPU.Build.0 = Release|Any CPU
+		{320D99E2-83DB-4D3B-8313-C89C037CE5D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{320D99E2-83DB-4D3B-8313-C89C037CE5D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{320D99E2-83DB-4D3B-8313-C89C037CE5D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{320D99E2-83DB-4D3B-8313-C89C037CE5D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,5 +86,6 @@ Global
 		{01EEDF06-C998-4A8D-9AA2-0CC09CA8B649} = {435CA033-39DB-4816-81AE-948FFDDAB5CA}
 		{5886B247-1B50-42A3-BB97-B09A94945EB9} = {EBA9A9B7-08B4-4E08-943D-BCB4071F3FF4}
 		{B9F95287-E084-4335-8108-A2CA9971B418} = {12ECCF29-92ED-491D-8ED4-75011F40CDCE}
+		{320D99E2-83DB-4D3B-8313-C89C037CE5D5} = {EBA9A9B7-08B4-4E08-943D-BCB4071F3FF4}
 	EndGlobalSection
 EndGlobal

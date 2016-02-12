@@ -1,18 +1,10 @@
 ﻿namespace HeroicallyRecipes.Data.Models
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
     using HeroicallyRecipes.Common.Validation;
 
     public class RecipeImage : BaseModel<int>
     {
-        public RecipeImage()
-        {
-            this.ViewId = Guid.NewGuid();
-        }
-
-        public Guid ViewId { get; set; }
-
         [Required]
         [StringLength(ModelConstants.ImageNameMaxLength, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = ModelConstants.ImageNameMinLength)]
         public string OriginalName { get; set; }

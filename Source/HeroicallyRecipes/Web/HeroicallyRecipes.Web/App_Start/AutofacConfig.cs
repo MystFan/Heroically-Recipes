@@ -10,10 +10,11 @@
     using Controllers;
 
     using Data;
-
-    using Services.Data;
     using Services.Data.Contracts;
     using Data.Repositories;
+    using Services.Web;
+    using Services.Web.Contracts;
+    using Common.Providers;
 
     public static class AutofacConfig
     {
@@ -51,12 +52,13 @@
                 .As<DbContext>()
                 .InstancePerRequest();
 
-            //builder.Register(x => new HttpCacheService())
-            //    .As<ICacheService>()
-            //    .InstancePerRequest();
-            //builder.Register(x => new IdentifierProvider())
-            //    .As<IIdentifierProvider>()
-            //    .InstancePerRequest();
+            builder.Register(x => new HttpCacheService())
+                .As<ICacheService>()
+                .InstancePerRequest();
+
+            builder.Register(x => new IdentifierProvider())
+                .As<IIdentifierProvider>()
+                .InstancePerRequest();
 
             var servicesAssembly = Assembly.GetAssembly(typeof(IService));
             builder.RegisterAssemblyTypes(servicesAssembly).AsImplementedInterfaces();
@@ -69,8 +71,8 @@
                 .As(typeof(IRepository<>))
                 .InstancePerRequest();
 
-            //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-            //    .AssignableTo<BaseController>().PropertiesAutowired();
+            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+                .AssignableTo<BaseController>().PropertiesAutowired();
         }
     }
 }

@@ -4,21 +4,26 @@
     using HeroicallyRecipes.Data.Repositories;
     using HeroicallyRecipes.Data.Models;
     using HeroicallyRecipes.Services.Data.Contracts;
+    using Common.Providers;
 
     public class ImagesService : IImagesService
     {
         private IDbRepository<RecipeImage> recipeImages;
+        private IIdentifierProvider idProvider;
 
-        public ImagesService(IDbRepository<RecipeImage> recipeImages)
+        public ImagesService(IDbRepository<RecipeImage> recipeImages, IIdentifierProvider idProvider)
         {
             this.recipeImages = recipeImages;
+            this.idProvider = idProvider;
         }
 
         public RecipeImage GetByRecipeId(string id)
         {
+            var decodedId = this.idProvider.DecodeId(id);
+
             return this.recipeImages
                 .All()
-                .FirstOrDefault(img => img.Recipe.ViewId.ToString() == id);
+                .FirstOrDefault(img => img.RecipeId == decodedId);
         }
     }
 }

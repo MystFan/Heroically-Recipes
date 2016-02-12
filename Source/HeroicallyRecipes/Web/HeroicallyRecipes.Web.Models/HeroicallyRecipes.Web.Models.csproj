@@ -86,6 +86,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\HeroicallyRecipes.Common\HeroicallyRecipes.Common.csproj">
+      <Project>{01eedf06-c998-4a8d-9aa2-0cc09ca8b649}</Project>
+      <Name>HeroicallyRecipes.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\HeroicallyRecipes.Models\HeroicallyRecipes.Data.Models.csproj">
       <Project>{c731c909-11a0-4cc6-bdbc-905c83181d69}</Project>
       <Name>HeroicallyRecipes.Data.Models</Name>

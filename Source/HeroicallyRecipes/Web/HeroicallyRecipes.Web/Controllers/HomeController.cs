@@ -6,7 +6,7 @@
     using HeroicallyRecipes.Services.Data.Contracts;
     using HeroicallyRecipes.Web.Models.RecipeViewModels;
 
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private IImagesService images;
         private IRecipeService recipes;

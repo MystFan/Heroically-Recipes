@@ -3,6 +3,7 @@
     using System.Linq;
     using System.Web.Mvc;
     using HeroicallyRecipes.Services.Data.Contracts;
+    using Services.Web.Contracts;
 
     public class ProfileController : UsersBaseController
     {
@@ -15,7 +16,7 @@
 
         public ActionResult Index()
         {
-            var users = this.users.GetAll();
+            var users = base.Cache.Get("users", () => this.users.GetAll().ToList(), 30);
             return View(users);
         }
     }

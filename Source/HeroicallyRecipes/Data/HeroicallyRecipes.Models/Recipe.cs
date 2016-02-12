@@ -14,15 +14,11 @@
 
         public Recipe()
         {
-            this.ViewId = Guid.NewGuid();
             this.tags = new HashSet<Tag>();
             this.ratings = new HashSet<Rating>();
             this.images = new HashSet<RecipeImage>();
             this.ingredients = new HashSet<Ingredient>();
         }
-
-        [Required]
-        public Guid ViewId { get; set; }
 
         [Required]
         [StringLength(ModelConstants.RecipeTitleMaxLength, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = ModelConstants.RecipeTitleMinLength)]
