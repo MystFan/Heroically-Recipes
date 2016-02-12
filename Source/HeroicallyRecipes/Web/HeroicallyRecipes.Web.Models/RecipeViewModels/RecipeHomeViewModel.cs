@@ -6,9 +6,9 @@
 
     using AutoMapper;
 
+    using HeroicallyRecipes.Common.Providers;
     using HeroicallyRecipes.Data.Models;
     using HeroicallyRecipes.Web.Infrastructure.Mappings;
-    using HeroicallyRecipes.Common.Providers;
 
     public class RecipeHomeViewModel : IMapFrom<Recipe>, IHaveCustomMappings
     {

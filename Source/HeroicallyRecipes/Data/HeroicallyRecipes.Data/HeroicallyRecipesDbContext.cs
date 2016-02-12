@@ -1,10 +1,11 @@
 ﻿namespace HeroicallyRecipes.Data
 {
-    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Linq;
+
     using HeroicallyRecipes.Data.Models;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using Models.Contracts;
 
     public class HeroicallyRecipesDbContext : IdentityDbContext<User>, IHeroicallyRecipesDbContext

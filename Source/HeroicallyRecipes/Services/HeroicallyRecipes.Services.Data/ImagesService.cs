@@ -1,10 +1,11 @@
 ﻿namespace HeroicallyRecipes.Services.Data
 {
     using System.Linq;
-    using HeroicallyRecipes.Data.Repositories;
-    using HeroicallyRecipes.Data.Models;
-    using HeroicallyRecipes.Services.Data.Contracts;
+
     using Common.Providers;
+    using HeroicallyRecipes.Data.Models;
+    using HeroicallyRecipes.Data.Repositories;
+    using HeroicallyRecipes.Services.Data.Contracts;
 
     public class ImagesService : IImagesService
     {

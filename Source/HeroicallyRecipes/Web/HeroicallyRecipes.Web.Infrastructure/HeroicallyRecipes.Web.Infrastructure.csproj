@@ -64,9 +64,6 @@
     <Compile Include="Mappings\IHaveCustomMappings.cs" />
     <Compile Include="Mappings\IMapFrom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Registries\DataBindingsRegister.cs" />
-    <Compile Include="Registries\INinjectRegistry.cs" />
-    <Compile Include="Registries\ServiceBindingsRegister.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
