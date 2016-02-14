@@ -33,6 +33,7 @@
                     UserName = emails[i],
                     Email = emails[i],
                     PasswordHash = hasher.HashPassword(passwords[i]),
+                    AvatarUrl = "/images/defaultAvatar1.png"
                 };
 
                 context.Users.Add(user);

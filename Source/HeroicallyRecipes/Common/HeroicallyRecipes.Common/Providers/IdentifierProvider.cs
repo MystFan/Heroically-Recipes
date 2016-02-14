@@ -5,7 +5,12 @@
 
     public class IdentifierProvider : IIdentifierProvider
     {
-        private const string Salt = ".12312313123";
+        private string Salt = ".12312313123";
+
+        public IdentifierProvider(string salt = ".12312313123")
+        {
+            this.Salt = salt;
+        }
 
         public int DecodeId(string urlId)
         {

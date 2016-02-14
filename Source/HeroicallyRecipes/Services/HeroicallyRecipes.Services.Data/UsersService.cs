@@ -1,5 +1,6 @@
 ﻿namespace HeroicallyRecipes.Services.Data
 {
+    using System;
     using System.Linq;
 
     using HeroicallyRecipes.Data.Models;
@@ -18,6 +19,11 @@
         public IQueryable<User> GetAll()
         {
             return this.users.All();
+        }
+
+        public User GetById(string id)
+        {
+            return this.users.GetById(id);
         }
     }
 }

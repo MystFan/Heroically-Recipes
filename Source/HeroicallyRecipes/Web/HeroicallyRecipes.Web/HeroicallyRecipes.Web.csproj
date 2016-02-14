@@ -227,15 +227,21 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Images\Breakfast bowl with Quinoa and Berries.jpg" />
+    <Content Include="App_Data\Images\Crispy potato-leek kugel.jpg" />
     <Content Include="App_Data\Images\Salad with butter and basted mushrooms.jpg" />
     <Content Include="App_Data\Images\Sheetpandinners Chicken.jpg" />
     <Content Include="App_Data\Images\Tandoori Carrots.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\profile.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\defaultAvatar1.png" />
+    <Content Include="images\defaultAvatar2.png" />
+    <Content Include="images\defaultAvatar3.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Administration\Views\web.config" />
@@ -294,9 +300,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Models\" />
-    <Folder Include="Areas\Users\Models\" />
     <Folder Include="Areas\Users\Views\UsersBase\" />
-    <Folder Include="images\" />
+    <Folder Include="images\Avatars\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -2,9 +2,11 @@
 {
     using System.Collections.Generic;
     using System.Security.Claims;
+    using System.ComponentModel.DataAnnotations;
     using System.Threading.Tasks;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Common.Validation;
 
     public class User : IdentityUser
     {
@@ -14,6 +16,10 @@
         {
             this.recipes = new HashSet<Recipe>();
         }
+
+        [Required]
+        [MaxLength(ModelConstants.UserAvatarPathMaxLength)]
+        public string AvatarUrl { get; set; }
 
         public virtual ICollection<Recipe> Recipes
         {

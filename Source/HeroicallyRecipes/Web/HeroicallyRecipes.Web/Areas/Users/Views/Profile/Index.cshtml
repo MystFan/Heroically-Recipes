@@ -1,12 +1,43 @@
-﻿@model IEnumerable<HeroicallyRecipes.Data.Models.User>
+﻿@model HeroicallyRecipes.Web.Models.Profile.UserViewModel
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Profile Index</h2>
 
-@foreach (var item in Model)
-{
-    <h1>@item.Email</h1>
+@section styles{
+    <link href="~/Content/profile.css" rel="stylesheet" />
 }
+
+<div class="row">
+    <div class="toppad">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h2 class="text-center">My Profile</h2>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-3 col-lg-3 text-center">
+                    <img alt="User Pic" src="@Model.AvatarUrl" class="img-circle img-responsive">
+                </div>
+
+                <div class="col-md-9 col-lg-9">
+                    <table class="table table-user-information">
+                        <thead>
+
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+
+                    
+                    <a href="#" class="btn btn-primary">My Recipes</a>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <a href="#" class="btn btn-primary text-center">Update Profile</a>
+                <a href="#" class="btn btn-primary text-center">Add Recipe</a>
+            </div>
+        </div>
+    </div>
+</div>
