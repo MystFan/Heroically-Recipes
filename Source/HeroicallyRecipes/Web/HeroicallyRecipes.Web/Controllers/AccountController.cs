@@ -12,8 +12,8 @@
     using HeroicallyRecipes.Data.Models;
     using HeroicallyRecipes.Web.Models.Account;
     using HeroicallyRecipes.Common.Globals;
-    using Common.Providers;
-    using Infrastructure.Avatars;
+    using Infrastructure.Utilities.Images;
+
     [Authorize]
     public class AccountController : Controller
     {
@@ -171,12 +171,12 @@
                         return View(model);
                     }
 
-                    AvatarSaver avatarSaver = new AvatarSaver();
-                    user.AvatarUrl = avatarSaver.SaveAvatar(avatar, model.Username);
+                    ImagesManager imgManager = new ImagesManager();
+                    user.AvatarUrl = imgManager.SaveAvatar(avatar, model.Username);
                 }
                 else
                 {
-                    user.AvatarUrl = "/images/Avatars/defaultAvatar" + rand.Next(1, 4) + ".png";
+                    user.AvatarUrl = "/images/defaultAvatar" + rand.Next(1, 4) + ".png";
                 }
 
                 var result = await UserManager.CreateAsync(user, model.Password);

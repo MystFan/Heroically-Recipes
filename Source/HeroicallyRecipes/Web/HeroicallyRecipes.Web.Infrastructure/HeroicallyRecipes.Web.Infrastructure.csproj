@@ -63,7 +63,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Avatars\AvatarSaver.cs" />
+    <Compile Include="CustomAttributes\RecipeImagesValidator.cs" />
+    <Compile Include="CustomAttributes\ValidateIngredientsCount.cs" />
+    <Compile Include="Utilities\Images\ImagesManager.cs" />
     <Compile Include="Mappings\IHaveCustomMappings.cs" />
     <Compile Include="Mappings\IMapFrom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,15 +75,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\HeroicallyRecipes.Common\HeroicallyRecipes.Common.csproj">
+      <Project>{01eedf06-c998-4a8d-9aa2-0cc09ca8b649}</Project>
+      <Name>HeroicallyRecipes.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\HeroicallyRecipes.Data\HeroicallyRecipes.Data.csproj">
       <Project>{a12833f2-3d20-41be-8b49-391daa39381b}</Project>
       <Name>HeroicallyRecipes.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\HeroicallyRecipes.Services.Data\HeroicallyRecipes.Services.Data.csproj">
-      <Project>{5886b247-1b50-42a3-bb97-b09a94945eb9}</Project>
-      <Name>HeroicallyRecipes.Services.Data</Name>
-    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

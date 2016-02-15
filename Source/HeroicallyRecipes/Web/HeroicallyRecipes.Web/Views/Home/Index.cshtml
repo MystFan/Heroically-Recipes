@@ -1,7 +1,12 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    var user = (HeroicallyRecipes.Data.Models.User)ViewBag.UserProfile;
 }
 
+@if (user != null)
+{
+   <h1>@user.Recipes.Count</h1>
+}
 
 
 <div class="jumbotron">

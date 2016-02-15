@@ -3,8 +3,8 @@
     using System.Linq;
     using HeroicallyRecipes.Data.Models;
 
-    public interface IRecipeService : IService
+    public interface ICategoriesService
     {
-        IQueryable<Recipe> GetAll();
+        IQueryable<Category> GetAll();
     }
 }

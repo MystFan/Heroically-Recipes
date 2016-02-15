@@ -3,15 +3,16 @@
     using System.Linq;
     using System.Web.Mvc;
     using AutoMapper.QueryableExtensions;
+
     using HeroicallyRecipes.Services.Data.Contracts;
     using HeroicallyRecipes.Web.Models.RecipeViewModels;
 
     public class HomeController : BaseController
     {
         private IImagesService images;
-        private IRecipeService recipes;
+        private IRecipesService recipes;
 
-        public HomeController(IImagesService images, IRecipeService recipes)
+        public HomeController(IImagesService images, IRecipesService recipes)
         {
             this.images = images;
             this.recipes = recipes;
@@ -32,6 +33,7 @@
         }
 
         [ChildActionOnly]
+        [OutputCache(Duration = 10 * 60)]
         public ActionResult GetTopRecipes()
         {
             var allRecipes = this.recipes

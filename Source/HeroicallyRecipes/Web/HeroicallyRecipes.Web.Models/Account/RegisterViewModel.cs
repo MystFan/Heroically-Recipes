@@ -1,6 +1,7 @@
 ﻿namespace HeroicallyRecipes.Web.Models.Account
 {
     using System.ComponentModel.DataAnnotations;
+    using HeroicallyRecipes.Common.Validation;
 
     public class RegisterViewModel
     {
@@ -22,6 +23,7 @@
 
         [Required]
         [Display(Name = "Username")]
+        [RegularExpression(ModelConstants.UsernamePattern, ErrorMessage = "Invalid username characters.")]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 5)]
         public string Username { get; set; }
     }

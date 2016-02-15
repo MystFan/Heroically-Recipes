@@ -1,0 +1,22 @@
+﻿@model IEnumerable<HeroicallyRecipes.Web.Models.Categories.CategoryViewModel>
+
+@{
+    var categories = new List<SelectListItem>();
+
+    foreach (var item in Model)
+    {
+        categories.Add(new SelectListItem()
+        {
+            Text = item.Name,
+            Value = item.Id.ToString()
+        });
+    }
+}
+
+<div class="form-group">
+    @Html.Label("Category", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownList("CategoryId", categories, new { @class = "form-control" })
+    </div>
+</div>
+

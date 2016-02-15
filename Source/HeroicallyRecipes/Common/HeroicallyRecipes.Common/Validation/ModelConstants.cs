@@ -12,11 +12,15 @@
 
         public const int IngredientMaxLength = 500;
 
+        public const int IngredientMinCount = 3;
+
         public const int TagMinLength = 3;
 
         public const int TagMaxLength = 100;
 
         public const string TagTextPattern = "(#)((?:[A-Za-z0-9-_]{100}))";
+
+        public const string UsernamePattern = "([A-z0-9_]+)";
 
         public const int RatingMinValue = 2;
 
@@ -29,6 +33,8 @@
         public const int ImageExtensionMaxLength = 10;
 
         public const int ImageExtensionMinLength = 2;
+
+        public const int RecipeImageMaxContentLength = 1000000;
 
         public const int CategoryNameMinLength = 2;
 

@@ -1,11 +1,12 @@
-﻿namespace HeroicallyRecipes.Web.Infrastructure.Avatars
+﻿namespace HeroicallyRecipes.Web.Infrastructure.Utilities.Images
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Web;
     using System.Web.Hosting;
 
-    public class AvatarSaver
+    public class ImagesManager
     {
         public string SaveAvatar(HttpPostedFileBase avatarFile, string username)
         { 
