@@ -1,24 +1,23 @@
-﻿using HeroicallyRecipes.Services.Data.Contracts;
-using HeroicallyRecipes.Services.Web;
-using HeroicallyRecipes.Tests.TestObjects;
-using HeroicallyRecipes.Web;
-using HeroicallyRecipes.Web.Areas.Users.Controllers;
-using NUnit.Framework;
-using System.Web.Caching;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-using HeroicallyRecipes.Web.Models.RecipeViewModels;
-using AutoMapper.QueryableExtensions;
-using TestStack.FluentMVCTesting;
-using System;
-using HeroicallyRecipes.Common.Globals;
-using System.Web.Mvc;
-
-namespace HeroicallyRecipes.Tests.ControllersTests
+﻿namespace HeroicallyRecipes.Tests.ControllersTests
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+
+    using AutoMapper.QueryableExtensions;
+    using TestStack.FluentMVCTesting;
+    using NUnit.Framework;
+
+    using HeroicallyRecipes.Common.Globals;
+    using HeroicallyRecipes.Services.Data.Contracts;
+    using HeroicallyRecipes.Services.Web;
+    using HeroicallyRecipes.Tests.TestObjects;
+    using HeroicallyRecipes.Web;
+    using HeroicallyRecipes.Web.Areas.Users.Controllers;
+    using HeroicallyRecipes.Web.Models.RecipeViewModels;
+
     [TestFixture]
     public class UsersRecipeControllerTests
     {
