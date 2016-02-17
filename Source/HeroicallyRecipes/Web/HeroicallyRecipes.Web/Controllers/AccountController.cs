@@ -1,7 +1,6 @@
 ﻿namespace HeroicallyRecipes.Web.Controllers
 {
     using System;
-    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web;
@@ -11,8 +10,6 @@
     using Microsoft.Owin.Security;
     using HeroicallyRecipes.Data.Models;
     using HeroicallyRecipes.Web.Models.Account;
-    using HeroicallyRecipes.Common.Globals;
-    using Infrastructure.Utilities.Images;
 
     [Authorize]
     public class AccountController : Controller
@@ -78,7 +75,7 @@
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -150,34 +147,13 @@
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase avatar)
+        public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Username, Email = model.Email };
+                var user = new User { UserName = model.Email, NickName = model.NickName, Email = model.Email };
 
-                if (avatar != null && avatar.ContentLength > 0)
-                {
-                    if(avatar.ContentLength > GlobalConstants.AvatarImageMaxContentLength)
-                    {
-                        ModelState.AddModelError("", "Please upload an avatar no bigger than 500 KB");
-                        return View(model);
-                    }
-
-                    string avatarExtension = Path.GetExtension(avatar.FileName);
-                    if (avatarExtension != ".png" && avatarExtension != ".jpg")
-                    {
-                        ModelState.AddModelError("", "Invalid avatar file");
-                        return View(model);
-                    }
-
-                    ImagesManager imgManager = new ImagesManager();
-                    user.AvatarUrl = imgManager.SaveAvatar(avatar, model.Username);
-                }
-                else
-                {
-                    user.AvatarUrl = "/images/defaultAvatar" + rand.Next(1, 4) + ".png";
-                }
+                user.AvatarUrl = "/images/defaultAvatar" + rand.Next(1, 4) + ".png";
 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

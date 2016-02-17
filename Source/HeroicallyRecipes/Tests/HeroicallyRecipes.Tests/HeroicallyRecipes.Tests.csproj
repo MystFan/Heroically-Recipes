@@ -119,7 +119,7 @@
   <ItemGroup>
     <Compile Include="ControllersTests\CategoriesControllerTests.cs" />
     <Compile Include="ControllersTests\HomeControllerTests.cs" />
-    <Compile Include="HomeRouteTests.cs" />
+    <Compile Include="RouteTests\HomeRouteTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

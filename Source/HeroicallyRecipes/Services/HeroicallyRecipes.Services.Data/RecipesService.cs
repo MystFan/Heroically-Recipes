@@ -8,9 +8,11 @@
     using HeroicallyRecipes.Data.Models;
     using HeroicallyRecipes.Data.Repositories;
     using HeroicallyRecipes.Services.Data.Contracts;
+    using System;
 
     public class RecipesService : IRecipesService
     {
+        private const int DefaultPage = 3;
         private IDbRepository<Recipe> recipes;
 
         public RecipesService(IDbRepository<Recipe> recipes)
@@ -43,6 +45,15 @@
             this.recipes.SaveChanges();
 
             return newRecipe.Id;
+        }
+
+        public IQueryable<Recipe> Get(int page)
+        {
+            return this.recipes
+                .All()
+                .OrderBy(f => f.CreatedOn)
+                .Skip((page - 1) * DefaultPage)
+                .Take(DefaultPage);
         }
 
         public IQueryable<Recipe> GetAll()

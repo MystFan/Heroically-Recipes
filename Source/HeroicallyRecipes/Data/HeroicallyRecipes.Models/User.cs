@@ -21,6 +21,10 @@
         [MaxLength(ModelConstants.UserAvatarPathMaxLength)]
         public string AvatarUrl { get; set; }
 
+        [Required]
+        [MaxLength(ModelConstants.UserNickNameMaxLength)]
+        public string NickName { get; set; }
+
         public virtual ICollection<Recipe> Recipes
         {
             get

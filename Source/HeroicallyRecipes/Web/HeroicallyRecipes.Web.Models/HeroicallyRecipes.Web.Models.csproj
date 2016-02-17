@@ -86,6 +86,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipeViewModels\RecipeCreateViewModel.cs" />
     <Compile Include="RecipeViewModels\RecipeHomeViewModel.cs" />
+    <Compile Include="RecipeViewModels\RecipeListViewModel.cs" />
+    <Compile Include="RecipeViewModels\RecipeViewModel.cs" />
     <Compile Include="Tags\TagViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿namespace HeroicallyRecipes.Tests
+﻿namespace HeroicallyRecipes.Tests.RouteTests
 {
     using System.Web.Routing;
     using MvcRouteTester;

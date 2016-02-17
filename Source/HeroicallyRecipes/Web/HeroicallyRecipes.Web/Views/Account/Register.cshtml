@@ -30,17 +30,10 @@
         </div>
     </div>
     <div class="form-group">
-        <span>Valid username characters: A-z, _, 0-9</span>
-        @Html.LabelFor(m => m.Username, new { @class = "col-md-2 control-label" })
+        <span>Valid nickname characters: A-z, _, 0-9</span>
+        @Html.LabelFor(m => m.NickName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <span>Valid image files: .png, .jpg</span>
-        @Html.Label("Avatar", new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            <input type="file" id="Avatar" name="avatar" />
+            @Html.TextBoxFor(m => m.NickName, new { @class = "form-control" })
         </div>
     </div>
 

@@ -20,7 +20,7 @@
 
         public const string TagTextPattern = "(#)((?:[A-Za-z0-9-_]{100}))";
 
-        public const string UsernamePattern = "([A-z0-9_]+)";
+        public const string NickNamePattern = "([A-z0-9_]+)";
 
         public const int RatingMinValue = 2;
 
@@ -41,5 +41,9 @@
         public const int CategoryNameMaxLength = 100;
 
         public const int UserAvatarPathMaxLength = 250;
+
+        public const int UserNickNameMaxLength = 50;
+
+        public const int UserNickNameMinLength = 5;
     }
 }

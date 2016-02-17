@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using AutoMapper.QueryableExtensions;
 
 namespace HeroicallyRecipes.Web.Areas.Users.Controllers
 {
@@ -16,6 +17,29 @@ namespace HeroicallyRecipes.Web.Areas.Users.Controllers
         public RecipesController(IRecipesService recipesService)
         {
             this.recipes = recipesService;
+        }
+
+        [HttpGet]
+        public ActionResult All(int page = 1)
+        {
+            int totalRecipes = this.recipes.GetAll().Count();
+            int totalPages = (int)Math.Ceiling(totalRecipes / (decimal)3);
+
+            var recipesResult = this.Cache.Get(page.ToString(),
+                            () => this.recipes
+                                .Get(page)
+                                .ProjectTo<RecipeViewModel>()
+                                .ToList(),
+                            1 * 60);
+
+            RecipeListViewModel viewModel = new RecipeListViewModel()
+            {
+                CurrentPage = page,
+                TotalPages = totalPages,
+                Recipes = recipesResult
+            };
+
+            return View(viewModel);
         }
 
         public ActionResult Create()

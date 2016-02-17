@@ -257,6 +257,7 @@
     <Content Include="Areas\Users\Views\Recipes\Create.cshtml" />
     <Content Include="Areas\Users\Views\Categories\_CategoriesPartial.cshtml" />
     <Content Include="Areas\Users\Views\Recipes\EditorTemplates\String.cshtml" />
+    <Content Include="Areas\Users\Views\Recipes\All.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

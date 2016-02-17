@@ -30,6 +30,7 @@ namespace HeroicallyRecipes.Data.Migrations
                     Email = "admin@site.com",
                     PasswordHash = hasher.HashPassword("admin"),
                     UserName = "admin@site.com",
+                    NickName = "admin@site.com",
                     AvatarUrl = "/images/defaultAvatar3.png"
                 };
 

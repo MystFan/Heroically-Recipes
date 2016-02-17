@@ -22,9 +22,9 @@
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [Display(Name = "Username")]
-        [RegularExpression(ModelConstants.UsernamePattern, ErrorMessage = "Invalid username characters.")]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 5)]
-        public string Username { get; set; }
+        [Display(Name = "Nickname")]
+        [RegularExpression(ModelConstants.NickNamePattern, ErrorMessage = "Invalid username characters.")]
+        [StringLength(ModelConstants.UserNickNameMaxLength, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = ModelConstants.UserNickNameMinLength)]
+        public string NickName { get; set; }
     }
 }
