@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using AutoMapper.QueryableExtensions;
+using HeroicallyRecipes.Web.Infrastructure.CustomFilters;
 
 namespace HeroicallyRecipes.Web.Areas.Users.Controllers
 {
@@ -60,6 +61,14 @@ namespace HeroicallyRecipes.Web.Areas.Users.Controllers
             }
 
             return View(model);
+        }
+
+        [HttpGet]
+        [AjaxOnly]
+        public ActionResult GetRecipePreparation(string id)
+        {
+            string recipePreparation = this.recipes.GetRecipePreparationById(id);
+            return Content(recipePreparation);
         }
     }
 }

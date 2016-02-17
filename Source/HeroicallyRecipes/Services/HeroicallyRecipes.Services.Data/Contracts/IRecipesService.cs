@@ -12,6 +12,8 @@
 
         IQueryable<Recipe> Get(int page);
 
+        string GetRecipePreparationById(string id);
+
         int Add(string title, string preparation, int categoryId, string userId, IEnumerable<string> ingradients, IEnumerable<HttpPostedFileBase> images, IEnumerable<string> tags);
     }
 }

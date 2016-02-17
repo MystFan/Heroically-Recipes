@@ -8,23 +8,38 @@
 
 <h2>@Model.CurrentPage</h2>
 
-<table class="table table-striped">
-    <tr>
-        <th>Title</th>
-        <th>Preparation</th>
-        <th>Author</th>
-        <th>Created On</th>
-    </tr>
+<div class="row">
     @foreach (var recipe in Model.Recipes)
     {
-        <tr>
-            <th>@recipe.Title</th>
-            <td>@recipe.Preparation</td>
-            <td>@recipe.Creator</td>
-            <td>@recipe.CreatedOn</td>
-        </tr>
+        <div class="col-md-4">
+            <div class="bs-component">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@recipe.Title</h3>
+                    </div>
+                    <div class="panel-body">
+                        <img src="@Url.Action("GetImage", "Home", new { Area = "", id = recipe.ViewId }, null)" class="img-responsive" />
+                        <div>
+                            @recipe.Preparation.Substring(0, 100)
+                            <br />
+                            @Ajax.ActionLink("See more", "GetRecipePreparation", new { id = recipe.ViewId }, new AjaxOptions()
+                       {
+                           HttpMethod = "GET",
+                           UpdateTargetId = "recipe-preparation-container",
+                           InsertionMode = InsertionMode.Replace
+                       })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     }
-</table>
+</div>
+<div class="panel text-center">
+    <div id="recipe-preparation-container" class="panel-body">
+
+    </div>
+</div>
 <nav class="text-center">
     <ul class="pagination">
         @if (Model.CurrentPage > 1)
@@ -56,4 +71,8 @@
         </li>
     </ul>
 </nav>
+
+@section scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+}
 

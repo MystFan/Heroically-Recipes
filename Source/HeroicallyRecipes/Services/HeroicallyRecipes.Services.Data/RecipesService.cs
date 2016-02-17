@@ -1,5 +1,6 @@
 ﻿namespace HeroicallyRecipes.Services.Data
 {
+    using System;
     using System.IO;
     using System.Collections.Generic;
     using System.Linq;
@@ -8,16 +9,18 @@
     using HeroicallyRecipes.Data.Models;
     using HeroicallyRecipes.Data.Repositories;
     using HeroicallyRecipes.Services.Data.Contracts;
-    using System;
+    using HeroicallyRecipes.Common.Providers;
 
     public class RecipesService : IRecipesService
     {
         private const int DefaultPage = 3;
         private IDbRepository<Recipe> recipes;
+        private IIdentifierProvider idProvider;
 
-        public RecipesService(IDbRepository<Recipe> recipes)
+        public RecipesService(IDbRepository<Recipe> recipes, IIdentifierProvider idProvider)
         {
             this.recipes = recipes;
+            this.idProvider = idProvider;
         }
 
         public int Add(string title, string preparation, int categoryId, string userId, IEnumerable<string> ingradients, IEnumerable<HttpPostedFileBase> images, IEnumerable<string> tags)
@@ -59,6 +62,16 @@
         public IQueryable<Recipe> GetAll()
         {
             return this.recipes.All();
+        }
+
+        public string GetRecipePreparationById(string id)
+        {
+            int decodedId = this.idProvider.DecodeId(id);
+
+            return this.recipes
+                .All()
+                .FirstOrDefault(r => r.Id == decodedId)
+                .Preparation;
         }
 
         private List<RecipeImage> HttpFileToRecipeImage(IEnumerable<HttpPostedFileBase> files)

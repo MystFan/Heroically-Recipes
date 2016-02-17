@@ -1,15 +1,12 @@
-﻿using AutoMapper;
-using HeroicallyRecipes.Common.Providers;
-using HeroicallyRecipes.Data.Models;
-using HeroicallyRecipes.Web.Infrastructure.Mappings;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HeroicallyRecipes.Web.Models.RecipeViewModels
+﻿namespace HeroicallyRecipes.Web.Models.RecipeViewModels
 {
+    using System;
+
+    using AutoMapper;
+    using HeroicallyRecipes.Common.Providers;
+    using HeroicallyRecipes.Data.Models;
+    using HeroicallyRecipes.Web.Infrastructure.Mappings;
+
     public class RecipeViewModel : IMapFrom<Recipe>, IHaveCustomMappings
     {
         public int Id { get; set; }

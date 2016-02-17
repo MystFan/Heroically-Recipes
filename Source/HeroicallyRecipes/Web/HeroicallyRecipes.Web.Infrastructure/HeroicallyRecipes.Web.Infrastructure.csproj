@@ -66,6 +66,7 @@
     <Compile Include="CustomAttributes\RecipeImagesValidator.cs" />
     <Compile Include="CustomAttributes\ValidateIngredientsCount.cs" />
     <Compile Include="CustomFilters\AddResponseHeaderFilter.cs" />
+    <Compile Include="CustomFilters\AjaxOnlyAttribute.cs" />
     <Compile Include="Utilities\Images\ImagesManager.cs" />
     <Compile Include="Mappings\IHaveCustomMappings.cs" />
     <Compile Include="Mappings\IMapFrom.cs" />
