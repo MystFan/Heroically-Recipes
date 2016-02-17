@@ -42,6 +42,7 @@ namespace HeroicallyRecipes.Web.Areas.Users.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -55,6 +56,7 @@ namespace HeroicallyRecipes.Web.Areas.Users.Controllers
                 string userId = this.User.Identity.GetUserId();
                 IEnumerable<string> tags = model.Tags.Select(t => t.Text);
                 this.recipes.Add(model.Title, model.Preparation, model.CategoryId, userId, model.Ingredients, model.RecipeImages, tags);
+                this.RedirectToAction("All");
             }
 
             return View(model);
