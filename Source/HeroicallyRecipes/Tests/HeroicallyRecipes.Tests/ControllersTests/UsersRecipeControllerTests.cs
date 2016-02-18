@@ -17,7 +17,10 @@
     using HeroicallyRecipes.Web;
     using HeroicallyRecipes.Web.Areas.Users.Controllers;
     using HeroicallyRecipes.Web.Models.RecipeViewModels;
-
+    using System.Security.Principal;
+    using Moq;
+    using System.Security.Claims;
+    using System.Web.Routing;
     [TestFixture]
     public class UsersRecipeControllerTests
     {
@@ -99,12 +102,23 @@
                 RecipeImages = new List<HttpPostedFileBase>() { null, null, null }
             };
 
+            // http://forums.asp.net/t/2028867.aspx?UnitTest+How+to+Mock+User+Identity+GetUserId+
+            var context = new Mock<HttpContextBase>();
+            var request = new Mock<HttpRequestBase>();
+
+            var identity = new GenericIdentity("dominik.ernst@xyz123.de");
+            identity.AddClaim(new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", "1"));
+            var principal = new GenericPrincipal(identity, new[] { "user" });
+            context.Setup(s => s.User).Returns(principal);
+
+            controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
+
             controller.WithCallTo(a => a.Create(model))
-                .ShouldRenderView("Create")
-                .WithModel<RecipeCreateViewModel>(m =>
-                {
-                    
-                }).AndModelError("The recipe must contain at least one image!");
+                    .ShouldRenderView("Create")
+                    .WithModel<RecipeCreateViewModel>(m =>
+                    {
+
+                    }).AndModelError("The recipe must contain at least one image!");
 
             ActionResult result = controller.Create(model) as ActionResult;
 

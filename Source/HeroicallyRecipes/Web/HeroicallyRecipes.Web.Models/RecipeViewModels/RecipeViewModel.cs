@@ -1,6 +1,7 @@
 ﻿namespace HeroicallyRecipes.Web.Models.RecipeViewModels
 {
     using System;
+    using System.Linq;
 
     using AutoMapper;
     using HeroicallyRecipes.Common.Providers;
@@ -30,6 +31,8 @@
 
         public string Creator { get; set; }
 
+        public int Votes { get; set; }
+
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Recipe, RecipeViewModel>()
@@ -37,6 +40,9 @@
 
             configuration.CreateMap<Recipe, RecipeViewModel>()
                 .ForMember(s => s.Creator, opt => opt.MapFrom(s => s.Creator.NickName));
+
+            configuration.CreateMap<Recipe, RecipeViewModel>()
+                .ForMember(s => s.Votes, opt => opt.MapFrom(s => s.Votes.Any() ? s.Votes.Sum(v => (int)v.Type) : 0));
         }
     }
 }

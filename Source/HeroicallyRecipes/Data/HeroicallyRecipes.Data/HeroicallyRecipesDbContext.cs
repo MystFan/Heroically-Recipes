@@ -25,6 +25,8 @@
 
         public virtual IDbSet<Tag> Tags { get; set; }
 
+        public virtual IDbSet<RecipeVote> Votes { get; set; }
+
         public virtual IDbSet<Rating> Ratings { get; set; }
 
         public static HeroicallyRecipesDbContext Create()

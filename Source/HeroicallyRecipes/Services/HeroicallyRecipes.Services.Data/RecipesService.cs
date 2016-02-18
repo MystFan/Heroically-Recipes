@@ -36,10 +36,7 @@
                     Text = i
                 }).ToList(),
                 Images = recipeImages,
-                Tags = tags.Select(t => new Tag()
-                {
-                    Text = t
-                }).ToList(),
+                Tags = null,
                 UserId = userId,
                 CategoryId = categoryId
             };
@@ -64,14 +61,29 @@
             return this.recipes.All();
         }
 
-        public string GetRecipePreparationById(string id)
+        public Recipe GetById(string id)
         {
             int decodedId = this.idProvider.DecodeId(id);
 
-            return this.recipes
+            var resultRecipe = GetRecipeById(decodedId);
+
+            return resultRecipe;
+        }
+
+        public Recipe GetById(int id)
+        {
+            var resultRecipe = GetRecipeById(id);
+
+            return resultRecipe;
+        }
+
+        private Recipe GetRecipeById(int id)
+        {
+            var resultRecipe = this.recipes
                 .All()
-                .FirstOrDefault(r => r.Id == decodedId)
-                .Preparation;
+                .FirstOrDefault(r => r.Id == id);
+
+            return resultRecipe;
         }
 
         private List<RecipeImage> HttpFileToRecipeImage(IEnumerable<HttpPostedFileBase> files)
@@ -80,7 +92,7 @@
 
             foreach (var file in files)
             {
-                if(file == null)
+                if (file == null)
                 {
                     continue;
                 }

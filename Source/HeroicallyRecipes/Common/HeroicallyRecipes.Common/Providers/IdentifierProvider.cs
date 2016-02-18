@@ -14,6 +14,11 @@
 
         public int DecodeId(string urlId)
         {
+            if(urlId.Length != 20)
+            {
+                return -1;
+            }
+
             var base64EncodedBytes = Convert.FromBase64String(urlId);
             var bytesAsString = Encoding.UTF8.GetString(base64EncodedBytes);
             bytesAsString = bytesAsString.Replace(Salt, string.Empty);

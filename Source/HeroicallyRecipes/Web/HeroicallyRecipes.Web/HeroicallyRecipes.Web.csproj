@@ -56,6 +56,14 @@
       <HintPath>..\..\packages\AutoMapper.4.0.0\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Elmah, Version=1.2.13605.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\elmah.corelibrary.1.2\lib\Elmah.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Elmah.Mvc, Version=2.1.2.1389, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Elmah.Mvc.2.1.2\lib\net40\Elmah.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Glimpse.Ado, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Glimpse.Ado.1.7.3\lib\net45\Glimpse.Ado.dll</HintPath>
       <Private>True</Private>
@@ -216,6 +224,7 @@
     <Compile Include="Areas\Users\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Users\Controllers\RecipesController.cs" />
     <Compile Include="Areas\Users\Controllers\UsersBaseController.cs" />
+    <Compile Include="Areas\Users\Controllers\VotesController.cs" />
     <Compile Include="Areas\Users\UsersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -237,6 +246,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\profile.css" />
+    <Content Include="Content\recipe-details.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -258,6 +268,7 @@
     <Content Include="Areas\Users\Views\Categories\_CategoriesPartial.cshtml" />
     <Content Include="Areas\Users\Views\Recipes\EditorTemplates\String.cshtml" />
     <Content Include="Areas\Users\Views\Recipes\All.cshtml" />
+    <Content Include="Areas\Users\Views\Recipes\Details.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -269,6 +280,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\recipe-vote.js" />
     <Content Include="Scripts\recipeUpload.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -308,7 +320,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Models\" />
+    <Folder Include="Areas\Users\Views\Recipes\DisplayTemplates\" />
     <Folder Include="Areas\Users\Views\UsersBase\" />
+    <Folder Include="Areas\Users\Views\Votes\" />
     <Folder Include="images\Avatars\" />
   </ItemGroup>
   <ItemGroup>

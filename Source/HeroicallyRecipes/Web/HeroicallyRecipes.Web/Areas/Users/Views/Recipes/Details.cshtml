@@ -1,0 +1,45 @@
+﻿@model HeroicallyRecipes.Web.Models.RecipeViewModels.RecipeViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    <link href="~/Content/recipe-details.css" rel="stylesheet" />
+}
+
+<div class="row" id="recipe-details-header-container">
+    <div class="col-md-3">
+        <p id="recipe-details-image-container">
+            <img src="@Url.Action("GetImage", "Home", new { Area = "", id = Model.ViewId }, null)" alt="@(Model.Title) Image" class="img-responsive" />
+        </p>
+    </div>
+    <div class="col-md-7">
+        <div id="recipe-details-header-left">
+            <h2>@Model.Title</h2>
+            <p>details</p>
+        </div>
+        <p>from <strong>@(Model.Creator == "Admin" ? "Heroically Recipes" : Model.Creator)</strong></p>
+    </div>
+    <div class="col-md-2">
+        <div class="well text-center">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="row vote-icon" data-id="@Model.Id" data-action="up"><span class="glyphicon glyphicon glyphicon-thumbs-up"></span></div>
+            }
+            <div class="row" data-id="@Model.Id" data-action="votesCount">@Model.Votes</div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="row vote-icon" data-id="@Model.Id" data-action="down"><span class="glyphicon glyphicon-thumbs-down"></span></div>
+            }
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "All", null, new { @class = "btn btn-success" })
+</p>
+
+@section scripts{
+    <script src="~/Scripts/recipe-vote.js"></script>
+}

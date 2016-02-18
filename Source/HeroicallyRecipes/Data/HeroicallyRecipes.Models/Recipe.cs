@@ -8,12 +8,14 @@
     public class Recipe : BaseModel<int>
     {
         private ICollection<Tag> tags;
+        private ICollection<RecipeVote> votes;
         private ICollection<Rating> ratings;
         private ICollection<RecipeImage> images;
         private ICollection<Ingredient> ingredients;
 
         public Recipe()
         {
+            this.votes = new HashSet<RecipeVote>();
             this.tags = new HashSet<Tag>();
             this.ratings = new HashSet<Rating>();
             this.images = new HashSet<RecipeImage>();
@@ -30,7 +32,7 @@
 
         public int CategoryId { get; set; }
         
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
         public string UserId { get; set; }
 
@@ -40,6 +42,12 @@
         {
             get { return this.tags; }
             set { this.tags = value; }
+        }
+
+        public virtual ICollection<RecipeVote> Votes
+        {
+            get { return this.votes; }
+            set { this.votes = value; }
         }
 
         public virtual ICollection<Rating> Ratings

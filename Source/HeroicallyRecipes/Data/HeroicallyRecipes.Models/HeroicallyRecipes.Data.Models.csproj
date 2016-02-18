@@ -66,8 +66,10 @@
     <Compile Include="Rating.cs" />
     <Compile Include="Recipe.cs" />
     <Compile Include="RecipeImage.cs" />
+    <Compile Include="RecipeVote.cs" />
     <Compile Include="Tag.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="VoteType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

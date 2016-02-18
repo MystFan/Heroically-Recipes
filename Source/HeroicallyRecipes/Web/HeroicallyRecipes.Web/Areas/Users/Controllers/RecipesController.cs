@@ -1,16 +1,18 @@
-﻿using HeroicallyRecipes.Services.Data.Contracts;
-using HeroicallyRecipes.Web.Models.RecipeViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using AutoMapper.QueryableExtensions;
-using HeroicallyRecipes.Web.Infrastructure.CustomFilters;
-
-namespace HeroicallyRecipes.Web.Areas.Users.Controllers
+﻿namespace HeroicallyRecipes.Web.Areas.Users.Controllers
 {
+    using System;
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using Microsoft.AspNet.Identity;
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
+
+    using HeroicallyRecipes.Data.Models;
+    using HeroicallyRecipes.Web.Infrastructure.CustomFilters;
+    using HeroicallyRecipes.Web.Models.RecipeViewModels;
+    using HeroicallyRecipes.Services.Data.Contracts;
+
     public class RecipesController : UsersBaseController
     {
         private IRecipesService recipes;
@@ -55,8 +57,8 @@ namespace HeroicallyRecipes.Web.Areas.Users.Controllers
             if (this.ModelState.IsValid)
             {
                 string userId = this.User.Identity.GetUserId();
-                IEnumerable<string> tags = model.Tags.Select(t => t.Text);
-                this.recipes.Add(model.Title, model.Preparation, model.CategoryId, userId, model.Ingredients, model.RecipeImages, tags);
+                //IEnumerable<string> tags = model.Tags.Select(t => t.Text);
+                this.recipes.Add(model.Title, model.Preparation, model.CategoryId, userId, model.Ingredients, model.RecipeImages, null);
                 this.RedirectToAction("All");
             }
 
@@ -64,11 +66,34 @@ namespace HeroicallyRecipes.Web.Areas.Users.Controllers
         }
 
         [HttpGet]
+        public ActionResult Details(string id)
+        {
+            if(id == null)
+            {
+                return HttpNotFound();
+            }
+
+            var dbRecipe = this.recipes.GetById(id);
+            var viewRecipe = Mapper.Map<RecipeViewModel>(dbRecipe);
+            viewRecipe.Creator = dbRecipe.Creator.NickName;
+            viewRecipe.Category = dbRecipe.Category.Name;
+            viewRecipe.Votes = dbRecipe.Votes.Count;
+
+            if(viewRecipe == null)
+            {
+                return HttpNotFound();
+            }
+
+            return this.View(viewRecipe);
+        }
+
+        [HttpGet]
         [AjaxOnly]
         public ActionResult GetRecipePreparation(string id)
         {
-            string recipePreparation = this.recipes.GetRecipePreparationById(id);
-            return Content(recipePreparation);
+            var recipe = this.recipes.GetById(id);
+
+            return Content(recipe.Preparation);
         }
     }
 }

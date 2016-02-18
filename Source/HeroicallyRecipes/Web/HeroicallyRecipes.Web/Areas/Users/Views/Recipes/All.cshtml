@@ -19,26 +19,24 @@
                     </div>
                     <div class="panel-body">
                         <img src="@Url.Action("GetImage", "Home", new { Area = "", id = recipe.ViewId }, null)" class="img-responsive" />
-                        <div>
+                        <div id="@("recipe-" + recipe.ViewId.Substring(0,7))">
                             @recipe.Preparation.Substring(0, 100)
                             <br />
                             @Ajax.ActionLink("See more", "GetRecipePreparation", new { id = recipe.ViewId }, new AjaxOptions()
                        {
                            HttpMethod = "GET",
-                           UpdateTargetId = "recipe-preparation-container",
+                           UpdateTargetId = "recipe-" + recipe.ViewId.Substring(0, 7),
                            InsertionMode = InsertionMode.Replace
                        })
                         </div>
+                    </div>
+                    <div class="panel-footer">
+                        @Html.ActionLink("More details", "Details", "Recipes", new { area = "Users", id = recipe.ViewId }, new { @class = "btn btn-success", title = "Recipe details" })
                     </div>
                 </div>
             </div>
         </div>
     }
-</div>
-<div class="panel text-center">
-    <div id="recipe-preparation-container" class="panel-body">
-
-    </div>
 </div>
 <nav class="text-center">
     <ul class="pagination">
