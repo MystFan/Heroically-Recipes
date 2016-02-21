@@ -64,7 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomAttributes\RecipeImagesValidator.cs" />
-    <Compile Include="CustomAttributes\ValidateIngredientsCount.cs" />
+    <Compile Include="CustomAttributes\ValidateIngradients.cs" />
     <Compile Include="CustomFilters\AddResponseHeaderFilter.cs" />
     <Compile Include="CustomFilters\AjaxOnlyAttribute.cs" />
     <Compile Include="Utilities\Images\ImagesManager.cs" />

@@ -18,6 +18,8 @@
 
         public const int TagMaxLength = 100;
 
+        public const int TagsMinCount = 1;
+
         public const string TagTextPattern = "(#)((?:[A-Za-z0-9-_]{100}))";
 
         public const string NickNamePattern = "([A-z0-9_]+)";

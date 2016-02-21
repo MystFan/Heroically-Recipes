@@ -9,7 +9,6 @@
     $btnAddIngredient.on('click', function (ev) {
         var ingredientCount = $ingradientsContainer.children('textarea').length;
         var $textarea = $('<textarea/>').attr({
-            value: 'Ingradient',
             name: 'Ingredients[' + ingredientCount + ']',
             cols: 50,
             'class': 'form-control'

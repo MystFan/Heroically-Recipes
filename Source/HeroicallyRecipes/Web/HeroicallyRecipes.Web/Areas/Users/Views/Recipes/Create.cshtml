@@ -30,8 +30,7 @@
         @Html.Action("All", "Categories")
 
         <div class="alert alert-warning">
-            <strong>Warning!</strong> The ingredients of the recipe should be arranged as follows shown at right. { measure } { ingredient } ("1/2 cup crème fraîche or sour cream" or "12 large eggs" and ect.)<br />
-            Each in a separate field because it will be shown in addition to your recipe.
+            <strong>Warning!</strong> <br /> The ingredients of the recipe should be arranged as follows shown at right. { measure } { ingredient } ("1/2 cup crème fraîche or sour cream" or "12 large eggs" and ect.)<br />
         </div>
 
         <div class="form-group">
@@ -42,7 +41,6 @@
                     <textarea value="Ingradient" name="Ingredients[@i]" cols="50" class="form-control"></textarea>
                     <br />
                 }
-                
                 @Html.ValidationMessageFor(model => model.Ingredients, "", new { @class = "text-danger" })
             </div>
             <div class="text-center">
@@ -60,6 +58,9 @@
                 <input type="button" id="btn-add-image" class="btn btn-success" value="Add Image" />
             </div>
         </div>
+
+
+        @Html.Action("GetTags", "Tags");
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10" id="add-ingradients-container">

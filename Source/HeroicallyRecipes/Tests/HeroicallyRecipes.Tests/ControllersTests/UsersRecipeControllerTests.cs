@@ -3,24 +3,26 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Security.Principal;
+    using System.Security.Claims;
+    using System.Web.Routing;
     using System.Web;
     using System.Web.Mvc;
 
     using AutoMapper.QueryableExtensions;
     using TestStack.FluentMVCTesting;
     using NUnit.Framework;
+    using Moq;
 
     using HeroicallyRecipes.Common.Globals;
+    using HeroicallyRecipes.Common.Validation;
     using HeroicallyRecipes.Services.Data.Contracts;
     using HeroicallyRecipes.Services.Web;
     using HeroicallyRecipes.Tests.TestObjects;
     using HeroicallyRecipes.Web;
     using HeroicallyRecipes.Web.Areas.Users.Controllers;
     using HeroicallyRecipes.Web.Models.RecipeViewModels;
-    using System.Security.Principal;
-    using Moq;
-    using System.Security.Claims;
-    using System.Web.Routing;
+
     [TestFixture]
     public class UsersRecipeControllerTests
     {
@@ -33,10 +35,10 @@
         {
             AutoMapperConfig.RegisterMappings();
 
-            this.recipes = TestObjectFactory.GetRecipeService();
+            this.recipes = TestObjectsFactory.GetRecipeService();
 
-            controller = new RecipesController(this.recipes);
-            controller.Cache = new HttpCacheService();
+            this.controller = new RecipesController(this.recipes);
+            this.controller.Cache = new HttpCacheService();
         }
 
         [Test]
@@ -89,19 +91,44 @@
                 .ShouldRenderView("Create");
         }
 
-        // TODO: Remake test after Action Create is finished
         [Test]
-        public void ControllerActionCreatePostShouldReturnView()
+        public void ControllerActionCreatePostWithValidModelStateShouldReditect()
         {
-            RecipeCreateViewModel model = new RecipeCreateViewModel()
-            {
-                Title = "Tandoori Carrots",
-                Preparation = "Preparation 1",
-                CategoryId = 2,
-                Ingredients = new List<string>() { "2 tablespoons vadouvan", "2 garlic cloves, finely grated, divided", "1/2 cup plain whole-milk Greek yogurt, divided" },
-                RecipeImages = new List<HttpPostedFileBase>() { null, null, null }
-            };
+            var validRecipeCreateViewModel = TestObjectsFactory.GetValidRecipeCreateViewModel();
 
+            MockIdentity();
+
+            var validationController = new ModelStateTestController();
+            validationController.TestTryValidateModel(validRecipeCreateViewModel);
+
+            controller.WithCallTo(a => a.Create(validRecipeCreateViewModel))
+                    .ShouldRedirectTo<RecipesController>(c => c.All(1));
+
+            var modelState = validationController.ModelState;
+
+            Assert.IsTrue(modelState.IsValid);
+        }
+
+        [Test]
+        public void ControllerActionCreatePostWithInvalidModelStateShouldReturnViewWithErrors()
+        {
+            var invalidRecipeCreateViewModel = TestObjectsFactory.GetInvalidRecipeCreateViewModel();
+
+            MockIdentity();
+
+            var validationController = new ModelStateTestController();
+            validationController.TestTryValidateModel(invalidRecipeCreateViewModel);
+
+            var errorMessages = GetErrorMessages(validationController.ModelState);
+
+            Assert.AreEqual("The Title must be at least 3 characters long.", errorMessages[0]);
+            Assert.AreEqual("The field Preparation must be a string or array type with a minimum length of '100'.", errorMessages[1]);
+            Assert.AreEqual("The recipe must contain at least 3 ingredients!", errorMessages[2]);
+            Assert.AreEqual("The recipe must contain at least one image!", errorMessages[3]);
+        }
+
+        private void MockIdentity()
+        {
             // http://forums.asp.net/t/2028867.aspx?UnitTest+How+to+Mock+User+Identity+GetUserId+
             var context = new Mock<HttpContextBase>();
             var request = new Mock<HttpRequestBase>();
@@ -111,18 +138,20 @@
             var principal = new GenericPrincipal(identity, new[] { "user" });
             context.Setup(s => s.User).Returns(principal);
 
-            controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
+            this.controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), this.controller);
+        }
 
-            controller.WithCallTo(a => a.Create(model))
-                    .ShouldRenderView("Create")
-                    .WithModel<RecipeCreateViewModel>(m =>
-                    {
+        private List<string> GetErrorMessages(ModelStateDictionary errorsList)
+        {
+            List<string> messages = new List<string>();
+            var errors = errorsList.Values.Select(v => v.Errors);
 
-                    }).AndModelError("The recipe must contain at least one image!");
+            foreach (var error in errors)
+            {
+                messages.Add(error.Select(e => e.ErrorMessage).FirstOrDefault());
+            }
 
-            ActionResult result = controller.Create(model) as ActionResult;
-
-            Assert.IsNotNull(result);
+            return messages;
         }
     }
 }

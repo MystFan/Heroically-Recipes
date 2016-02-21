@@ -32,6 +32,7 @@
                 {
                     UserName = emails[i],
                     Email = emails[i],
+                    NickName = emails[i],
                     PasswordHash = hasher.HashPassword(passwords[i]),
                     AvatarUrl = "/images/defaultAvatar1.png"
                 };
@@ -102,7 +103,7 @@
 
                         },
                         Ratings = new List<Rating> { new Rating() { Value = 5}, new Rating() { Value = 7} },
-                        Tags = new List<Tag> {new Tag() { Text = "#health"}, new Tag() { Text = "#vegetables" } }
+                        Tags = new List<Tag> {new Tag() { Text = "health"}, new Tag() { Text = "vegetables" } }
                     }
                 },
                 {"Sheetpandinners Chicken",
@@ -129,7 +130,7 @@
                             new Ingredient() {Text = "1/4 cup torn fresh mint leaves" }
                         },
                         Ratings = new List<Rating> { new Rating() { Value = 5}, new Rating() { Value = 7} },
-                        Tags = new List<Tag> {new Tag() { Text = "#chiken"}, new Tag() { Text = "#vegetables" } }
+                        Tags = new List<Tag> {new Tag() { Text = "chiken"}, new Tag() { Text = "vegetables" } }
                     }
                 },
                 {"Salad with butter and basted mushrooms",
@@ -164,7 +165,7 @@
                             new Ingredient() {Text = "1 1/2 ounces Parmesan, shaved, plus more for serving" }
                         },
                         Ratings = new List<Rating> { new Rating() { Value = 3}, new Rating() { Value = 4} },
-                        Tags = new List<Tag> {new Tag() { Text = "#garlic" }, new Tag() { Text = "#mushrooms" } }
+                        Tags = new List<Tag> {new Tag() { Text = "garlic" }, new Tag() { Text = "mushrooms" } }
                     }
                 },
                 {"Breakfast bowl with Quinoa and Berries",
@@ -184,7 +185,7 @@
                             new Ingredient() {Text = "1/4 cup cooked quinoa" },
                         },
                         Ratings = new List<Rating> { new Rating() { Value = 7}, new Rating() { Value = 9} },
-                        Tags = new List<Tag> {new Tag() { Text = "#Berries" }, new Tag() { Text = "#Quinoa" } }
+                        Tags = new List<Tag> {new Tag() { Text = "Berries" }, new Tag() { Text = "Quinoa" } }
                     }
                 },
                 {"Crispy potato-leek kugel",
@@ -212,7 +213,7 @@
                             new Ingredient() {Text = "1 tablespoon plus 1 teaspoon fresh thyme leaves, divided" },
                         },
                         Ratings = new List<Rating> { new Rating() { Value = 5}, new Rating() { Value = 9} },
-                        Tags = new List<Tag> {new Tag() { Text = "#potatoe" }, new Tag() { Text = "#eggs" } }
+                        Tags = new List<Tag> {new Tag() { Text = "potatoe" }, new Tag() { Text = "eggs" } }
                     }
                 }
             };

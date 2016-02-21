@@ -46,11 +46,13 @@
     <Compile Include="Contracts\IImagesService.cs" />
     <Compile Include="Contracts\IRecipesService.cs" />
     <Compile Include="Contracts\IService.cs" />
+    <Compile Include="Contracts\ITagsService.cs" />
     <Compile Include="Contracts\IUsersService.cs" />
     <Compile Include="Contracts\IVoteService.cs" />
     <Compile Include="ImagesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipesService.cs" />
+    <Compile Include="TagsService.cs" />
     <Compile Include="UsersService.cs" />
     <Compile Include="VoteService.cs" />
   </ItemGroup>

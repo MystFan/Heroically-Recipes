@@ -6,7 +6,7 @@
 
     using HeroicallyRecipes.Common.Validation;
 
-    public class ValidateIngredients : ValidationAttribute
+    public class ValidateIngradients : ValidationAttribute
     {
         public override bool IsValid(object value)
         {

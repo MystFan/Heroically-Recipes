@@ -3,20 +3,21 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web;
 
     using Moq;
     using HeroicallyRecipes.Common.Globals;
     using HeroicallyRecipes.Data.Models;
-    using HeroicallyRecipes.Services.Data.Contracts;  
-
-    public class TestObjectFactory
+    using HeroicallyRecipes.Services.Data.Contracts;
+    using Web.Models.RecipeViewModels;
+    public class TestObjectsFactory
     {
         public static IRecipesService GetRecipeService()
         {
             var recipesServiceMock = new Mock<IRecipesService>();
             int pageSize = GlobalConstants.RecipeDefaultPageSize;
 
-            recipesServiceMock.Setup(rs =>rs.GetAll())
+            recipesServiceMock.Setup(rs => rs.GetAll())
                 .Returns(GetRecipeRepositiry(10).All());
 
             recipesServiceMock.Setup(rs => rs.Get(It.IsIn(1)))
@@ -24,6 +25,16 @@
 
             recipesServiceMock.Setup(rs => rs.Get(It.IsIn(5)))
                .Returns(GetRecipeRepositiry(10).All().Skip((5 - 1) * pageSize).Take(pageSize));
+
+            recipesServiceMock.Setup(rs =>
+            rs.Add(It.IsAny<string>(),
+                   It.IsAny<string>(),
+                   It.IsAny<int>(),
+                   It.IsAny<string>(),
+                   It.IsAny<IEnumerable<string>>(),
+                   It.IsAny<IEnumerable<HttpPostedFileBase>>(),
+                   It.IsAny<IEnumerable<string>>()))
+                   .Returns(1);
 
             return recipesServiceMock.Object;
         }
@@ -46,10 +57,10 @@
             {
                 Id = 1,
                 Title = "Tandoori Carrots",
-                Preparation = "Preparation 1",
+                Preparation = "Preparation 1, Preparation 1, Preparation 1, Preparation 1, Preparation 1, Preparation 1, Preparation 1, Preparation 1, Preparation 1",
                 Category = new Category() { Name = "Healthy" },
                 CreatedOn = new DateTime(2016, 1, 12, 12, 12, 12),
-                Creator = new User() { NickName = "Creator 1"},
+                Creator = new User() { NickName = "Creator 1" },
                 Images = new List<RecipeImage>() { new RecipeImage() { OriginalName = "image1.png", Extension = ".png" } }
             });
 
@@ -57,7 +68,7 @@
             {
                 Id = 2,
                 Title = "Sheetpandinners Chicken",
-                Preparation = "Preparation 2",
+                Preparation = "Preparation 2, Preparation 2, Preparation 2, Preparation 2, Preparation 2, Preparation 2, Preparation 2, Preparation 2, Preparation 2",
                 Category = new Category() { Name = "Quick and Easy" },
                 CreatedOn = new DateTime(2016, 1, 12, 11, 11, 11),
                 Creator = new User() { NickName = "Creator 2" },
@@ -68,7 +79,7 @@
             {
                 Id = 3,
                 Title = "Salad with butter and basted mushrooms",
-                Preparation = "Preparation 3",
+                Preparation = "Preparation 3, Preparation 3, Preparation 3, Preparation 3, Preparation 3, Preparation 3, Preparation 3, Preparation 3, Preparation 3",
                 Category = new Category() { Name = "Vegetarian" },
                 CreatedOn = new DateTime(2016, 1, 12, 10, 10, 10),
                 Creator = new User() { NickName = "Creator 3" },
@@ -113,11 +124,48 @@
                     OriginalName = "OriginalName.png",
                     Extension = ".png",
                     Content = bytes,
-                    CreatedOn = date,        
+                    CreatedOn = date,
                 });
             }
 
             return repo;
+        }
+
+        public static RecipeCreateViewModel GetInvalidRecipeCreateViewModel()
+        {
+            return new RecipeCreateViewModel()
+            {
+                Title = "Ta",
+                Preparation = "Test Preparation",
+                CategoryId = 2,
+                Ingredients = new List<string>()
+                {
+                    "garlic cloves, finely grated, divided",
+                    "cup plain whole-milk Greek yogurt, divided",
+                },
+                RecipeImages = new List<HttpPostedFileBase>() { null, null, null }
+            };
+        }
+
+        public static RecipeCreateViewModel GetValidRecipeCreateViewModel()
+        {
+            var imageMock = new Mock<HttpPostedFileBase>();
+            imageMock.Setup(i => i.FileName).Returns("image1.png");
+            imageMock.Setup(i => i.ContentLength).Returns(500000);
+
+            return new RecipeCreateViewModel()
+            {
+                Title = "Tandoori Carrots",
+                Preparation = "Test Preparation,Test Preparation,Test Preparation,Test Preparation,Test Preparation,Test Preparation,Test Preparation,Test Preparation",
+                CategoryId = 2,
+                Ingredients = new List<string>()
+                {
+                    "garlic cloves, finely grated, divided",
+                    "garlic cloves, finely grated, divided",
+                    "cup plain whole-milk Greek yogurt, divided",
+                },
+                RecipeImages = new List<HttpPostedFileBase>() { null, null, imageMock.Object }
+            };
         }
     }
 }

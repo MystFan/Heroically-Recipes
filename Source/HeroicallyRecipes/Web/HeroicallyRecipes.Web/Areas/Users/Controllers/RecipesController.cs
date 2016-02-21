@@ -1,6 +1,7 @@
 ﻿namespace HeroicallyRecipes.Web.Areas.Users.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -8,11 +9,11 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
-    using HeroicallyRecipes.Data.Models;
     using HeroicallyRecipes.Web.Infrastructure.CustomFilters;
     using HeroicallyRecipes.Web.Models.RecipeViewModels;
+    using HeroicallyRecipes.Web.Models.Tags;
     using HeroicallyRecipes.Services.Data.Contracts;
-
+    using Common.Validation;
     public class RecipesController : UsersBaseController
     {
         private IRecipesService recipes;
@@ -54,12 +55,16 @@
         [HttpPost]
         public ActionResult Create(RecipeCreateViewModel model)
         {        
+            if(model.Tags == null)
+            {
+                this.ModelState.AddModelError(string.Empty, "The recipe must contain at least " + ModelConstants.TagsMinCount + " tag!");
+            }
+
             if (this.ModelState.IsValid)
             {
                 string userId = this.User.Identity.GetUserId();
-                //IEnumerable<string> tags = model.Tags.Select(t => t.Text);
-                this.recipes.Add(model.Title, model.Preparation, model.CategoryId, userId, model.Ingredients, model.RecipeImages, null);
-                this.RedirectToAction("All");
+                this.recipes.Add(model.Title, model.Preparation, model.CategoryId, userId, model.Ingredients, model.RecipeImages, model.Tags);
+                return this.RedirectToAction("All");
             }
 
             return View(model);
@@ -83,7 +88,7 @@
             {
                 return HttpNotFound();
             }
-
+            
             return this.View(viewRecipe);
         }
 

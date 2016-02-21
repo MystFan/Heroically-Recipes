@@ -1,0 +1,22 @@
+﻿@model IEnumerable<String>
+
+@{ 
+    List<SelectListItem> tags = new List<SelectListItem>();
+
+    foreach (var tag in Model)
+    {
+        tags.Add(new SelectListItem()
+        {
+            Text = tag,
+            Value = tag
+        });
+    }
+}
+
+<div class="form-group">
+    @Html.Label("Tags", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10" id="add-images-container">
+        @Html.DropDownList("Tags", tags, new { multiple = "multiple", @class = "form-control" })
+        @Html.ValidationMessageFor(model => model, "", new { @class = "text-danger" })
+    </div>
+</div>

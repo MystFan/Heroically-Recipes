@@ -22,9 +22,9 @@
 
         public int CategoryId { get; set; }
 
-        public IEnumerable<TagViewModel> Tags { get; set; }
+        public IEnumerable<string> Tags { get; set; }
 
-        [ValidateIngredients]
+        [ValidateIngradients]
         public IEnumerable<string> Ingredients { get; set; }
 
         [RecipeImagesValidator]

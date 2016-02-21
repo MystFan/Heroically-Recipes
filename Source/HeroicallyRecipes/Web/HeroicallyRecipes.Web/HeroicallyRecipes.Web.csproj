@@ -223,6 +223,7 @@
     <Compile Include="Areas\Users\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Users\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Users\Controllers\RecipesController.cs" />
+    <Compile Include="Areas\Users\Controllers\TagsController.cs" />
     <Compile Include="Areas\Users\Controllers\UsersBaseController.cs" />
     <Compile Include="Areas\Users\Controllers\VotesController.cs" />
     <Compile Include="Areas\Users\UsersAreaRegistration.cs" />
@@ -269,6 +270,7 @@
     <Content Include="Areas\Users\Views\Recipes\EditorTemplates\String.cshtml" />
     <Content Include="Areas\Users\Views\Recipes\All.cshtml" />
     <Content Include="Areas\Users\Views\Recipes\Details.cshtml" />
+    <Content Include="Areas\Users\Views\Tags\_TagsPartial.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
