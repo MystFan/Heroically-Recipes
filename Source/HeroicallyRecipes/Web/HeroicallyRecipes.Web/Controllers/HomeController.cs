@@ -9,6 +9,7 @@
 
     public class HomeController : BaseController
     {
+        private const int TopRecipesCount = 5;
         private IImagesService images;
         private IRecipesService recipes;
 
@@ -37,7 +38,7 @@
         public ActionResult GetTopRecipes()
         {
             var allRecipes = this.recipes
-                .GetAll()
+                .GetTop(TopRecipesCount)
                 .ProjectTo<RecipeHomeViewModel>()
                 .ToList();
 

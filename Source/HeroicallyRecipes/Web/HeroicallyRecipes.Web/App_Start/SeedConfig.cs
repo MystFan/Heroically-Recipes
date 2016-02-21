@@ -11,6 +11,7 @@
             SeedData.SeedUsers(context);
             SeedData.SeedCategories(context);
             SeedData.SeedRecipes(context);
+            SeedData.SeedArticles(context);
         }
     }
 }

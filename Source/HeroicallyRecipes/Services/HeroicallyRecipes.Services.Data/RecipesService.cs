@@ -86,6 +86,14 @@
             return resultRecipe;
         }
 
+        public IQueryable<Recipe> GetTop(int count)
+        {
+            return this.GetAll()
+                .OrderBy(r => r.Votes.Count)
+                .ThenBy(r => r.Id)
+                .Take(count);
+        }
+
         private List<RecipeImage> HttpFileToRecipeImage(IEnumerable<HttpPostedFileBase> files)
         {
             List<RecipeImage> filesDataResult = new List<RecipeImage>();

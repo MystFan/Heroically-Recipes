@@ -10,6 +10,7 @@
     using HeroicallyRecipes.Data.Models;
     using HeroicallyRecipes.Services.Data.Contracts;
     using Web.Models.RecipeViewModels;
+
     public class TestObjectsFactory
     {
         public static IRecipesService GetRecipeService()
@@ -26,17 +27,29 @@
             recipesServiceMock.Setup(rs => rs.Get(It.IsIn(5)))
                .Returns(GetRecipeRepositiry(10).All().Skip((5 - 1) * pageSize).Take(pageSize));
 
+            recipesServiceMock.Setup(rs => rs.GetTop(It.IsIn(5)))
+                .Returns(GetRecipeRepositiry(2).All());
+
             recipesServiceMock.Setup(rs =>
-            rs.Add(It.IsAny<string>(),
-                   It.IsAny<string>(),
-                   It.IsAny<int>(),
-                   It.IsAny<string>(),
-                   It.IsAny<IEnumerable<string>>(),
-                   It.IsAny<IEnumerable<HttpPostedFileBase>>(),
-                   It.IsAny<IEnumerable<string>>()))
-                   .Returns(1);
+                rs.Add(It.IsAny<string>(),
+                       It.IsAny<string>(),
+                       It.IsAny<int>(),
+                       It.IsAny<string>(),
+                       It.IsAny<IEnumerable<string>>(),
+                       It.IsAny<IEnumerable<HttpPostedFileBase>>(),
+                       It.IsAny<IEnumerable<string>>()))
+                       .Returns(1);
 
             return recipesServiceMock.Object;
+        }
+
+        public static IVoteService GetVoteService()
+        {
+            var voteServiceMock = new Mock<IVoteService>();
+
+
+
+            return voteServiceMock.Object;
         }
 
         public static IImagesService GetRecipeImagesService()

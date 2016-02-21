@@ -47,5 +47,9 @@
         public const int UserNickNameMaxLength = 50;
 
         public const int UserNickNameMinLength = 5;
+
+        public const int ArticleTitleMinLength = 3;
+
+        public const int ArticleTitleMaxLength = 500;
     }
 }

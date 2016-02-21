@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HeroicallyRecipes.Models</RootNamespace>
-    <AssemblyName>HeroicallyRecipes.Models</AssemblyName>
+    <AssemblyName>HeroicallyRecipes.Data.Models</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

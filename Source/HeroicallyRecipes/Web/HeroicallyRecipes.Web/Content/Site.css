@@ -23,6 +23,13 @@ textarea {
     max-width: 280px;
 }
 
-#slider-container{
+#slider-container {
     width: 50%;
+}
+
+#search-recipe {
+    padding: 50px;
+    margin: 15px;
+    text-align: center;
+    background-color: burlywood;
 }

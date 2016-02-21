@@ -8,10 +8,10 @@
 
     using HeroicallyRecipes.Services.Data.Contracts;
     using HeroicallyRecipes.Web;
-    using Common.Providers;
-    using Web.Controllers;
-    using Web.Models.RecipeViewModels;
-    using TestObjects;
+    using HeroicallyRecipes.Common.Providers;
+    using HeroicallyRecipes.Web.Controllers;
+    using HeroicallyRecipes.Web.Models.RecipeViewModels;
+    using HeroicallyRecipes.Tests.TestObjects;
 
     [TestFixture]
     public class HomeControllerTests
@@ -48,6 +48,17 @@
                                     Assert.AreEqual(12, viewModel.FirstOrDefault().CreatedOn.Second);
                                     Assert.AreEqual(id, viewModel.FirstOrDefault().ViewId);
                                 }).AndNoModelErrors();
+        }
+
+        [Test]
+        public void ControllerShouldHaveChildActionOnlyGetTopRecipes()
+        {
+            var recipesServiceMock = this.recipes;
+            var imagesServiceMock = this.images;
+
+            var controller = new HomeController(imagesServiceMock, recipesServiceMock);
+
+            controller.WithCallToChild(a => a.GetTopRecipes());
         }
     }
 }

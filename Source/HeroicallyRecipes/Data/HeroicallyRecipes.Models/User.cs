@@ -11,10 +11,12 @@
     public class User : IdentityUser
     {
         private ICollection<Recipe> recipes;
+        private ICollection<Article> articles;
 
         public User()
         {
             this.recipes = new HashSet<Recipe>();
+            this.articles = new HashSet<Article>();
         }
 
         [Required]
@@ -35,6 +37,19 @@
             set
             {
                 this.recipes = value;
+            }
+        }
+
+        public virtual ICollection<Article> Articles
+        {
+            get
+            {
+                return this.articles;
+            }
+
+            set
+            {
+                this.articles = value;
             }
         }
 
