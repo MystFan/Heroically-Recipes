@@ -31,6 +31,7 @@
 
         [HttpGet]
         [ChildActionOnly]
+        [AllowAnonymous]
         public ActionResult All()
         {
             var allTags = this.Cache

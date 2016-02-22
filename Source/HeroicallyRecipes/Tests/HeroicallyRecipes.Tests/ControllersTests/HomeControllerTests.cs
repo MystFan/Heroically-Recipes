@@ -25,9 +25,9 @@
         {
             AutoMapperConfig.RegisterMappings();
 
-            this.recipes = TestObjectsFactory.GetRecipeService();
-            this.images = TestObjectsFactory.GetRecipeImagesService();
-            this.articles = TestObjectsFactory.GetArticlesService();
+            this.recipes = ServicesObjectFactory.GetRecipeService();
+            this.images = ServicesObjectFactory.GetRecipeImagesService();
+            this.articles = ServicesObjectFactory.GetArticlesService();
         }
 
         [Test]

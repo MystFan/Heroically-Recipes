@@ -2,11 +2,13 @@
 {
     using System.Web.Routing;
 
+    using MvcRouteTester;
     using MvcRouteUnitTester;
     using NUnit.Framework;
+
     using HeroicallyRecipes.Web.Areas.Users;
 
-    public class TagsControllerRouteTests
+    public class ArticlesControllerRouteTests
     {
         private RouteCollection routeCollection;
 
@@ -17,21 +19,21 @@
         }
 
         [Test]
-        public void TagsShouldMapRouteGetTags()
+        public void ArticlesShouldMapRouteDetailsWithPassedParameterId()
         {
             var tester = new RouteTester<UsersAreaRegistration>();
 
-            tester.WithIncomingRequest("/Users/Tags/GetTags")
-                .ShouldMatchRoute("Users", "Tags", "GetTags");
+            tester.WithIncomingRequest("/Users/Articles/Details/5")
+                .ShouldMatchRoute("Users", "Articles", "Details", new { id = 5 });
         }
 
         [Test]
-        public void TagsShouldMapRouteAll()
+        [ExpectedException]
+        public void ArticlesShouldNotMapRouteDetailsWithoutParameterId()
         {
-            var tester = new RouteTester<UsersAreaRegistration>();
+            const string Url = "/Users/Articles/Details";
 
-            tester.WithIncomingRequest("/Users/Tags/All")
-                .ShouldMatchRoute("Users", "Tags", "All");
+            this.routeCollection.ShouldMap(Url).ToNonIgnoredRoute();
         }
     }
 }

@@ -19,7 +19,7 @@
 
         [HttpPost]
         [AjaxOnly]
-        public ActionResult Vote(int recipeId, int vote)
+        public JsonResult Vote(int recipeId, int vote)
         {
             if (vote < -1)
             {

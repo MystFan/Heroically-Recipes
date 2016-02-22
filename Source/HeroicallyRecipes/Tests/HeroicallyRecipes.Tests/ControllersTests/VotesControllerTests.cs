@@ -8,13 +8,15 @@
 
     using Moq;
     using NUnit.Framework;
+    using TestStack.FluentMVCTesting;
 
     using HeroicallyRecipes.Services.Data.Contracts;
     using HeroicallyRecipes.Services.Web;
     using HeroicallyRecipes.Tests.TestObjects;
     using HeroicallyRecipes.Web;
     using HeroicallyRecipes.Web.Areas.Users.Controllers;
-
+    using System.Linq;
+    [TestFixture]
     public class VotesControllerTests
     {
         private IVoteService votes;
@@ -25,7 +27,7 @@
         {
             AutoMapperConfig.RegisterMappings();
 
-            this.votes = TestObjectsFactory.GetVoteService();
+            this.votes = ServicesObjectFactory.GetVoteService();
             this.controller = new VotesController(this.votes);
             this.controller.Cache = new HttpCacheService();
         }
@@ -33,7 +35,40 @@
         [Test]
         public void VoteActionWithValidParametersShouldWorkCorectly()
         {
+            MockIdentity();
 
+            int recipeId = 2;
+            int vote = 1;
+
+            this.controller.WithCallTo(x => x.Vote(recipeId, vote))
+                .ShouldReturnJson(data =>
+                {
+                    Assert.AreEqual((object)data.ToString(), "{ Count = 1 }");
+                });
+        }
+
+        [Test]
+        public void VoteActionWithInvalidParameterVoteShouldWorkCorectly()
+        {
+            MockIdentity();
+
+            int recipeId = 1;
+            int vote = -2;
+
+            this.controller.WithCallTo(x => x.Vote(recipeId, vote))
+                .ShouldReturnJson(data =>
+                {
+                    Assert.AreEqual((object)data.ToString(), "{ Count = 0 }");
+                });
+        }
+
+        [Test]
+        public void VoteActionShouldHaveAjaxOnlyAttribute()
+        {
+            var type = this.controller.GetType();
+            var methodInfo = type.GetMethod("Vote");
+            var attributes = methodInfo.GetCustomAttributes(true).Select(a => a.GetType().Name);
+            Assert.IsTrue(attributes.Any(a => a == "AjaxOnlyAttribute"));
         }
 
         private void MockIdentity()

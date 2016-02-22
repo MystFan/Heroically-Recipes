@@ -122,10 +122,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControllersTests\ArticlesControllerTests.cs" />
     <Compile Include="ControllersTests\CategoriesControllerTests.cs" />
     <Compile Include="ControllersTests\HomeControllerTests.cs" />
+    <Compile Include="ControllersTests\TagsControllerTests.cs" />
     <Compile Include="ControllersTests\UsersRecipeControllerTests.cs" />
     <Compile Include="ControllersTests\VotesControllerTests.cs" />
+    <Compile Include="RouteTests\ArticlesControllerRouteTests.cs" />
     <Compile Include="RouteTests\CategoriesControllerRouteTests.cs" />
     <Compile Include="RouteTests\HomeControllerRouteTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -134,6 +137,7 @@
     <Compile Include="RouteTests\VotesControllerRouteTests.cs" />
     <Compile Include="TestObjects\MemoryRepository.cs" />
     <Compile Include="TestObjects\ModelStateTestController.cs" />
+    <Compile Include="TestObjects\ServicesObjectFactory.cs" />
     <Compile Include="TestObjects\TestObjectsFactory.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -13,63 +13,6 @@
 
     public class TestObjectsFactory
     {
-        public static IRecipesService GetRecipeService()
-        {
-            var recipesServiceMock = new Mock<IRecipesService>();
-            int pageSize = GlobalConstants.RecipeDefaultPageSize;
-
-            recipesServiceMock.Setup(rs => rs.GetAll())
-                .Returns(GetRecipeRepositiry(10).All());
-
-            recipesServiceMock.Setup(rs => rs.Get(It.IsIn(1)))
-                .Returns(GetRecipeRepositiry(10).All().Skip((1 - 1) * pageSize).Take(pageSize));
-
-            recipesServiceMock.Setup(rs => rs.Get(It.IsIn(5)))
-               .Returns(GetRecipeRepositiry(10).All().Skip((5 - 1) * pageSize).Take(pageSize));
-
-            recipesServiceMock.Setup(rs => rs.GetTop(It.IsIn(5)))
-                .Returns(GetRecipeRepositiry(2).All());
-
-            recipesServiceMock.Setup(rs =>
-                rs.Add(It.IsAny<string>(),
-                       It.IsAny<string>(),
-                       It.IsAny<int>(),
-                       It.IsAny<string>(),
-                       It.IsAny<IEnumerable<string>>(),
-                       It.IsAny<IEnumerable<HttpPostedFileBase>>(),
-                       It.IsAny<IEnumerable<string>>()))
-                       .Returns(1);
-
-            return recipesServiceMock.Object;
-        }
-
-        public static IVoteService GetVoteService()
-        {
-            var voteServiceMock = new Mock<IVoteService>();
-
-
-
-            return voteServiceMock.Object;
-        }
-
-        public static IImagesService GetRecipeImagesService()
-        {
-            var recipesImagesServiceMock = new Mock<IImagesService>();
-
-            recipesImagesServiceMock.Setup(ri => ri.GetByRecipeId(It.IsAny<string>()))
-                .Returns(GetRecipeImagesRepositiry(10).GetById(1));
-
-            return recipesImagesServiceMock.Object;
-        }
-
-        public static IArticlesService GetArticlesService()
-        {
-            var articlesServiceMock = new Mock<IArticlesService>();
-
-
-            return articlesServiceMock.Object;
-        }
-
         public static MemoryRepository<Recipe> GetRecipeRepositiry(int numberOfRecipes)
         {
             var repo = new MemoryRepository<Recipe>();
@@ -82,6 +25,7 @@
                 Category = new Category() { Name = "Healthy" },
                 CreatedOn = new DateTime(2016, 1, 12, 12, 12, 12),
                 Creator = new User() { NickName = "Creator 1" },
+                Tags = new List<Tag>() { new Tag() { Text = "default" } },
                 Images = new List<RecipeImage>() { new RecipeImage() { OriginalName = "image1.png", Extension = ".png" } }
             });
 
@@ -93,6 +37,7 @@
                 Category = new Category() { Name = "Quick and Easy" },
                 CreatedOn = new DateTime(2016, 1, 12, 11, 11, 11),
                 Creator = new User() { NickName = "Creator 2" },
+                Tags = new List<Tag>() { new Tag() { Text = "default" } },
                 Images = new List<RecipeImage>() { new RecipeImage() { OriginalName = "image2.png", Extension = ".png" } }
             });
 
@@ -104,6 +49,7 @@
                 Category = new Category() { Name = "Vegetarian" },
                 CreatedOn = new DateTime(2016, 1, 12, 10, 10, 10),
                 Creator = new User() { NickName = "Creator 3" },
+                Tags = new List<Tag>() { new Tag() { Text = "default" } },
                 Images = new List<RecipeImage>() { new RecipeImage() { OriginalName = "image3.png", Extension = ".png" } }
             });
 
@@ -119,6 +65,7 @@
                     Preparation = "Preparation " + i,
                     Category = new Category() { Name = "Vegetarian" },
                     CreatedOn = date,
+                    Tags = new List<Tag>() { new Tag() { Text = "default"} },
                     Creator = new User() { NickName = "Creator " + i },
                     Images = new List<RecipeImage>() { new RecipeImage() { OriginalName = "image" + i + ".png", Extension = ".png" } }
                 });
@@ -147,6 +94,74 @@
                     Content = bytes,
                     CreatedOn = date,
                 });
+            }
+
+            return repo;
+        }
+
+        public static MemoryRepository<Article> GetArticlesRepositiry(int numberOfArticles)
+        {
+            var repo = new MemoryRepository<Article>();
+
+            for (int i = 0; i < numberOfArticles; i++)
+            {
+                var date = DateTime.Now;
+                date.AddDays(i);
+
+                var article = (new Article()
+                {
+                    Id = i,
+                    Title = "Title " + i,
+                    Content = "Content " + i,
+                    CreatedOn = date,
+                    Author = new User() { NickName = "User " + i }
+                });
+
+                for (int j = 0; j < 10; j++)
+                {
+                    article.Comments.Add(new Comment()
+                    {
+                        Content = "Comment content " + j,
+                        CreatedOn = DateTime.Now
+                    });
+                }
+
+                repo.Add(article);
+            }
+
+            return repo;
+        }
+
+        public static MemoryRepository<RecipeVote> GetVotesRepositiry(int numberOfVotes)
+        {
+            var repo = new MemoryRepository<RecipeVote>();
+
+            var recipe = new Recipe()
+            {
+                Id = 2,
+                Title = "Title " + 2,
+                Preparation = "Preparation " + 2,
+                Ingredients = new List<Ingredient>() { new Ingredient() { Text = "2 cups sugar"} },
+                CreatedOn = DateTime.Now,
+                Creator = new User() { NickName = "User " + 1 }
+            };
+
+            Random rand = new Random();
+
+            for (int i = 0; i < numberOfVotes; i++)
+            {
+                var date = DateTime.Now;
+                date.AddDays(i);
+
+                var vote = new RecipeVote()
+                {
+                    Id = i + 1,
+                    Recipe = recipe,
+                    CreatedOn = date,
+                    Type = VoteType.Positive
+                };
+
+                repo.Add(vote);
             }
 
             return repo;

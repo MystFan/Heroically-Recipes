@@ -17,9 +17,9 @@
 
         public void Add(int recipeId, string userId, int vote)
         {
-            var dbVote = Get(recipeId, userId);
+            var databaseVote = Get(recipeId, userId);
 
-            if (dbVote == null)
+            if (databaseVote == null)
             {
                 this.votes.Add(new RecipeVote()
                 {
@@ -30,13 +30,13 @@
             }
             else
             {
-                if(dbVote.Type == (VoteType)vote)
+                if(databaseVote.Type == (VoteType)vote)
                 {
-                    dbVote.Type = VoteType.Neutral;
+                    databaseVote.Type = VoteType.Neutral;
                 }
                 else
                 {
-                    dbVote.Type = (VoteType)vote;
+                    databaseVote.Type = (VoteType)vote;
                 }
             }           
 

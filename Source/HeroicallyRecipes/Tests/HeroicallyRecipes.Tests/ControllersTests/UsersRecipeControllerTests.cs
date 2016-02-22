@@ -35,7 +35,7 @@
         {
             AutoMapperConfig.RegisterMappings();
 
-            this.recipes = TestObjectsFactory.GetRecipeService();
+            this.recipes = ServicesObjectFactory.GetRecipeService();
 
             this.controller = new RecipesController(this.recipes);
             this.controller.Cache = new HttpCacheService();
@@ -125,6 +125,16 @@
             Assert.AreEqual("The field Preparation must be a string or array type with a minimum length of '100'.", errorMessages[1]);
             Assert.AreEqual("The recipe must contain at least 3 ingredients!", errorMessages[2]);
             Assert.AreEqual("The recipe must contain at least one image!", errorMessages[3]);
+        }
+
+        [Test]
+        public void SearchByTitleActionShouldHaveAjaxOnlyAttribute()
+        {
+            var type = this.controller.GetType();
+            var methodInfo = type.GetMethod("SearchByTitle");
+            var attributes = methodInfo.GetCustomAttributes(true).Select(a => a.GetType().Name);
+            Assert.IsTrue(attributes.Any(a => a == "AjaxOnlyAttribute"));
+            Assert.IsTrue(attributes.Any(a => a == "ValidateAntiForgeryTokenAttribute"));
         }
 
         private void MockIdentity()
