@@ -82,6 +82,7 @@
     <Compile Include="Account\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="Articles\ArticleViewModel.cs" />
     <Compile Include="Categories\CategoryViewModel.cs" />
+    <Compile Include="Comments\CommentViewModel.cs" />
     <Compile Include="Ingredients\IngredientViewModels.cs" />
     <Compile Include="Profile\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

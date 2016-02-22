@@ -19,7 +19,7 @@
         </p>
         <ul class="list-inline">
             <li>created on: @article.CreatedOn</li>
-            <li><a href="#"><i class="glyphicon glyphicon-comment"></i> 4 Comments</a></li>
+            <li><a href="#"><i class="glyphicon glyphicon-comment"></i> @(article.Comments.Count()) Comments</a></li>
         </ul>
     </div>
 }

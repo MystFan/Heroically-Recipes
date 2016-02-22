@@ -51,5 +51,9 @@
         public const int ArticleTitleMinLength = 3;
 
         public const int ArticleTitleMaxLength = 500;
+
+        public const int CommentContentMinLength = 10;
+
+        public const int CommentContentMaxLength = 2000;
     }
 }

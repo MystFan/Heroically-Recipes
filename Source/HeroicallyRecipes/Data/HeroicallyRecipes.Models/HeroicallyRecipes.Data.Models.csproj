@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Article.cs" />
     <Compile Include="BaseModel{TKey}.cs" />
+    <Compile Include="Comment.cs" />
     <Compile Include="Contracts\IAuditInfo.cs" />
     <Compile Include="Contracts\IDeletableEntity.cs" />
     <Compile Include="Category.cs" />

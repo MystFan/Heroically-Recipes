@@ -11,14 +11,30 @@
 </header>
 <section>
     <article>
-        <p>@Model.Content</p>       
+        <p>@Model.Content</p>
     </article>
     <div class="panel panel-default">
         <div class="panel-body">
-            <p>Author: <strong>@Model.Author</strong></p>
+            <p>Posted by <strong>@Model.Author</strong></p>
         </div>
 
-        <div class="panel-footer"></div>
+        <div class="panel-footer">
+            <h3 class="text-center">Comments    <span class="glyphicon glyphicon-pencil"></span></h3>
+            @foreach (var comment in Model.Comments)
+            {
+                <div class="panel panel-success">
+                    <div id="comments-container">
+                        <div>
+                            <p><span class="glyphicon glyphicon-comment"></span>    @comment.Content</p>
+                            <br />
+                            <p><span class="glyphicon glyphicon-user"></span><strong>    @comment.Author</strong></p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </section>
+
+
 

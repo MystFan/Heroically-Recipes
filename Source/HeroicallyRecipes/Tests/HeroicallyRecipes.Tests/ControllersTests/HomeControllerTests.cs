@@ -58,8 +58,9 @@
         {
             var recipesServiceMock = this.recipes;
             var imagesServiceMock = this.images;
+            var articlesServiceMock = this.articles;
 
-            var controller = new HomeController(imagesServiceMock, recipesServiceMock);
+            var controller = new HomeController(imagesServiceMock, recipesServiceMock, articlesServiceMock);
 
             controller.WithCallToChild(a => a.GetTopRecipes());
         }

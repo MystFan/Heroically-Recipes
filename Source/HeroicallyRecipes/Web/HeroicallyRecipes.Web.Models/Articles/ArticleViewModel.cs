@@ -1,9 +1,11 @@
 ﻿namespace HeroicallyRecipes.Web.Models.Articles
 {
     using System;
+    using System.Collections.Generic;
 
     using AutoMapper;
 
+    using HeroicallyRecipes.Web.Models.Comments;
     using HeroicallyRecipes.Data.Models;
     using HeroicallyRecipes.Web.Infrastructure.Mappings;
 
@@ -18,6 +20,8 @@
         public string Author { get; set; }
 
         public DateTime CreatedOn { get; set; }
+
+        public IEnumerable<CommentViewModel> Comments { get; set; }
 
         public void CreateMappings(IConfiguration configuration)
         {

@@ -256,7 +256,15 @@
                             To bring hot pot to my home, I had to make a few changes. I couldn't keep the broth simmering on the stovetop, obviously, and I don't own a hot plate. That led me to the crock pot. If it can braise a pork shoulder, surely it can simmer a simple broth—right?
                             When I spoke to Sarah Leung, one of the four writers behind the acclaimed Chinese food blog Woks of Life, she approved my crock pot idea. She also gave me all kinds of other pointers for shopping, preparing the broth, and keeping things moving as smoothly as possible. My most important takeaway? “A hot pot experience is ultimately what you make of it.”
                             Well, I wanted to make it awesome. But first, I had some shopping to do.",
-                    Author = firstUser
+                    Author = firstUser,
+                    Comments = new List<Comment>()
+                    {
+                        new Comment()
+                        {
+                            Content = "Very good article dude!",
+                            AuthorId = secondUser.Id
+                        }
+                    }
                 });
 
                 context.Articles.Add(new Article()
@@ -280,7 +288,15 @@
                                 12 minutes: almost completely hard-boiled yolk, with a touch of golden goo still in the middle
                                 14 minutes: completely hard-boiled crumbly dry pale yolk
                             Don't forget to shock the eggs in ice water after your desired time, and you're good to go!",
-                    Author = firstUser
+                    Author = firstUser,
+                    Comments = new List<Comment>()
+                    {
+                        new Comment()
+                        {
+                            Content = "Very good article dude!",
+                            AuthorId = secondUser.Id
+                        }
+                    }
                 });
 
                 context.Articles.Add(new Article()
@@ -296,7 +312,15 @@
                             Lookism is rampant in the world of food these days; it's hard to find an all-brown entree on a menu at all. It's even triggered the creation of dishes that have no other reason to exist. Case in point: Smoothie bowls. There's only one reason these cold fruit purees get poured into bowls and topped with perfect rows of chia seeds, cacao nibs, and hemp hearts. And it's not because it tastes any different than if you blended the ingredients together and called it a day.
                             Now, I'm not discounting the role of the visual. First you eat with your eyes is a cliche because it's true. I'm just defending the right for food to look unpretty, too. Especially when you cook it yourself at home. It's hard not to feel self-conscious about sharing the #homefood we cook when no one but our family is looking. A few weeks ago, I made one of the ugliest soups I've ever seen: An army green puree of bone broth, rutabega, and turnip. I didn't have the time or the patience to dress it up with some chopped parsley or a drizzle of herb oil. And you know what? It tasted damned delicious without it.
                             Most brown foods do.And winter is the ideal time to fully embrace the joys of brown food. Cook up a pot of bone broth, but don't just sip it. Use it to make a rib-sticking, umami-packed stew. Then share it on social without shame. Serve it to friends without the merest whisper of parsley. And watch as the room gets quiet as everyone bends over their bowls. Ask yourself: What can brown do for you?",
-                    Author = secondUser
+                    Author = secondUser,
+                    Comments = new List<Comment>()
+                    {
+                        new Comment()
+                        {
+                            Content = "Very good article dude!",
+                            AuthorId = firstUser.Id
+                        }
+                    }
                 });
 
                 context.Articles.Add(new Article()
@@ -338,7 +362,15 @@
                                 The mushrooms can be sliced or, if they are small enough, put whole into the container.
                                 It is best to let these marinate over night. Due to the vinegar, these can be stored in the refrigerator for about two weeks (if they don't get gobbled up first!)
                             Where to find it:Though button and crimini mushrooms are easily found, have fun experimenting with different types of mushrooms found in Asian supermarkets and health food stores. Try chaneterelles (known for their golden color) or porcini mushrooms, the smaller cousin to the portabello.",
-                    Author = secondUser
+                    Author = secondUser,
+                    Comments = new List<Comment>()
+                    {
+                        new Comment()
+                        {
+                            Content = "Very good article dude!",
+                            AuthorId = firstUser.Id
+                        }
+                    }
                 });
 
                 context.Articles.Add(new Article()
@@ -370,7 +402,15 @@
                             Cruelty-Free Recipes Support the Cause
                             Chef Alex Seidel of Fruition restaurant in Denver--one of Food and Wine magazine's Top 10 Best New Chefs in 2010--recently served a holiday meal consisting of recipes made solely with ingredients from AHC producers to promote this new standard of animal welfare. Joining the trend, Whole Foods is one of three large food corporations that has agreed to raise their animal welfare standards.
                             Most chefs agree that what they serve has to taste good and be reasonably priced, but with the demand from customers and the support of animal welfare organizations, more and more are willing to take the risk of providing humanely treated products knowing it's better for animals, farms, customers and communities.",
-                    Author = secondUser
+                    Author = secondUser,
+                    Comments = new List<Comment>()
+                    {
+                        new Comment()
+                        {
+                            Content = "Very good article dude!",
+                            AuthorId = firstUser.Id
+                        }
+                    }
                 });
 
                 context.SaveChanges();

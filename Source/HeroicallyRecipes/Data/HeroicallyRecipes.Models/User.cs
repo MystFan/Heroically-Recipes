@@ -4,19 +4,23 @@
     using System.Security.Claims;
     using System.ComponentModel.DataAnnotations;
     using System.Threading.Tasks;
+
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using Common.Validation;
+
+    using HeroicallyRecipes.Common.Validation;
 
     public class User : IdentityUser
     {
         private ICollection<Recipe> recipes;
         private ICollection<Article> articles;
+        private ICollection<Comment> comments;
 
         public User()
         {
             this.recipes = new HashSet<Recipe>();
             this.articles = new HashSet<Article>();
+            this.comments = new HashSet<Comment>();
         }
 
         [Required]
@@ -50,6 +54,19 @@
             set
             {
                 this.articles = value;
+            }
+        }
+
+        public virtual ICollection<Comment> Comments
+        {
+            get
+            {
+                return this.comments;
+            }
+
+            set
+            {
+                this.comments = value;
             }
         }
 

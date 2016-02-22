@@ -20,7 +20,9 @@
             <h2>@Model.Title</h2>
             <p>details</p>
         </div>
-        <p>from <strong>@(Model.Creator == "Admin" ? "Heroically Recipes" : Model.Creator)</strong></p>
+        <p><span class="glyphicon glyphicon-user"></span><strong>   @(Model.Creator == "Admin" ? "Heroically Recipes" : Model.Creator)</strong></p>
+        <h3>Preparation</h3>
+        <p>@Model.Preparation</p>
     </div>
     <div class="col-md-2">
         <div class="well text-center">
