@@ -14,6 +14,8 @@
 
         IQueryable<Recipe> GetTop(int count);
 
+        IQueryable<Recipe> GetByTitle(string title);
+
         Recipe GetById(string id);
 
         Recipe GetById(int id);

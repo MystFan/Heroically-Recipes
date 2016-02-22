@@ -94,6 +94,15 @@
                 .Take(count);
         }
 
+        public IQueryable<Recipe> GetByTitle(string title)
+        {
+            var resultRecipes = this.recipes
+                .All()
+                .Where(r => r.Title.ToLower().Contains(title.ToLower()));
+
+            return resultRecipes;
+        }
+
         private List<RecipeImage> HttpFileToRecipeImage(IEnumerable<HttpPostedFileBase> files)
         {
             List<RecipeImage> filesDataResult = new List<RecipeImage>();

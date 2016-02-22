@@ -9,11 +9,12 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
+    using HeroicallyRecipes.Common.Validation;
+    using HeroicallyRecipes.Services.Data.Contracts;
     using HeroicallyRecipes.Web.Infrastructure.CustomFilters;
     using HeroicallyRecipes.Web.Models.RecipeViewModels;
     using HeroicallyRecipes.Web.Models.Tags;
-    using HeroicallyRecipes.Services.Data.Contracts;
-    using Common.Validation;
+
     public class RecipesController : UsersBaseController
     {
         private IRecipesService recipes;
@@ -44,6 +45,20 @@
             };
 
             return View(viewModel);
+        }
+
+        [AjaxOnly]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [OutputCache(Duration = 5 * 60, VaryByParam = "titleQuery")]
+        public ActionResult SearchByTitle(string titleQuery)
+        {
+            var resultRecipes = this.recipes
+                .GetByTitle(titleQuery)
+                .ProjectTo<RecipeViewModel>()
+                .ToList();
+
+            return PartialView("_RecipesListPartial", resultRecipes);
         }
 
         [HttpGet]
