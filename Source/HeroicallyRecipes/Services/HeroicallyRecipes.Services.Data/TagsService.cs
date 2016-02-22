@@ -1,5 +1,6 @@
 ﻿namespace HeroicallyRecipes.Services.Data
 {
+    using System;
     using System.Linq;
     using HeroicallyRecipes.Data.Models;
     using HeroicallyRecipes.Data.Repositories;
@@ -7,17 +8,28 @@
 
     public class TagsService : ITagsService
     {
-        private IDbRepository<Tag> recipeTags;
+        private IDbRepository<Tag> tags;
+        private IDbRepository<Recipe> recipes;
 
-        public TagsService(IDbRepository<Tag> recipeTags)
+        public TagsService(IDbRepository<Tag> tags, IDbRepository<Recipe> recipes)
         {
-            this.recipeTags = recipeTags;
+            this.tags = tags;
+            this.recipes = recipes;
         }
 
         public IQueryable<Tag> GetAll()
         {
-            var allTags = this.recipeTags.All();
+            var allTags = this.tags.All();
             return allTags;
+        }
+
+        public IQueryable<Tag> InRecipe()
+        {
+            var allRecipeTags = this.recipes
+                .All()
+                .SelectMany(r => r.Tags);
+
+            return allRecipeTags;
         }
     }
 }

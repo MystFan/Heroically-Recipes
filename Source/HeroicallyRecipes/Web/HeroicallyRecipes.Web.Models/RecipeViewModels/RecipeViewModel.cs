@@ -4,6 +4,7 @@
     using System.Linq;
 
     using AutoMapper;
+
     using HeroicallyRecipes.Common.Providers;
     using HeroicallyRecipes.Data.Models;
     using HeroicallyRecipes.Web.Infrastructure.Mappings;

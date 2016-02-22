@@ -1,0 +1,20 @@
+﻿@model IEnumerable<String>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="input-group">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-search"></span>
+            </span>
+            <input class="form-control" placeholder="Search for a tag ..." type="text">
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="tag-list well">
+            @foreach (var tagText in Model)
+            {
+                @Html.ActionLink(tagText, "GetByTagName", "Recipes", new { area = "Users", tagName = tagText }, new { @class = "btn btn-primary", role = "button" })
+            }
+        </div>
+    </div>
+</div>

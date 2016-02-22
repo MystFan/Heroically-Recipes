@@ -1,0 +1,9 @@
+﻿@model IEnumerable<HeroicallyRecipes.Web.Models.RecipeViewModels.RecipeViewModel>
+@{
+    ViewBag.Title = "GetByTagName";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_RecipesListPartial", Model)
+
+

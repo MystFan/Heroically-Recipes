@@ -6,10 +6,11 @@
     using System.Linq;
     using System.Web;
 
+    using HeroicallyRecipes.Common.Globals;
+    using HeroicallyRecipes.Common.Providers;
     using HeroicallyRecipes.Data.Models;
     using HeroicallyRecipes.Data.Repositories;
     using HeroicallyRecipes.Services.Data.Contracts;
-    using HeroicallyRecipes.Common.Providers;
 
     public class RecipesService : IRecipesService
     {
@@ -36,11 +37,12 @@
                     Text = i
                 }).ToList(),
                 Images = recipeImages,
-                Tags = null,
+                Tags = tags.Select(t => new Tag() { Text = t }).ToList(),
                 UserId = userId,
                 CategoryId = categoryId
             };
 
+            newRecipe.Tags.Add(new Tag() { Text = GlobalConstants.DefaultTagName });
             this.recipes.Add(newRecipe);
             this.recipes.SaveChanges();
 
@@ -101,6 +103,16 @@
                 .Where(r => r.Title.ToLower().Contains(title.ToLower()));
 
             return resultRecipes;
+        }
+
+
+        public IQueryable<Recipe> GetByTagName(string tagName)
+        {
+            var resultTags = this.recipes
+                .All()
+                .Where(r => r.Tags.FirstOrDefault(t => t.Text == tagName) != null);
+
+            return resultTags;
         }
 
         private List<RecipeImage> HttpFileToRecipeImage(IEnumerable<HttpPostedFileBase> files)

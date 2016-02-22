@@ -16,6 +16,8 @@
 
         IQueryable<Recipe> GetByTitle(string title);
 
+        IQueryable<Recipe> GetByTagName(string tagName);
+
         Recipe GetById(string id);
 
         Recipe GetById(int id);

@@ -9,14 +9,15 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
+    using HeroicallyRecipes.Common.Globals;
     using HeroicallyRecipes.Common.Validation;
     using HeroicallyRecipes.Services.Data.Contracts;
     using HeroicallyRecipes.Web.Infrastructure.CustomFilters;
     using HeroicallyRecipes.Web.Models.RecipeViewModels;
-    using HeroicallyRecipes.Web.Models.Tags;
 
     public class RecipesController : UsersBaseController
     {
+        private const int TagCacheDuration = 10 * 60;
         private IRecipesService recipes;
 
         public RecipesController(IRecipesService recipesService)
@@ -88,23 +89,27 @@
         [HttpGet]
         public ActionResult Details(string id)
         {
-            if(id == null)
-            {
-                return HttpNotFound();
-            }
-
-            var dbRecipe = this.recipes.GetById(id);
-            var viewRecipe = Mapper.Map<RecipeViewModel>(dbRecipe);
-            viewRecipe.Creator = dbRecipe.Creator.NickName;
-            viewRecipe.Category = dbRecipe.Category.Name;
-            viewRecipe.Votes = dbRecipe.Votes.Count;
-
-            if(viewRecipe == null)
-            {
-                return HttpNotFound();
-            }
+            var recipe = this.recipes.GetById(id);
+            var viewRecipe = Mapper.Map<RecipeViewModel>(recipe);
+            viewRecipe.Creator = recipe.Creator.NickName;
+            viewRecipe.Category = recipe.Category.Name;
+            viewRecipe.Votes = recipe.Votes.Count;
             
             return this.View(viewRecipe);
+        }
+
+        [HttpGet]
+        public ActionResult GetByTagName(string tagName = GlobalConstants.DefaultTagName)
+        {
+            var viewRecipes = this.Cache.Get(
+                tagName, 
+                () => this.recipes.
+                        GetByTagName(tagName)
+                        .ProjectTo<RecipeViewModel>()
+                        .ToList(),
+                TagCacheDuration);
+
+            return this.View(viewRecipes);
         }
 
         [HttpGet]
