@@ -6,22 +6,37 @@
 
     using HeroicallyRecipes.Services.Data.Contracts;
     using HeroicallyRecipes.Web.Models.RecipeViewModels;
+    using HeroicallyRecipes.Web.Models.Articles;
 
     public class HomeController : BaseController
     {
         private const int TopRecipesCount = 5;
+        private const int NewestArticlesCount = 5;
         private IImagesService images;
         private IRecipesService recipes;
+        private IArticlesService articles;
 
-        public HomeController(IImagesService images, IRecipesService recipes)
+        public HomeController(IImagesService images, IRecipesService recipes, IArticlesService articles)
         {
             this.images = images;
             this.recipes = recipes;
+            this.articles = articles;
         }
 
         public ActionResult Index()
         {
-            return View();
+            return this.View();
+        }
+
+        [HttpGet]
+        public ActionResult GetNewestArticles()
+        {
+            var newestArticles = this.articles
+                .GetNewest(NewestArticlesCount)
+                .ProjectTo<ArticleViewModel>()
+                .ToList();
+
+            return this.PartialView("_ArticlesListPartial", newestArticles);
         }
 
         [HttpGet]
@@ -42,7 +57,7 @@
                 .ProjectTo<RecipeHomeViewModel>()
                 .ToList();
 
-            return PartialView("_SliderPartial", allRecipes);
+            return this.PartialView("_SliderPartial", allRecipes);
         }
     }
 }

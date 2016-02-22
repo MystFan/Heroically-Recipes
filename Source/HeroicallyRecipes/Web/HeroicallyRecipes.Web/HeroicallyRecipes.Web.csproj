@@ -220,6 +220,7 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminBaseController.cs" />
     <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Users\Controllers\ArticlesController.cs" />
     <Compile Include="Areas\Users\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Users\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Users\Controllers\RecipesController.cs" />
@@ -273,6 +274,8 @@
     <Content Include="Areas\Users\Views\Recipes\Details.cshtml" />
     <Content Include="Areas\Users\Views\Tags\_TagsPartial.cshtml" />
     <Content Include="Areas\Users\Views\Recipes\_RecipesListPartial.cshtml" />
+    <Content Include="Areas\Users\Views\Articles\Index.cshtml" />
+    <Content Include="Areas\Users\Views\Articles\Details.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -321,6 +324,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\_SliderPartial.cshtml" />
+    <Content Include="Views\Home\_ArticlesListPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Models\" />

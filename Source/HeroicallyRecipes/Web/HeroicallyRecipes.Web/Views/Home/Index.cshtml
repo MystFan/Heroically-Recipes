@@ -12,7 +12,15 @@
 <div class="jumbotron">
 
 </div>
-<div id="slider-container">
-    @Html.Action("GetTopRecipes")
+
+<div class="row">
+    <div class="col-md-6">
+        <div id="slider-container">
+            @Html.Action("GetTopRecipes")
+        </div>
+    </div>
+    <div class="col-md-6">
+        @Html.Action("GetNewestArticles")
+    </div>
 </div>
 

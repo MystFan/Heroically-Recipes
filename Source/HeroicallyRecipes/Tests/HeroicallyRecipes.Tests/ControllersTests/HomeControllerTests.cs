@@ -18,6 +18,7 @@
     {
         private IRecipesService recipes;
         private IImagesService images;
+        private IArticlesService articles;
 
         [TestFixtureSetUp]
         public void TestsSetup()
@@ -26,6 +27,7 @@
 
             this.recipes = TestObjectsFactory.GetRecipeService();
             this.images = TestObjectsFactory.GetRecipeImagesService();
+            this.articles = TestObjectsFactory.GetArticlesService();
         }
 
         [Test]
@@ -33,8 +35,9 @@
         {
             var recipesServiceMock = this.recipes;
             var imagesServiceMock = this.images;
+            var articlesServiceMock = this.articles;
 
-            var controller = new HomeController(imagesServiceMock, recipesServiceMock);
+            var controller = new HomeController(imagesServiceMock, recipesServiceMock, articlesServiceMock);
             IdentifierProvider idProvider = new IdentifierProvider();
             string id = idProvider.EncodeId(1);
 

@@ -62,6 +62,14 @@
             return recipesImagesServiceMock.Object;
         }
 
+        public static IArticlesService GetArticlesService()
+        {
+            var articlesServiceMock = new Mock<IArticlesService>();
+
+
+            return articlesServiceMock.Object;
+        }
+
         public static MemoryRepository<Recipe> GetRecipeRepositiry(int numberOfRecipes)
         {
             var repo = new MemoryRepository<Recipe>();

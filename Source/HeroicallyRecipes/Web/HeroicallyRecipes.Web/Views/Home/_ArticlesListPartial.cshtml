@@ -1,0 +1,25 @@
+﻿@model IEnumerable<HeroicallyRecipes.Web.Models.Articles.ArticleViewModel>
+
+@foreach (var article in Model)
+{
+    <div>
+        <h3>@article.Title</h3>
+        <p>
+            @if (article.Content.Length > 300)
+            {
+                @(article.Content.Substring(0, 500) + "...")
+            }
+            else
+            {
+                @article.Content
+            }
+        </p>
+        <p class="lead">
+            @Html.ActionLink("Read More", "Details", "Articles", new { area = "Users", id = article.Id }, new { @class = "btn btn-default" })
+        </p>
+        <ul class="list-inline">
+            <li>created on: @article.CreatedOn</li>
+            <li><a href="#"><i class="glyphicon glyphicon-comment"></i> 4 Comments</a></li>
+        </ul>
+    </div>
+}
