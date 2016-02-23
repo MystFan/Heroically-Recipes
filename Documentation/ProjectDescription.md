@@ -90,6 +90,44 @@ Abstarct class with  [Authorize] attribute
 
  * **Vote(int recipeId, int vote)** return **JsonResult** **new { Count = recipeVotes }** with total votes -  **AJAX** **GET** [AjaxOnly]
 
+# Administration area
+
+## AdminBaseController  : BaseController
+
+Abstarct class with  [Authorize(Roles = "Admin")] attribute
+
+## ArticlesAdminController
+
+Admin Read Edit Delete operations using **Telerik Kendo MVC Grid 30 days Trial**
+
+----------
+**Actions:**
+
+ * **AjaxIndex([DataSourceRequest]DataSourceRequest request)** - Read
+ * **Edit([DataSourceRequest] DataSourceRequest request, ArticleAdminEditInputModel model)** - Update
+ * **Delete([DataSourceRequest] DataSourceRequest request, ArticleAdminEditInputModel model)** - Delete
+
+## RecipesAdminController
+
+Admin Read Edit Delete operations using **Telerik Kendo MVC Grid 30 days Trial**
+
+----------
+**Actions:**
+
+ * **AjaxIndex([DataSourceRequest]DataSourceRequest request)** - Read
+ * **Edit([DataSourceRequest] DataSourceRequest request, RecipeAdminInputModel model)** - Update
+ * **Delete([DataSourceRequest] DataSourceRequest request, RecipeAdminInputModel model)** - Delete
+
+## CommentsAdminController
+
+Admin Read Edit Delete operations using **Telerik Kendo MVC Grid 30 days Trial**
+
+----------
+**Actions:**
+
+ * **AjaxIndex([DataSourceRequest]DataSourceRequest request)** - Read
+ * **Edit([DataSourceRequest] DataSourceRequest request, CommentAdminEditInputModel model)** - Update
+ * **Delete([DataSourceRequest] DataSourceRequest request, CommentAdminEditInputModel model)** - Delete
 
 # SignalR
 
