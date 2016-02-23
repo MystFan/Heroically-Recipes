@@ -22,4 +22,4 @@ The article can be commented by any logged in user.
 
 GitHub repo [Heroically-Recipes](https://github.com/MystFan/Heroically-Recipes) 
 
-[Documentation](https://github.com/DimitarDKirov/Forum-Paulo-Coelho/blob/master/Documentation/ProjectDescription.md)
+[Documentation](https://github.com/MystFan/Heroically-Recipes/blob/master/Documentation/ProjectDescription.md)
