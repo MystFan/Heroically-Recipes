@@ -126,6 +126,54 @@
             return resultRecipes;
         }
 
+        public void Update(int recipeId, string userId, string title, string preparation, int votes)
+        {
+            var databaseRecipe = this.recipes
+                .All()
+                .FirstOrDefault(r => r.Id == recipeId);
+
+            databaseRecipe.Title = title;
+            databaseRecipe.Preparation = preparation;
+            databaseRecipe.Votes.Clear();
+            
+            if(votes < 0)
+            {
+                votes *= -1;
+                for (int i = 0; i < votes; i++)
+                {
+                    databaseRecipe.Votes.Add(new RecipeVote()
+                    {
+                        Type = VoteType.Negativ,
+                        AuthorId = userId
+                    });
+                }
+            }
+            else if(votes > 0)
+            {
+                for (int i = 0; i < votes; i++)
+                {
+                    databaseRecipe.Votes.Add(new RecipeVote()
+                    {
+                        Type = VoteType.Positive,
+                        AuthorId = userId
+                    });
+                }
+            }
+
+            this.recipes.SaveChanges();
+        }
+
+
+        public void Delete(int recipeId)
+        {
+            var databaseRecipe = this.recipes
+                .All()
+                .FirstOrDefault(r => r.Id == recipeId);
+
+            this.recipes.Delete(databaseRecipe);
+            this.recipes.SaveChanges();
+        }
+
         private List<RecipeImage> HttpFileToRecipeImage(IEnumerable<HttpPostedFileBase> files)
         {
             List<RecipeImage> filesDataResult = new List<RecipeImage>();

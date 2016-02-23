@@ -1,5 +1,6 @@
 ﻿namespace HeroicallyRecipes.Services.Data
 {
+    using System;
     using System.Linq;
 
     using HeroicallyRecipes.Common.Globals;
@@ -14,6 +15,13 @@
         public ArticlesService(IDbRepository<Article> articles)
         {
             this.articles = articles;
+        }
+
+        public void Delete(int articleId)
+        {
+            var article = this.GetById(articleId);
+            this.articles.Delete(article);
+            this.articles.SaveChanges();
         }
 
         public IQueryable<Article> Get(int page)
@@ -48,6 +56,15 @@
                 .Take(count);
 
             return newestArticles;
+        }
+
+        public void Update(int articleId, string title, string content)
+        {
+            var article = this.GetById(articleId);
+            article.Title = title;
+            article.Content = content;
+
+            this.articles.SaveChanges();
         }
     }
 }

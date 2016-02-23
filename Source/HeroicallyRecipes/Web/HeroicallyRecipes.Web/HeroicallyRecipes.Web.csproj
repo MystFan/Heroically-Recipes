@@ -84,6 +84,10 @@
       <HintPath>..\..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Kendo.Mvc, Version=2016.1.112.545, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Kendo.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
       <Private>True</Private>
@@ -227,7 +231,15 @@
     <Compile Include="App_Start\ViewEnginesConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminBaseController.cs" />
-    <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Administration\Controllers\ArticlesAdminController.cs" />
+    <Compile Include="Areas\Administration\Controllers\CommentsAdminController.cs" />
+    <Compile Include="Areas\Administration\Controllers\RecipesAdminController.cs" />
+    <Compile Include="Areas\Administration\ViewModels\ArticleAdminEditInputModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\ArticleAdminEditViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\CommentAdminEditInputModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\CommentAdminEditViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\RecipeAdminEditModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\RecipeAdminInputModel.cs" />
     <Compile Include="Areas\Users\Controllers\ArticlesController.cs" />
     <Compile Include="Areas\Users\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Users\Controllers\ProfileController.cs" />
@@ -257,6 +269,77 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.theme.min.css" />
+    <Content Include="Content\kendoUI\Bootstrap\editor.png" />
+    <Content Include="Content\kendoUI\Bootstrap\imagebrowser.png" />
+    <Content Include="Content\kendoUI\Bootstrap\indeterminate.gif" />
+    <Content Include="Content\kendoUI\Bootstrap\loading-image.gif" />
+    <Content Include="Content\kendoUI\Bootstrap\loading.gif" />
+    <Content Include="Content\kendoUI\Bootstrap\loading_2x.gif" />
+    <Content Include="Content\kendoUI\Bootstrap\markers.png" />
+    <Content Include="Content\kendoUI\Bootstrap\markers_2x.png" />
+    <Content Include="Content\kendoUI\Bootstrap\slider-h.gif" />
+    <Content Include="Content\kendoUI\Bootstrap\slider-v.gif" />
+    <Content Include="Content\kendoUI\Bootstrap\sprite.png" />
+    <Content Include="Content\kendoUI\Bootstrap\sprite_2x.png" />
+    <Content Include="Content\kendoUI\Bootstrap\sprite_kpi.png" />
+    <Content Include="Content\kendoUI\Bootstrap\sprite_kpi_2x.png" />
+    <Content Include="Content\kendoUI\fonts\DejaVu\LICENSE.txt" />
+    <Content Include="Content\kendoUI\fonts\glyphs\KendoUIGlyphs.svg" />
+    <Content Include="Content\kendoUI\images\back.png" />
+    <Content Include="Content\kendoUI\images\kendoui.svg" />
+    <Content Include="Content\kendoUI\images\wp8_icons.png" />
+    <Content Include="Content\kendoUI\images\wp8_inverseicons.png" />
+    <Content Include="Content\kendoUI\kendo.bootstrap.min.css" />
+    <Content Include="Content\kendoUI\kendo.common-bootstrap.core.min.css" />
+    <Content Include="Content\kendoUI\kendo.common-bootstrap.min.css" />
+    <Content Include="Content\kendoUI\kendo.common.core.min.css" />
+    <Content Include="Content\kendoUI\kendo.common.min.css" />
+    <Content Include="Content\kendoUI\kendo.silver.min.css" />
+    <Content Include="Content\kendoUI\kendo.silver.mobile.min.css" />
+    <Content Include="Content\kendoUI\Silver\editor.png" />
+    <Content Include="Content\kendoUI\Silver\imagebrowser.png" />
+    <Content Include="Content\kendoUI\Silver\indeterminate.gif" />
+    <Content Include="Content\kendoUI\Silver\loading-image.gif" />
+    <Content Include="Content\kendoUI\Silver\loading.gif" />
+    <Content Include="Content\kendoUI\Silver\loading_2x.gif" />
+    <Content Include="Content\kendoUI\Silver\markers.png" />
+    <Content Include="Content\kendoUI\Silver\markers_2x.png" />
+    <Content Include="Content\kendoUI\Silver\slider-h.gif" />
+    <Content Include="Content\kendoUI\Silver\slider-v.gif" />
+    <Content Include="Content\kendoUI\Silver\sprite.png" />
+    <Content Include="Content\kendoUI\Silver\sprite_2x.png" />
+    <Content Include="Content\kendoUI\Silver\sprite_kpi.png" />
+    <Content Include="Content\kendoUI\Silver\sprite_kpi_2x.png" />
+    <Content Include="Content\kendoUI\textures\brushed-metal.png" />
+    <Content Include="Content\kendoUI\textures\dots1.png" />
+    <Content Include="Content\kendoUI\textures\dots10.png" />
+    <Content Include="Content\kendoUI\textures\dots11.png" />
+    <Content Include="Content\kendoUI\textures\dots12.png" />
+    <Content Include="Content\kendoUI\textures\dots13.png" />
+    <Content Include="Content\kendoUI\textures\dots2.png" />
+    <Content Include="Content\kendoUI\textures\dots3.png" />
+    <Content Include="Content\kendoUI\textures\dots4.png" />
+    <Content Include="Content\kendoUI\textures\dots5.png" />
+    <Content Include="Content\kendoUI\textures\dots6.png" />
+    <Content Include="Content\kendoUI\textures\dots7.png" />
+    <Content Include="Content\kendoUI\textures\dots8.png" />
+    <Content Include="Content\kendoUI\textures\dots9.png" />
+    <Content Include="Content\kendoUI\textures\glass-lighter.png" />
+    <Content Include="Content\kendoUI\textures\glass.png" />
+    <Content Include="Content\kendoUI\textures\highlight.png" />
+    <Content Include="Content\kendoUI\textures\hsv-gradient.png" />
+    <Content Include="Content\kendoUI\textures\hue.png" />
+    <Content Include="Content\kendoUI\textures\leather1.png" />
+    <Content Include="Content\kendoUI\textures\leather2.png" />
+    <Content Include="Content\kendoUI\textures\noise.png" />
+    <Content Include="Content\kendoUI\textures\stripe1.png" />
+    <Content Include="Content\kendoUI\textures\stripe2.png" />
+    <Content Include="Content\kendoUI\textures\stripe3.png" />
+    <Content Include="Content\kendoUI\textures\stripe4.png" />
+    <Content Include="Content\kendoUI\textures\stripe5.png" />
+    <Content Include="Content\kendoUI\textures\stripe6.png" />
+    <Content Include="Content\kendoUI\textures\transparency.png" />
+    <Content Include="Content\kendoUI\textures\transtexture.png" />
     <Content Include="Content\profile.css" />
     <Content Include="Content\recipe-details.css" />
     <Content Include="favicon.ico" />
@@ -266,6 +349,8 @@
     <Content Include="images\defaultAvatar1.png" />
     <Content Include="images\defaultAvatar2.png" />
     <Content Include="images\defaultAvatar3.png" />
+    <Content Include="Libs\Kendo.Mvc.dll" />
+    <Content Include="Libs\Kendo.Mvc.xml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Administration\Views\web.config" />
@@ -289,6 +374,37 @@
     <Content Include="Areas\Users\Views\Recipes\GetByTagName.cshtml" />
     <Content Include="Areas\Users\Views\Recipes\_UserRecipesListPartial.cshtml" />
     <Content Include="Areas\Users\Views\Articles\_ArticlesListPartial.cshtml" />
+    <Content Include="Content\kendoUI\fonts\DejaVu\DejaVuSans-Bold.ttf" />
+    <Content Include="Content\kendoUI\fonts\DejaVu\DejaVuSans-BoldOblique.ttf" />
+    <Content Include="Content\kendoUI\fonts\DejaVu\DejaVuSans-ExtraLight.ttf" />
+    <Content Include="Content\kendoUI\fonts\DejaVu\DejaVuSans-Oblique.ttf" />
+    <Content Include="Content\kendoUI\fonts\DejaVu\DejaVuSans.ttf" />
+    <Content Include="Content\kendoUI\fonts\DejaVu\DejaVuSansMono-Bold.ttf" />
+    <Content Include="Content\kendoUI\fonts\DejaVu\DejaVuSansMono-BoldOblique.ttf" />
+    <Content Include="Content\kendoUI\fonts\DejaVu\DejaVuSansMono-Oblique.ttf" />
+    <Content Include="Content\kendoUI\fonts\DejaVu\DejaVuSansMono.ttf" />
+    <Content Include="Content\kendoUI\fonts\DejaVu\DejaVuSerif-Bold.ttf" />
+    <Content Include="Content\kendoUI\fonts\DejaVu\DejaVuSerif-BoldItalic.ttf" />
+    <Content Include="Content\kendoUI\fonts\DejaVu\DejaVuSerif-Italic.ttf" />
+    <Content Include="Content\kendoUI\fonts\DejaVu\DejaVuSerif.ttf" />
+    <Content Include="Content\kendoUI\fonts\glyphs\KendoUIGlyphs.eot" />
+    <Content Include="Content\kendoUI\fonts\glyphs\KendoUIGlyphs.ttf" />
+    <Content Include="Content\kendoUI\fonts\glyphs\KendoUIGlyphs.woff" />
+    <Content Include="Content\kendoUI\images\kendoui.ttf" />
+    <Content Include="Content\kendoUI\images\kendoui.woff" />
+    <Content Include="Content\kendoUI\kendo.bootstrap.min.css.map" />
+    <Content Include="Content\kendoUI\kendo.common-bootstrap.core.min.css.map" />
+    <Content Include="Content\kendoUI\kendo.common-bootstrap.min.css.map" />
+    <Content Include="Content\kendoUI\kendo.common.core.min.css.map" />
+    <Content Include="Content\kendoUI\kendo.common.min.css.map" />
+    <Content Include="Content\kendoUI\kendo.silver.min.css.map" />
+    <Content Include="Content\kendoUI\kendo.silver.mobile.min.css.map" />
+    <Content Include="Areas\Administration\Views\RecipesAdmin\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\EditorTemplates\RecipeAdminEditModel.cshtml" />
+    <Content Include="Areas\Administration\Views\ArticlesAdmin\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\EditorTemplates\ArticleAdminEditViewModel.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\EditorTemplates\CommentAdminEditViewModel.cshtml" />
+    <Content Include="Areas\Administration\Views\CommentsAdmin\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -301,6 +417,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\kendoUI\jquery.min.js" />
+    <Content Include="Scripts\kendoUI\kendo.all.min.js" />
+    <Content Include="Scripts\kendoUI\kendo.aspnetmvc.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\recipe-vote.js" />
     <Content Include="Scripts\recipeUpload.js" />
@@ -341,9 +460,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\_SliderPartial.cshtml" />
     <Content Include="Views\Home\_ArticlesListPartial.cshtml" />
+    <Content Include="Scripts\kendoUI\jquery.min.map" />
+    <Content Include="Scripts\kendoUI\kendo.all.min.js.map" />
+    <Content Include="Scripts\kendoUI\kendo.aspnetmvc.min.js.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Users\Views\Recipes\DisplayTemplates\" />
     <Folder Include="Areas\Users\Views\UsersBase\" />
     <Folder Include="Areas\Users\Views\Votes\" />

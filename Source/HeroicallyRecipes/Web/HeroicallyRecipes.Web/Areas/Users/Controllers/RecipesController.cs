@@ -47,7 +47,7 @@
                 Recipes = recipesResult
             };
 
-            return View(viewModel);
+            return this.View(viewModel);
         }
 
         [AjaxOnly]
@@ -61,7 +61,7 @@
                 .ProjectTo<RecipeViewModel>()
                 .ToList();
 
-            return PartialView("_RecipesListPartial", resultRecipes);
+            return this.PartialView("_RecipesListPartial", resultRecipes);
         }
 
         [HttpGet]
@@ -71,6 +71,7 @@
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(RecipeCreateViewModel model)
         {        
             if(model.Tags == null)

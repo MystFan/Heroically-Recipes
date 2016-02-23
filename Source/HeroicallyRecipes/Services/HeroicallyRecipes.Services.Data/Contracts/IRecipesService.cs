@@ -20,6 +20,10 @@
 
         IQueryable<Recipe> GetByNickname(string nickname);
 
+        void Update(int recipeId, string userId, string title, string preparation, int votes);
+
+        void Delete(int recipeId);
+
         Recipe GetById(string id);
 
         Recipe GetById(int id);

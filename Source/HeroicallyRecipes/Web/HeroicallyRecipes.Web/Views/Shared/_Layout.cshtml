@@ -7,6 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", required: false)
+    @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -31,7 +32,9 @@
                     }
                     @if (this.User.IsInRole("Admin"))
                     {
-                        <li>@Html.ActionLink("Admin", "Index", "Users", new { area = "Administration" }, null)</li>
+                        <li>@Html.ActionLink("Edit Recipes", "Index", "RecipesAdmin", new { area = "Administration" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Edit Articles", "Index", "ArticlesAdmin", new { area = "Administration" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Edit Comments", "Index", "CommentsAdmin", new { area = "Administration" }, new { @class = "navbar-brand" })</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -46,7 +49,6 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

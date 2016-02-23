@@ -25,7 +25,7 @@
                     Mapper.Map<UserViewModel>(this.users.GetById(this.User.Identity.GetUserId())),
                 UserProfileCacheDuration);
 
-            return View(user);
+            return this.View(user);
         }
     }
 }

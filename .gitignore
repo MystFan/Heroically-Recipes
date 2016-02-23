@@ -234,3 +234,7 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+Source/HeroicallyRecipes/Web/HeroicallyRecipes.Web/Libs/
+Source/HeroicallyRecipes/Web/HeroicallyRecipes.Web/Content/kendoUI
+Source/HeroicallyRecipes/Web/HeroicallyRecipes.Web/Scripts/kendoUI

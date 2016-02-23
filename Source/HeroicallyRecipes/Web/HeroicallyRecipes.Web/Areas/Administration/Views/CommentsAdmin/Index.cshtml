@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administration/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+
+    @(Html.Kendo()
+                .Grid<HeroicallyRecipes.Web.Areas.Administration.ViewModels.CommentAdminEditViewModel>()
+                .Name("grid")
+                .Columns(column =>
+                {
+                    column.Bound(r => r.Id).Width(30);
+                    column.Bound(r => r.Content);
+                    column.Bound(r => r.Author);
+                    column.Bound(r => r.CreatedOn).Format("{0:yyyy-MM-dd}");
+
+                    column.Command(command => { command.Edit(); command.Destroy(); });
+                })
+                .ToolBar(toolBar =>
+                {
+                    toolBar.Excel();
+                })
+                .ColumnMenu()
+                .Editable(editable => editable.Mode(GridEditMode.PopUp))
+                .Pageable()
+                .Sortable(sortable => { sortable.SortMode(GridSortMode.SingleColumn); })
+                .HtmlAttributes(new { style = "height:550px;" })
+                .DataSource(dataSource => dataSource
+                    .Ajax()
+                    .Model(model =>
+                    {
+                        model.Id(r => r.Id);
+                        model.Field(r => r.Id).Editable(false);
+                    })
+                    .PageSize(4)
+                    .Read(read => read.Action("AjaxIndex", "CommentsAdmin"))
+                    .Update(update => update.Action("Edit", "CommentsAdmin"))
+                    .Destroy(destroy => destroy.Action("Delete", "CommentsAdmin"))
+                ))
+</div>
