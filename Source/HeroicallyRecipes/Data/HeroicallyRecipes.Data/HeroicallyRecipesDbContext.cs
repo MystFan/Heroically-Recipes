@@ -32,6 +32,8 @@
 
         public virtual IDbSet<Rating> Ratings { get; set; }
 
+        public virtual IDbSet<Comment> Comments { get; set; }
+
         public static HeroicallyRecipesDbContext Create()
         {
             return new HeroicallyRecipesDbContext();

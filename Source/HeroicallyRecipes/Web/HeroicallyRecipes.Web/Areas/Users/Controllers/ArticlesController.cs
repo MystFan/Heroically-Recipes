@@ -14,7 +14,7 @@
     public class ArticlesController : UsersBaseController
     {
         private const string ArticleChacheKey = "Article";
-        private const int ArticleCacheDuration = 10 * 60;
+        private const int ArticleCacheDuration = 5 * 60;
         private IArticlesService articles;
 
         public ArticlesController(IArticlesService articles)
