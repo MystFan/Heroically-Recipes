@@ -8,6 +8,8 @@
 
         public const int RecipeDefaultPageSize = 3;
 
+        public const int ArticleDefaultPageSize = 3;
+
         public const string DefaultTagName = "default";
     }
 }

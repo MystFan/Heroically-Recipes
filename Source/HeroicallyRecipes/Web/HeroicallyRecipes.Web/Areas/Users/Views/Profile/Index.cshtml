@@ -22,22 +22,25 @@
 
                 <div class="col-md-9 col-lg-9">
                     <table class="table table-user-information">
-                        <thead>
-
-                        </thead>
                         <tbody>
-
+                            <tr>
+                                <th>E-mail</th>
+                                <td>@Model.Email</td>
+                            </tr>
+                            <tr>
+                                <th>Nickname</th>
+                                <td>@Model.NickName</td>
+                            </tr>
                         </tbody>
                     </table>
-
-                    
-                    <a href="#" class="btn btn-primary">My Recipes</a>
                 </div>
             </div>
             <div class="panel-footer">
-                <a href="#" class="btn btn-primary text-center">Update Profile</a>
                 @Html.ActionLink("Add Recipe", "Create", "Recipes", new { area = "Users" }, new { @class = "btn btn-primary text-center" })
             </div>
         </div>
     </div>
 </div>
+
+@Html.Action("GetByNickname", "Recipes", new { nickname = Model.NickName })
+

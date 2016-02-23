@@ -18,10 +18,12 @@
 
         IQueryable<Recipe> GetByTagName(string tagName);
 
+        IQueryable<Recipe> GetByNickname(string nickname);
+
         Recipe GetById(string id);
 
         Recipe GetById(int id);
 
-        int Add(string title, string preparation, int categoryId, string userId, IEnumerable<string> ingradients, IEnumerable<HttpPostedFileBase> images, IEnumerable<string> tags);
+        int Add(string title, string preparation, int categoryId, string userId, IEnumerable<string> ingradients, IEnumerable<HttpPostedFileBase> images, string tags);
     }
 }

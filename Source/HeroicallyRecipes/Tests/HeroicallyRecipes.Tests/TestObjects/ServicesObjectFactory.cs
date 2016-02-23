@@ -37,7 +37,7 @@
                        It.IsAny<string>(),
                        It.IsAny<IEnumerable<string>>(),
                        It.IsAny<IEnumerable<HttpPostedFileBase>>(),
-                       It.IsAny<IEnumerable<string>>()))
+                       It.IsAny<string>()))
                        .Returns(1);
 
             return recipesServiceMock.Object;
@@ -48,7 +48,7 @@
             var voteServiceMock = new Mock<IVoteService>();
             var voteRepo = TestObjectsFactory.GetVotesRepositiry(10);
 
-            voteServiceMock.Setup(vs => vs.Add(It.IsIn(2), It.IsAny<string>(), It.IsAny<int>()))
+            voteServiceMock.Setup(vs => vs.Add(It.Is<int>(d => d.Equals(2)), It.IsAny<string>(), It.IsAny<int>()))
                 .Callback(
                 () => voteRepo
                 .Add(new RecipeVote()
@@ -59,22 +59,22 @@
                     Type = VoteType.Positive
                 }));
 
-            voteServiceMock.Setup(vs => vs.Add(It.IsIn(1), It.IsAny<string>(), It.IsAny<int>()))
+            voteServiceMock.Setup(vs => vs.Add(It.Is<int>(d => d.Equals(1)), It.IsAny<string>(), It.IsAny<int>()))
                 .Callback(
                 () => voteRepo
                 .Add(new RecipeVote()
                 {
-                    RecipeId = 1,
+                    RecipeId = 2,
                     CreatedOn = DateTime.Now,
                     AuthorId = "1",
-                    Type = VoteType.Positive
+                    Type = VoteType.Negativ
                 }));
 
-            voteServiceMock.Setup(vs => vs.GetTotalRecipeVotes(It.IsIn(2)))
+            voteServiceMock.Setup(vs => vs.GetTotalRecipeVotes(It.Is<int>(d => d.Equals(2))))
                 .Returns(voteRepo.All().Where(v => v.RecipeId == 2).Sum(v => (int)v.Type));
 
-            voteServiceMock.Setup(vs => vs.GetTotalRecipeVotes(It.IsIn(1)))
-                .Returns(voteRepo.All().Where(v => v.RecipeId == 1).Sum(v => (int)v.Type));
+            voteServiceMock.Setup(vs => vs.GetTotalRecipeVotes(It.Is<int>(d => d.Equals(1))))
+                .Returns(voteRepo.All().Where(v => v.RecipeId == 2).Sum(v => (int)v.Type));
 
             return voteServiceMock.Object;
         }
@@ -93,10 +93,10 @@
         {
             var articlesServiceMock = new Mock<IArticlesService>();
 
-            articlesServiceMock.Setup(a => a.GetById(It.IsIn(99)))
+            articlesServiceMock.Setup(a => a.GetById(It.Is<int>(d => d.Equals(99))))
                 .Returns((Article)null);
 
-            articlesServiceMock.Setup(a => a.GetById(It.IsAny<int>()))
+            articlesServiceMock.Setup(a => a.GetById(It.Is<int>(d => d.Equals(5))))
                 .Returns(TestObjectsFactory.GetArticlesRepositiry(10).GetById(5));
 
             return articlesServiceMock.Object;

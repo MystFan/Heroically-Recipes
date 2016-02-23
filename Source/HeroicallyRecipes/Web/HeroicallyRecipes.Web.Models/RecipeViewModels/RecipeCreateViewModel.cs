@@ -22,7 +22,8 @@
 
         public int CategoryId { get; set; }
 
-        public IEnumerable<string> Tags { get; set; }
+        [Required]
+        public string Tags { get; set; }
 
         [ValidateIngradients]
         public IEnumerable<string> Ingredients { get; set; }

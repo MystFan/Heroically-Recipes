@@ -24,9 +24,11 @@
             this.idProvider = idProvider;
         }
 
-        public int Add(string title, string preparation, int categoryId, string userId, IEnumerable<string> ingradients, IEnumerable<HttpPostedFileBase> images, IEnumerable<string> tags)
+        public int Add(string title, string preparation, int categoryId, string userId, IEnumerable<string> ingradients, IEnumerable<HttpPostedFileBase> images, string tags)
         {
             var recipeImages = HttpFileToRecipeImage(images);
+            var recipeTags = tags.Split(new char[] { '\0' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(t => new Tag() { Text = t }).ToList();
 
             var newRecipe = new Recipe()
             {
@@ -37,7 +39,7 @@
                     Text = i
                 }).ToList(),
                 Images = recipeImages,
-                Tags = tags.Select(t => new Tag() { Text = t }).ToList(),
+                Tags = recipeTags,
                 UserId = userId,
                 CategoryId = categoryId
             };
@@ -110,9 +112,18 @@
         {
             var resultTags = this.recipes
                 .All()
-                .Where(r => r.Tags.FirstOrDefault(t => t.Text == tagName) != null);
+                .Where(r => r.Tags.FirstOrDefault(t => t.Text.ToLower() == tagName.ToLower()) != null);
 
             return resultTags;
+        }
+
+        public IQueryable<Recipe> GetByNickname(string nickname)
+        {
+            var resultRecipes = this.recipes
+                .All()
+                .Where(r => r.Creator.NickName == nickname);
+
+            return resultRecipes;
         }
 
         private List<RecipeImage> HttpFileToRecipeImage(IEnumerable<HttpPostedFileBase> files)

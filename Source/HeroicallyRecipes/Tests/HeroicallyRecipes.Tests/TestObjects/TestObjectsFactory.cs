@@ -158,6 +158,7 @@
                     Id = i + 1,
                     Recipe = recipe,
                     CreatedOn = date,
+                    RecipeId = 2,
                     Type = VoteType.Positive
                 };
 
@@ -200,6 +201,7 @@
                     "garlic cloves, finely grated, divided",
                     "cup plain whole-milk Greek yogurt, divided",
                 },
+                Tags = "butter salamy",
                 RecipeImages = new List<HttpPostedFileBase>() { null, null, imageMock.Object }
             };
         }

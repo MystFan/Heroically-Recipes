@@ -17,7 +17,9 @@
 
     public class RecipesController : UsersBaseController
     {
+        private const string RecipeChacheKey = "Recipe";
         private const int TagCacheDuration = 10 * 60;
+        private const int NicknameCacheDuration = 10 * 60;
         private IRecipesService recipes;
 
         public RecipesController(IRecipesService recipesService)
@@ -31,7 +33,7 @@
             int totalRecipes = this.recipes.GetAll().Count();
             int totalPages = (int)Math.Ceiling(totalRecipes / (decimal)3);
 
-            var recipesResult = this.Cache.Get(page.ToString(),
+            var recipesResult = this.Cache.Get(RecipeChacheKey + page.ToString(),
                             () => this.recipes
                                 .Get(page)
                                 .ProjectTo<RecipeViewModel>()
@@ -110,6 +112,20 @@
                 TagCacheDuration);
 
             return this.View(viewRecipes);
+        }
+
+        [HttpGet]
+        public ActionResult GetByNickname(string nickname)
+        {
+            var viewRecipes = this.Cache.Get(
+                nickname,
+                () => this.recipes.
+                        GetByNickname(nickname)
+                        .ProjectTo<RecipeViewModel>()
+                        .ToList(),
+                NicknameCacheDuration);
+
+            return this.PartialView("_UserRecipesListPartial", viewRecipes);
         }
 
         [HttpGet]

@@ -10,6 +10,8 @@
 
         IQueryable<Article> GetNewest(int count);
 
+        IQueryable<Article> Get(int page);
+
         Article GetById(int id);
     }
 }

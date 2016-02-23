@@ -59,8 +59,16 @@
             </div>
         </div>
 
-
-        @Html.Action("GetTags", "Tags");
+        <div class="alert alert-warning">
+            <strong>Warning!</strong> <br /> Add tags separate by white spaces
+        </div>
+        <div class="form-group">
+            @Html.Label("Tags", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" id="add-images-container">
+                @Html.TextBoxFor(model => model.Tags, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10" id="add-ingradients-container">

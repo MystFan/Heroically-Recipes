@@ -1,8 +1,8 @@
 ﻿namespace HeroicallyRecipes.Services.Data
 {
-    using System;
     using System.Linq;
 
+    using HeroicallyRecipes.Common.Globals;
     using HeroicallyRecipes.Data.Models;
     using HeroicallyRecipes.Data.Repositories;
     using HeroicallyRecipes.Services.Data.Contracts;
@@ -14,6 +14,15 @@
         public ArticlesService(IDbRepository<Article> articles)
         {
             this.articles = articles;
+        }
+
+        public IQueryable<Article> Get(int page)
+        {
+            return this.articles
+                .All()
+                .OrderBy(a => a.CreatedOn)
+                .Skip((page - 1) * GlobalConstants.ArticleDefaultPageSize)
+                .Take(GlobalConstants.ArticleDefaultPageSize);
         }
 
         public IQueryable<Article> GetAll()

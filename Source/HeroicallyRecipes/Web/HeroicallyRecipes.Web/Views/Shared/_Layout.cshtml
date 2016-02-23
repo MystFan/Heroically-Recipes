@@ -21,12 +21,13 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
+                    
                     @if (this.User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Your Profile", "Index", "Profile", new { area = "Users" }, new { @class = "navbar-brand" })</li>
                         <li>@Html.ActionLink("Recipes", "All", "Recipes", new { area = "Users" }, null)</li>
                         <li>@Html.ActionLink("Add Recipe", "Create", "Recipes", new { area = "Users" }, null)</li>
+                        <li>@Html.ActionLink("Articles", "Index", "Articles", new { area = "Users" }, null)</li>
                     }
                     @if (this.User.IsInRole("Admin"))
                     {

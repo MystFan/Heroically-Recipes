@@ -1,0 +1,23 @@
+﻿@model IEnumerable<HeroicallyRecipes.Web.Models.Articles.ArticleViewModel>
+
+<div class="row" id="recipes-container">
+    @foreach (var article in Model)
+    {
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h4 class="text-center">@article.Title</h4>
+                    <p>
+                       @article.Content.Substring(0, 500)
+                    </p>
+                    <p><span class="glyphicon glyphicon-comment"></span>    @article.Comments.Count()</p>
+                    <p class="text-center">
+                        @Html.ActionLink("More details", "Details", "Articles", new { area = "Users", id = article.Id }, new { @class = "btn btn-success", title = "Recipe details" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+

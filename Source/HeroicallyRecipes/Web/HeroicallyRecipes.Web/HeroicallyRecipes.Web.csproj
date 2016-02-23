@@ -278,6 +278,8 @@
     <Content Include="Areas\Users\Views\Articles\Details.cshtml" />
     <Content Include="Areas\Users\Views\Tags\_TagsListPartial.cshtml" />
     <Content Include="Areas\Users\Views\Recipes\GetByTagName.cshtml" />
+    <Content Include="Areas\Users\Views\Recipes\_UserRecipesListPartial.cshtml" />
+    <Content Include="Areas\Users\Views\Articles\_ArticlesListPartial.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

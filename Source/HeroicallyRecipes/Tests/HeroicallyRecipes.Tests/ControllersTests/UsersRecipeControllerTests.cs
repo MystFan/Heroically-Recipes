@@ -46,7 +46,7 @@
         {
             int page = 1;
 
-            HttpRuntime.Cache[page.ToString()] = this.recipes.Get(page)
+            HttpRuntime.Cache["Recipe" + page.ToString()] = this.recipes.Get(page)
                 .ProjectTo<RecipeViewModel>()
                 .ToList();
 
@@ -123,8 +123,9 @@
 
             Assert.AreEqual("The Title must be at least 3 characters long.", errorMessages[0]);
             Assert.AreEqual("The field Preparation must be a string or array type with a minimum length of '100'.", errorMessages[1]);
-            Assert.AreEqual("The recipe must contain at least 3 ingredients!", errorMessages[2]);
-            Assert.AreEqual("The recipe must contain at least one image!", errorMessages[3]);
+            Assert.AreEqual("The Tags field is required.", errorMessages[2]);
+            Assert.AreEqual("The recipe must contain at least 3 ingredients!", errorMessages[3]);
+            Assert.AreEqual("The recipe must contain at least one image!", errorMessages[4]);
         }
 
         [Test]
