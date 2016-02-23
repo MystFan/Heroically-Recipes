@@ -1,11 +1,15 @@
 ﻿namespace HeroicallyRecipes.Tests.ControllersTests
 {
+    using System;
+    using System.Linq;
     using System.Web;
 
     using AutoMapper;
     using NUnit.Framework;
+    using AutoMapper.QueryableExtensions;
     using TestStack.FluentMVCTesting;
 
+    using HeroicallyRecipes.Common.Globals;
     using HeroicallyRecipes.Services.Data.Contracts;
     using HeroicallyRecipes.Services.Web;
     using HeroicallyRecipes.Tests.TestObjects;
@@ -27,6 +31,27 @@
             this.articles = ServicesObjectFactory.GetArticlesService();
             this.controller = new ArticlesController(this.articles);
             this.controller.Cache = new HttpCacheService();
+        }
+
+        [Test]
+        public void IndexPagingDefaultPageShouldWorkCorrectly()
+        {
+            int page = 1;
+
+            HttpRuntime.Cache["Article" + page.ToString()] = this.articles.Get(page)
+                .ProjectTo<ArticleViewModel>()
+                .ToList();
+
+            controller.WithCallTo(x => x.Index(page))
+                .ShouldRenderView("Index")
+                            .WithModel<ArticleListViewModel>(
+                                viewModel =>
+                                {
+                                    Assert.AreEqual(page, viewModel.CurrentPage);
+                                    Assert.AreEqual((int)Math.Ceiling(10 / (decimal)GlobalConstants.ArticleDefaultPageSize), viewModel.TotalPages);
+                                    Assert.AreEqual(3, viewModel.Articles.Count());
+                                    Assert.AreEqual("Title 0", viewModel.Articles.FirstOrDefault().Title);
+                                }).AndNoModelErrors();
         }
 
         [Test]

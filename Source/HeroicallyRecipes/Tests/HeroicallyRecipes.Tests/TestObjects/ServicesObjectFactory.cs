@@ -92,12 +92,19 @@
         public static IArticlesService GetArticlesService()
         {
             var articlesServiceMock = new Mock<IArticlesService>();
+            int pageSize = GlobalConstants.ArticleDefaultPageSize;
 
             articlesServiceMock.Setup(a => a.GetById(It.Is<int>(d => d.Equals(99))))
                 .Returns((Article)null);
 
             articlesServiceMock.Setup(a => a.GetById(It.Is<int>(d => d.Equals(5))))
                 .Returns(TestObjectsFactory.GetArticlesRepositiry(10).GetById(5));
+
+            articlesServiceMock.Setup(a => a.Get(It.Is<int>(d => d.Equals(1))))
+                .Returns(TestObjectsFactory.GetArticlesRepositiry(10).All().Skip((1 - 1) * pageSize).Take(pageSize));
+
+            articlesServiceMock.Setup(a => a.GetAll())
+                .Returns(TestObjectsFactory.GetArticlesRepositiry(10).All());
 
             return articlesServiceMock.Object;
         }
