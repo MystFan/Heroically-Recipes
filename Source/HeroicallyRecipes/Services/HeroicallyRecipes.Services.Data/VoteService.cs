@@ -17,7 +17,7 @@
 
         public void Add(int recipeId, string userId, int vote)
         {
-            var databaseVote = Get(recipeId, userId);
+            var databaseVote = this.Get(recipeId, userId);
 
             if (databaseVote == null)
             {
@@ -30,7 +30,7 @@
             }
             else
             {
-                if(databaseVote.Type == (VoteType)vote)
+                if (databaseVote.Type == (VoteType)vote)
                 {
                     databaseVote.Type = VoteType.Neutral;
                 }
@@ -38,7 +38,7 @@
                 {
                     databaseVote.Type = (VoteType)vote;
                 }
-            }           
+            }
 
             this.votes.SaveChanges();
         }
@@ -61,12 +61,12 @@
 
         private RecipeVote Get(int recipeId, string userId)
         {
-            var dbVote = this.votes
+            var databaseVote = this.votes
                 .All()
                 .Where(v => v.AuthorId == userId && v.RecipeId == recipeId)
                 .FirstOrDefault();
 
-            return dbVote;
+            return databaseVote;
         }
     }
 }

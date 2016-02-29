@@ -1,8 +1,8 @@
 ﻿namespace HeroicallyRecipes.Services.Data
 {
     using System;
-    using System.IO;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Web;
 
@@ -26,7 +26,7 @@
 
         public int Add(string title, string preparation, int categoryId, string userId, IEnumerable<string> ingradients, IEnumerable<HttpPostedFileBase> images, string tags)
         {
-            var recipeImages = HttpFileToRecipeImage(images);
+            var recipeImages = this.HttpFileToRecipeImage(images);
             var recipeTags = tags.Split(new char[] { '\0' }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(t => new Tag() { Text = t }).ToList();
 
@@ -69,23 +69,14 @@
         {
             int decodedId = this.idProvider.DecodeId(id);
 
-            var resultRecipe = GetRecipeById(decodedId);
+            var resultRecipe = this.GetRecipeById(decodedId);
 
             return resultRecipe;
         }
 
         public Recipe GetById(int id)
         {
-            var resultRecipe = GetRecipeById(id);
-
-            return resultRecipe;
-        }
-
-        private Recipe GetRecipeById(int id)
-        {
-            var resultRecipe = this.recipes
-                .All()
-                .FirstOrDefault(r => r.Id == id);
+            var resultRecipe = this.GetRecipeById(id);
 
             return resultRecipe;
         }
@@ -106,7 +97,6 @@
 
             return resultRecipes;
         }
-
 
         public IQueryable<Recipe> GetByTagName(string tagName)
         {
@@ -135,8 +125,8 @@
             databaseRecipe.Title = title;
             databaseRecipe.Preparation = preparation;
             databaseRecipe.Votes.Clear();
-            
-            if(votes < 0)
+
+            if (votes < 0)
             {
                 votes *= -1;
                 for (int i = 0; i < votes; i++)
@@ -148,7 +138,7 @@
                     });
                 }
             }
-            else if(votes > 0)
+            else if (votes > 0)
             {
                 for (int i = 0; i < votes; i++)
                 {
@@ -163,7 +153,6 @@
             this.recipes.SaveChanges();
         }
 
-
         public void Delete(int recipeId)
         {
             var databaseRecipe = this.recipes
@@ -172,6 +161,15 @@
 
             this.recipes.Delete(databaseRecipe);
             this.recipes.SaveChanges();
+        }
+
+        private Recipe GetRecipeById(int id)
+        {
+            var resultRecipe = this.recipes
+                .All()
+                .FirstOrDefault(r => r.Id == id);
+
+            return resultRecipe;
         }
 
         private List<RecipeImage> HttpFileToRecipeImage(IEnumerable<HttpPostedFileBase> files)

@@ -1,7 +1,7 @@
 ﻿namespace HeroicallyRecipes.Services.Data.Contracts
 {
-    using System.Linq;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web;
 
     using HeroicallyRecipes.Data.Models;

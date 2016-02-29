@@ -1,9 +1,10 @@
 ﻿namespace HeroicallyRecipes.Services.Data
 {
     using System.Linq;
+
     using HeroicallyRecipes.Data.Models;
     using HeroicallyRecipes.Data.Repositories;
-    using Contracts;
+    using HeroicallyRecipes.Services.Data.Contracts;
 
     public class CategoriesService : ICategoriesService
     {
