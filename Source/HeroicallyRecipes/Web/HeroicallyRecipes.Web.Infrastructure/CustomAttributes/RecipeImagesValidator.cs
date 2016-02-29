@@ -1,10 +1,10 @@
 ﻿namespace HeroicallyRecipes.Web.Infrastructure.CustomAttributes
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.IO;
     using System.Linq;
     using System.Web;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
     using HeroicallyRecipes.Common.Validation;
 
@@ -13,15 +13,15 @@
         public override bool IsValid(object value)
         {
             var images = value as IEnumerable<HttpPostedFileBase>;
-            bool IsValid = true;
+            bool isValid = true;
 
             if (images != null)
             {
                 if (!images.Any(i => i != null))
                 {
                     this.ErrorMessage = "The recipe must contain at least one image!";
-                    IsValid = false;
-                    return IsValid;
+                    isValid = false;
+                    return isValid;
                 }
 
                 foreach (var image in images)
@@ -36,42 +36,42 @@
 
                     if (fileName.Length <= ModelConstants.ImageNameMinLength)
                     {
-                        IsValid = false;
+                        isValid = false;
                         this.ErrorMessage = string.Format("The recipe image must be at least {0} characters long.", ModelConstants.ImageNameMinLength);
                         break;
                     }
 
                     if (fileName.Length > ModelConstants.ImageNameMaxLength)
                     {
-                        IsValid = false;
+                        isValid = false;
                         this.ErrorMessage = string.Format("Recipe image cannot be longer than {0} characters.", ModelConstants.ImageNameMaxLength);
                         break;
                     }
 
                     if (fileExtension.Length <= ModelConstants.ImageExtensionMinLength)
                     {
-                        IsValid = false;
+                        isValid = false;
                         this.ErrorMessage = string.Format("The recipe image extension must be at least {0} characters long.", ModelConstants.ImageExtensionMinLength);
                         break;
                     }
 
                     if (fileExtension.Length > ModelConstants.ImageExtensionMaxLength)
                     {
-                        IsValid = false;
+                        isValid = false;
                         this.ErrorMessage = string.Format("Recipe image extension cannot be longer than {0} characters.", ModelConstants.ImageExtensionMaxLength);
                         break;
                     }
 
                     if (image.ContentLength == 0 || image.ContentLength > ModelConstants.RecipeImageMaxContentLength)
                     {
-                        IsValid = false;
+                        isValid = false;
                         this.ErrorMessage = string.Format("Recipe image size must be between {0} and {1} MB.", 0, (decimal)ModelConstants.RecipeImageMaxContentLength / 1000000);
                         break;
                     }
                 }
             }
 
-            return IsValid;
+            return isValid;
         }
     }
 }

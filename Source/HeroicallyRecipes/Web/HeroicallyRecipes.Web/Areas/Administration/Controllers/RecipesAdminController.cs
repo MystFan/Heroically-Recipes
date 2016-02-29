@@ -3,13 +3,12 @@
     using System.Linq;
     using System.Web.Mvc;
 
-    using Kendo.Mvc.Extensions;
-    using Kendo.Mvc.UI;
     using AutoMapper.QueryableExtensions;
-    using Microsoft.AspNet.Identity;
-
     using HeroicallyRecipes.Services.Data.Contracts;
     using HeroicallyRecipes.Web.Areas.Administration.ViewModels;
+    using Kendo.Mvc.Extensions;
+    using Kendo.Mvc.UI;
+    using Microsoft.AspNet.Identity;
 
     public class RecipesAdminController : AdminBaseController
     {
@@ -22,7 +21,7 @@
 
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
@@ -33,19 +32,19 @@
                 .ProjectTo<RecipeAdminEditModel>()
                 .ToList();
 
-            return Json(allRecipes.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+            return this.Json(allRecipes.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public ActionResult Edit([DataSourceRequest] DataSourceRequest request, RecipeAdminInputModel model)
         {
-            if (model != null && ModelState.IsValid)
+            if (model != null && this.ModelState.IsValid)
             {
                 var userId = this.User.Identity.GetUserId();
                 this.recipes.Update(model.Id, userId, model.Title, model.Preparation, model.Votes);
             }
 
-            return Json(new[] { model }.ToDataSourceResult(request, ModelState));
+            return this.Json(new[] { model }.ToDataSourceResult(request, this.ModelState));
         }
 
         [HttpPost]
@@ -56,7 +55,7 @@
                 this.recipes.Delete(model.Id);
             }
 
-            return Json(new[] { model }.ToDataSourceResult(request, ModelState));
+            return this.Json(new[] { model }.ToDataSourceResult(request, this.ModelState));
         }
     }
 }

@@ -3,12 +3,11 @@
     using System.Linq;
     using System.Web.Mvc;
 
-    using Kendo.Mvc.Extensions;
-    using Kendo.Mvc.UI;
     using AutoMapper.QueryableExtensions;
-
     using HeroicallyRecipes.Services.Data.Contracts;
     using HeroicallyRecipes.Web.Areas.Administration.ViewModels;
+    using Kendo.Mvc.Extensions;
+    using Kendo.Mvc.UI;
 
     public class CommentsAdminController : AdminBaseController
     {
@@ -21,7 +20,7 @@
 
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
@@ -32,18 +31,18 @@
                 .ProjectTo<CommentAdminEditViewModel>()
                 .ToList();
 
-            return Json(allComments.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+            return this.Json(allComments.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public ActionResult Edit([DataSourceRequest] DataSourceRequest request, CommentAdminEditInputModel model)
         {
-            if (model != null && ModelState.IsValid)
+            if (model != null && this.ModelState.IsValid)
             {
                 this.comments.Update(model.Id, model.Content);
             }
 
-            return Json(new[] { model }.ToDataSourceResult(request, ModelState));
+            return this.Json(new[] { model }.ToDataSourceResult(request, this.ModelState));
         }
 
         [HttpPost]
@@ -54,7 +53,7 @@
                 this.comments.Delete(model.Id);
             }
 
-            return Json(new[] { model }.ToDataSourceResult(request, ModelState));
+            return this.Json(new[] { model }.ToDataSourceResult(request, this.ModelState));
         }
     }
 }

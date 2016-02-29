@@ -6,10 +6,9 @@
 
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
-
     using HeroicallyRecipes.Common.Globals;
-    using HeroicallyRecipes.Web.Models.Articles;
     using HeroicallyRecipes.Services.Data.Contracts;
+    using HeroicallyRecipes.Web.Models.Articles;
 
     public class ArticlesController : UsersBaseController
     {
@@ -24,15 +23,16 @@
 
         public ActionResult Index(int page = 1)
         {
-            int totalArticles= this.articles.GetAll().Count();
+            int totalArticles = this.articles.GetAll().Count();
             int totalPages = (int)Math.Ceiling(totalArticles / (decimal)GlobalConstants.ArticleDefaultPageSize);
 
-            var articlesResult = this.Cache.Get(ArticleChacheKey + page.ToString(),
-                            () => this.articles
-                                .Get(page)
-                                .ProjectTo<ArticleViewModel>()
-                                .ToList(),
-                            1 * 60);
+            var articlesResult = this.Cache.Get(
+                                            ArticleChacheKey + page.ToString(),
+                                            () => this.articles
+                                                .Get(page)
+                                                .ProjectTo<ArticleViewModel>()
+                                                .ToList(),
+                                            1 * 60);
 
             ArticleListViewModel viewModel = new ArticleListViewModel()
             {
@@ -46,8 +46,9 @@
 
         public ActionResult Details(int id)
         {
-            var article = base.Cache
-                .Get("article" + id.ToString(),
+            var article = this.Cache
+                .Get(
+                "article" + id.ToString(),
                 () =>
                     Mapper.Map<ArticleViewModel>(this.articles.GetById(id)),
                 ArticleCacheDuration);

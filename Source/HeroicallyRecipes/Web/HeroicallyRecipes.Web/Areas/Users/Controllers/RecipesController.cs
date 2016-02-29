@@ -5,15 +5,14 @@
     using System.Linq;
     using System.Web.Mvc;
 
-    using Microsoft.AspNet.Identity;
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
-
     using HeroicallyRecipes.Common.Globals;
     using HeroicallyRecipes.Common.Validation;
     using HeroicallyRecipes.Services.Data.Contracts;
     using HeroicallyRecipes.Web.Infrastructure.CustomFilters;
     using HeroicallyRecipes.Web.Models.RecipeViewModels;
+    using Microsoft.AspNet.Identity;
 
     public class RecipesController : UsersBaseController
     {
@@ -33,12 +32,13 @@
             int totalRecipes = this.recipes.GetAll().Count();
             int totalPages = (int)Math.Ceiling(totalRecipes / (decimal)3);
 
-            var recipesResult = this.Cache.Get(RecipeChacheKey + page.ToString(),
-                            () => this.recipes
-                                .Get(page)
-                                .ProjectTo<RecipeViewModel>()
-                                .ToList(),
-                            1 * 60);
+            var recipesResult = this.Cache.Get(
+                                            RecipeChacheKey + page.ToString(),
+                                            () => this.recipes
+                                                .Get(page)
+                                                .ProjectTo<RecipeViewModel>()
+                                                .ToList(),
+                                            1 * 60);
 
             RecipeListViewModel viewModel = new RecipeListViewModel()
             {
@@ -67,14 +67,14 @@
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(RecipeCreateViewModel model)
-        {        
-            if(model.Tags == null)
+        {
+            if (model.Tags == null)
             {
                 this.ModelState.AddModelError(string.Empty, "The recipe must contain at least " + ModelConstants.TagsMinCount + " tag!");
             }
@@ -86,7 +86,7 @@
                 return this.RedirectToAction("All");
             }
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpGet]
@@ -97,7 +97,7 @@
             viewRecipe.Creator = recipe.Creator.NickName;
             viewRecipe.Category = recipe.Category.Name;
             viewRecipe.Votes = recipe.Votes.Count;
-            
+
             return this.View(viewRecipe);
         }
 
@@ -105,12 +105,12 @@
         public ActionResult GetByTagName(string tagName = GlobalConstants.DefaultTagName)
         {
             var viewRecipes = this.Cache.Get(
-                tagName, 
-                () => this.recipes.
-                        GetByTagName(tagName)
-                        .ProjectTo<RecipeViewModel>()
-                        .ToList(),
-                TagCacheDuration);
+                                        tagName,
+                                        () => this.recipes
+                                                .GetByTagName(tagName)
+                                                .ProjectTo<RecipeViewModel>()
+                                                .ToList(),
+                                        TagCacheDuration);
 
             return this.View(viewRecipes);
         }
@@ -120,8 +120,8 @@
         {
             var viewRecipes = this.Cache.Get(
                 nickname,
-                () => this.recipes.
-                        GetByNickname(nickname)
+                () => this.recipes
+                        .GetByNickname(nickname)
                         .ProjectTo<RecipeViewModel>()
                         .ToList(),
                 NicknameCacheDuration);
@@ -135,7 +135,7 @@
         {
             var recipe = this.recipes.GetById(id);
 
-            return Content(recipe.Preparation);
+            return this.Content(recipe.Preparation);
         }
     }
 }

@@ -2,11 +2,11 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    using AutoMapper.QueryableExtensions;
 
+    using AutoMapper.QueryableExtensions;
     using HeroicallyRecipes.Services.Data.Contracts;
-    using HeroicallyRecipes.Web.Models.RecipeViewModels;
     using HeroicallyRecipes.Web.Models.Articles;
+    using HeroicallyRecipes.Web.Models.RecipeViewModels;
 
     public class HomeController : BaseController
     {

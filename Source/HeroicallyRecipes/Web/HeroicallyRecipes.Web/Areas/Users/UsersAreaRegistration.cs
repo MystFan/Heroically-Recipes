@@ -18,8 +18,7 @@
                 "Users_default",
                 "Users/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional },
-                namespaces: new string[] { "HeroicallyRecipes.Web.Areas.Users.Controllers" }
-            );
+                namespaces: new string[] { "HeroicallyRecipes.Web.Areas.Users.Controllers" });
         }
     }
 }

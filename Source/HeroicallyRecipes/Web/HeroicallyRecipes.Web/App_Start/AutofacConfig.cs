@@ -6,15 +6,13 @@
 
     using Autofac;
     using Autofac.Integration.Mvc;
-
-    using Controllers;
-
-    using Data;
-    using Services.Data.Contracts;
-    using Data.Repositories;
-    using Services.Web;
-    using Services.Web.Contracts;
-    using Common.Providers;
+    using HeroicallyRecipes.Common.Providers;
+    using HeroicallyRecipes.Data;
+    using HeroicallyRecipes.Data.Repositories;
+    using HeroicallyRecipes.Services.Data.Contracts;
+    using HeroicallyRecipes.Services.Web;
+    using HeroicallyRecipes.Services.Web.Contracts;
+    using HeroicallyRecipes.Web.Controllers;
 
     public static class AutofacConfig
     {

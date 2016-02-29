@@ -1,16 +1,15 @@
-﻿using System;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin;
-using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
-using Owin;
-using HeroicallyRecipes.Web.Models;
-using HeroicallyRecipes.Data.Models;
-using HeroicallyRecipes.Data;
-
-namespace HeroicallyRecipes.Web
+﻿namespace HeroicallyRecipes.Web
 {
+    using System;
+
+    using HeroicallyRecipes.Data;
+    using HeroicallyRecipes.Data.Models;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin;
+    using Microsoft.Owin.Security.Cookies;
+    using Owin;
+
     public partial class Startup
     {
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864

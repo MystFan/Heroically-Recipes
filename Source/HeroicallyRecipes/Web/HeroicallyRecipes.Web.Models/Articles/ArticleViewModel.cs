@@ -4,10 +4,9 @@
     using System.Collections.Generic;
 
     using AutoMapper;
-
-    using HeroicallyRecipes.Web.Models.Comments;
     using HeroicallyRecipes.Data.Models;
     using HeroicallyRecipes.Web.Infrastructure.Mappings;
+    using HeroicallyRecipes.Web.Models.Comments;
 
     public class ArticleViewModel : IMapFrom<Article>, IHaveCustomMappings
     {

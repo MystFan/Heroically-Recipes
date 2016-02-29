@@ -5,9 +5,7 @@
     using System.Web;
 
     using HeroicallyRecipes.Common.Validation;
-    using Ingredients;
-    using Infrastructure.CustomAttributes;
-    using Tags;
+    using HeroicallyRecipes.Web.Infrastructure.CustomAttributes;
 
     public class RecipeCreateViewModel
     {

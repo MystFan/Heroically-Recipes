@@ -11,18 +11,18 @@
         public override bool IsValid(object value)
         {
             var collection = value as ICollection<string>;
-            bool IsValid = true;
+            bool isValid = true;
 
             if (collection != null)
             {
                 if (collection.Count(i => i != string.Empty) < ModelConstants.IngredientMinCount)
                 {
-                    ErrorMessage = "The recipe must contain at least " + ModelConstants.IngredientMinCount + " ingredients!";
-                    IsValid = false;
+                    this.ErrorMessage = "The recipe must contain at least " + ModelConstants.IngredientMinCount + " ingredients!";
+                    isValid = false;
                 }
             }
 
-            return IsValid;
+            return isValid;
         }
     }
 }

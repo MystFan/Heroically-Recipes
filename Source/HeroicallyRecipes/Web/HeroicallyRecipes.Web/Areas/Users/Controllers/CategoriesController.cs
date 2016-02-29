@@ -22,13 +22,14 @@
 
         public ActionResult All()
         {
-            return PartialView("_CategoriesPartial", GetCategories());
+            return this.PartialView("_CategoriesPartial", this.GetCategories());
         }
 
         private IList<CategoryViewModel> GetCategories()
         {
-            var allCategories = base.Cache
-                .Get(CategoriesKey,
+            var allCategories = this.Cache
+                .Get(
+                CategoriesKey,
                 () =>
                     this.categories
                     .GetAll()

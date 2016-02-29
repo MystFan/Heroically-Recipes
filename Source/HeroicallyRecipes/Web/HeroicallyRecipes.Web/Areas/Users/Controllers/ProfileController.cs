@@ -1,11 +1,11 @@
 ﻿namespace HeroicallyRecipes.Web.Areas.Users.Controllers
 {
     using System.Web.Mvc;
-    using Microsoft.AspNet.Identity;
-    using AutoMapper;
 
+    using AutoMapper;
     using HeroicallyRecipes.Services.Data.Contracts;
-    using Models.Profile;
+    using HeroicallyRecipes.Web.Models.Profile;
+    using Microsoft.AspNet.Identity;
 
     public class ProfileController : UsersBaseController
     {
@@ -19,11 +19,12 @@
 
         public ActionResult Index()
         {
-            var user = base.Cache
-                .Get("user",
-                () =>
-                    Mapper.Map<UserViewModel>(this.users.GetById(this.User.Identity.GetUserId())),
-                UserProfileCacheDuration);
+            var user = this.Cache
+                            .Get(
+                            "user",
+                            () =>
+                                Mapper.Map<UserViewModel>(this.users.GetById(this.User.Identity.GetUserId())),
+                            UserProfileCacheDuration);
 
             return this.View(user);
         }

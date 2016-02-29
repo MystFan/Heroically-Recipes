@@ -1,14 +1,15 @@
 ﻿namespace HeroicallyRecipes.Web.App_Data
 {
     using System;
+    using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
+    using System.Web;
+
+    using HeroicallyRecipes.Data;
+    using HeroicallyRecipes.Data.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using HeroicallyRecipes.Data.Models;
-    using System.IO;
-    using System.Collections.Generic;
-    using System.Web;
-    using Data;
 
     public class SeedData
     {
@@ -24,7 +25,7 @@
             string[] emails = new string[] { "jhonDoe@site.com", "batman@site.com" };
 
             PasswordHasher hasher = new PasswordHasher();
-            var UserManager = new UserManager<User>(new UserStore<User>(context));
+            var userManager = new UserManager<User>(new UserStore<User>(context));
 
             for (int i = 0; i < usernames.Length; i++)
             {
@@ -39,7 +40,7 @@
 
                 context.Users.Add(user);
                 context.SaveChanges();
-                UserManager.UpdateSecurityStamp(user.Id);
+                userManager.UpdateSecurityStamp(user.Id);
             }
         }
 
@@ -51,7 +52,9 @@
             }
 
             string[] categories = new string[]
-            { "Healthy", "Quick and Easy", "Vegetarian", "Soups", "Salads", "Desserts", "Dinner", "Lunch", "Breakfast" };
+            {
+                "Healthy", "Quick and Easy", "Vegetarian", "Soups", "Salads", "Desserts", "Dinner", "Lunch", "Breakfast"
+            };
 
             for (int i = 0; i < categories.Length; i++)
             {
@@ -79,7 +82,7 @@
 
             Dictionary<string, Recipe> recipes = new Dictionary<string, Recipe>()
             {
-                {"Tandoori Carrots",
+                { "Tandoori Carrots",
                     new Recipe()
                     {
                         Category = context.Categories.FirstOrDefault(c => c.Name == "Healthy"),
@@ -91,22 +94,21 @@
                                         Place carrots (along with crunchy bits on baking sheet) on a platter.Drizzle with yogurt mixture and turmeric oil and top with cilantro.Serve with lemon wedges. ",
                         Ingredients = new List<Ingredient>()
                         {
-                            new Ingredient() {Text = "2 tablespoons vadouvan" },
-                            new Ingredient() {Text = "2 garlic cloves, finely grated, divided" },
-                            new Ingredient() {Text = "1/2 cup plain whole-milk Greek yogurt, divided" },
-                            new Ingredient() {Text = "5 tablespoons olive oil, divided" },
-                            new Ingredient() {Text = "Kosher salt, freshly ground pepper" },
-                            new Ingredient() {Text = "1 pound small carrots, tops trimmed, scrubbed" },
-                            new Ingredient() {Text = "1/4 teaspoon ground turmeric" },
-                            new Ingredient() {Text = "2 tablespoons fresh lemon juice" },
-                            new Ingredient() {Text = "Very coarsely chopped cilantro leaves with tender stems and lemon wedges (for serving)" },
-
+                            new Ingredient() { Text = "2 tablespoons vadouvan" },
+                            new Ingredient() { Text = "2 garlic cloves, finely grated, divided" },
+                            new Ingredient() { Text = "1/2 cup plain whole-milk Greek yogurt, divided" },
+                            new Ingredient() { Text = "5 tablespoons olive oil, divided" },
+                            new Ingredient() { Text = "Kosher salt, freshly ground pepper" },
+                            new Ingredient() { Text = "1 pound small carrots, tops trimmed, scrubbed" },
+                            new Ingredient() { Text = "1/4 teaspoon ground turmeric" },
+                            new Ingredient() { Text = "2 tablespoons fresh lemon juice" },
+                            new Ingredient() { Text = "Very coarsely chopped cilantro leaves with tender stems and lemon wedges (for serving)" },
                         },
-                        Ratings = new List<Rating> { new Rating() { Value = 5}, new Rating() { Value = 7} },
-                        Tags = new List<Tag> {new Tag() { Text = "health"}, new Tag() { Text = "vegetables" } }
+                        Ratings = new List<Rating> { new Rating() { Value = 5 }, new Rating() { Value = 7 } },
+                        Tags = new List<Tag> { new Tag() { Text = "health" }, new Tag() { Text = "vegetables" } }
                     }
                 },
-                {"Sheetpandinners Chicken",
+                { "Sheetpandinners Chicken",
                     new Recipe()
                     {
                         Category = context.Categories.FirstOrDefault(c => c.Name == "Quick and Easy"),
@@ -117,23 +119,23 @@
                                         Divide chicken, fruit, and vegetables among 4 plates and top with mint. ",
                         Ingredients = new List<Ingredient>()
                         {
-                            new Ingredient() {Text = "1 tablespoon brown sugar" },
-                            new Ingredient() {Text = "1 tablespoon ground cumin" },
-                            new Ingredient() {Text = "1 tablespoon kosher salt" },
-                            new Ingredient() {Text = "1 tablespoon freshly ground black pepper" },
-                            new Ingredient() {Text = "1/4 teaspoon cayenne pepper" },
-                            new Ingredient() {Text = "1 acorn or delicata squash (about 1 1/2 pounds), halved lengthwise, seeded, cut into 1/4\" ,half moons" },
-                            new Ingredient() {Text = "1 fennel bulb (about 1/2 pound), cut in half lengthwise, sliced into 1/4\" wedges with core intact" },
-                            new Ingredient() {Text = "1/2 pound seedless red grapes (about 1 cup)" },
-                            new Ingredient() {Text = "1 tablespoon olive oil" },
-                            new Ingredient() {Text = "8 skin-on, bone-in chicken thighs (about 2 pounds)" },
-                            new Ingredient() {Text = "1/4 cup torn fresh mint leaves" }
+                            new Ingredient() { Text = "1 tablespoon brown sugar" },
+                            new Ingredient() { Text = "1 tablespoon ground cumin" },
+                            new Ingredient() { Text = "1 tablespoon kosher salt" },
+                            new Ingredient() { Text = "1 tablespoon freshly ground black pepper" },
+                            new Ingredient() { Text = "1/4 teaspoon cayenne pepper" },
+                            new Ingredient() { Text = "1 acorn or delicata squash (about 1 1/2 pounds), halved lengthwise, seeded, cut into 1/4\" ,half moons" },
+                            new Ingredient() { Text = "1 fennel bulb (about 1/2 pound), cut in half lengthwise, sliced into 1/4\" wedges with core intact" },
+                            new Ingredient() { Text = "1/2 pound seedless red grapes (about 1 cup)" },
+                            new Ingredient() { Text = "1 tablespoon olive oil" },
+                            new Ingredient() { Text = "8 skin-on, bone-in chicken thighs (about 2 pounds)" },
+                            new Ingredient() { Text = "1/4 cup torn fresh mint leaves" }
                         },
-                        Ratings = new List<Rating> { new Rating() { Value = 5}, new Rating() { Value = 7} },
-                        Tags = new List<Tag> {new Tag() { Text = "chiken"}, new Tag() { Text = "vegetables" } }
+                        Ratings = new List<Rating> { new Rating() { Value = 5 }, new Rating() { Value = 7 } },
+                        Tags = new List<Tag> { new Tag() { Text = "chiken" }, new Tag() { Text = "vegetables" } }
                     }
                 },
-                {"Salad with butter and basted mushrooms",
+                { "Salad with butter and basted mushrooms",
                     new Recipe()
                     {
                         Category = context.Categories.FirstOrDefault(c => c.Name == "Vegetarian"),
@@ -149,26 +151,26 @@
                                         Barley can be cooked 1 day ahead. Let cool; store airtight and chill. Dish can be made 3 hours ahead; store tightly wrapped at room temperature. ",
                         Ingredients = new List<Ingredient>()
                         {
-                            new Ingredient() {Text = "1 cup hulled, hull-less, or pearl barley" },
-                            new Ingredient() {Text = "Kosher salt" },
-                            new Ingredient() {Text = "2 shallots, thinly sliced into rings" },
-                            new Ingredient() {Text = "1/3 cup vegetable oil" },
-                            new Ingredient() {Text = "2 tablespoons olive oil" },
-                            new Ingredient() {Text = "8 oz. mushrooms (such as maitake, chanterelle, and/or oyster), torn or cut into large pieces" },
-                            new Ingredient() {Text = "Freshly ground black pepper" },
-                            new Ingredient() {Text = "2 sprigs thyme" },
-                            new Ingredient() {Text = "1 clove garlic, crushed" },
-                            new Ingredient() {Text = "3 tablespoons unsalted butter" },
-                            new Ingredient() {Text = "1 cup chopped fresh cilantro" },
-                            new Ingredient() {Text = "1 cup chopped fresh parsley" },
-                            new Ingredient() {Text = "12 tablespoons fresh lemon juice" },
-                            new Ingredient() {Text = "1 1/2 ounces Parmesan, shaved, plus more for serving" }
+                            new Ingredient() { Text = "1 cup hulled, hull-less, or pearl barley" },
+                            new Ingredient() { Text = "Kosher salt" },
+                            new Ingredient() { Text = "2 shallots, thinly sliced into rings" },
+                            new Ingredient() { Text = "1/3 cup vegetable oil" },
+                            new Ingredient() { Text = "2 tablespoons olive oil" },
+                            new Ingredient() { Text = "8 oz. mushrooms (such as maitake, chanterelle, and/or oyster), torn or cut into large pieces" },
+                            new Ingredient() { Text = "Freshly ground black pepper" },
+                            new Ingredient() { Text = "2 sprigs thyme" },
+                            new Ingredient() { Text = "1 clove garlic, crushed" },
+                            new Ingredient() { Text = "3 tablespoons unsalted butter" },
+                            new Ingredient() { Text = "1 cup chopped fresh cilantro" },
+                            new Ingredient() { Text = "1 cup chopped fresh parsley" },
+                            new Ingredient() { Text = "12 tablespoons fresh lemon juice" },
+                            new Ingredient() { Text = "1 1/2 ounces Parmesan, shaved, plus more for serving" }
                         },
-                        Ratings = new List<Rating> { new Rating() { Value = 3}, new Rating() { Value = 4} },
-                        Tags = new List<Tag> {new Tag() { Text = "garlic" }, new Tag() { Text = "mushrooms" } }
+                        Ratings = new List<Rating> { new Rating() { Value = 3 }, new Rating() { Value = 4 } },
+                        Tags = new List<Tag> { new Tag() { Text = "garlic" }, new Tag() { Text = "mushrooms" } }
                     }
                 },
-                {"Breakfast bowl with Quinoa and Berries",
+                { "Breakfast bowl with Quinoa and Berries",
                     new Recipe()
                     {
                         Category = context.Categories.FirstOrDefault(c => c.Name == "Breakfast"),
@@ -179,16 +181,16 @@
                                         Add 1 1/2 heaping tablespoons of fat-free Greek yogurt to this dish for more protein.",
                         Ingredients = new List<Ingredient>()
                         {
-                            new Ingredient() {Text = "4 cups mixed berries (raspberries, strawberries, blueberries, blackberries)" },
-                            new Ingredient() {Text = "2 tablespoons hemp hearts (available in the natural section of most supermarkets in a variety of brands)" },
-                            new Ingredient() {Text = "20 whole almonds, toasted and chopped" },
-                            new Ingredient() {Text = "1/4 cup cooked quinoa" },
+                            new Ingredient() { Text = "4 cups mixed berries (raspberries, strawberries, blueberries, blackberries)" },
+                            new Ingredient() { Text = "2 tablespoons hemp hearts (available in the natural section of most supermarkets in a variety of brands)" },
+                            new Ingredient() { Text = "20 whole almonds, toasted and chopped" },
+                            new Ingredient() { Text = "1/4 cup cooked quinoa" },
                         },
-                        Ratings = new List<Rating> { new Rating() { Value = 7}, new Rating() { Value = 9} },
-                        Tags = new List<Tag> {new Tag() { Text = "Berries" }, new Tag() { Text = "Quinoa" } }
+                        Ratings = new List<Rating> { new Rating() { Value = 7 }, new Rating() { Value = 9 } },
+                        Tags = new List<Tag> { new Tag() { Text = "Berries" }, new Tag() { Text = "Quinoa" } }
                     }
                 },
-                {"Crispy potato-leek kugel",
+                { "Crispy potato-leek kugel",
                     new Recipe()
                     {
                         Category = context.Categories.FirstOrDefault(c => c.Name == "Dinner"),
@@ -202,18 +204,18 @@
                                         "Carefully remove preheated pan from oven and transfer potato - onion mixture to the pan (it should sizzle when it hits the hot oil). Smooth top with a spatula.Layer potato slices over the top in a shingled fashion.Bake until golden brown and cooked through, 60 - 75 minutes.Heat broiler; broil kugel until crispy crust forms, 1 - 2 minutes, watching carefully so it does not burn.Let cool briefly, then cut into squares to serve.",
                         Ingredients = new List<Ingredient>()
                         {
-                            new Ingredient() {Text = "9 medium russet potatoes (about 4 1/2 pounds), peeled" },
-                            new Ingredient() {Text = "7 tablespoons vegetable oil, divided" },
-                            new Ingredient() {Text = "3 medium leeks, white and pale-green parts only, thinly sliced crosswise" },
-                            new Ingredient() {Text = "2 1/2 teaspoons kosher salt, divided, plus more" },
-                            new Ingredient() {Text = "3/4 teaspoon freshly ground black pepper, divided" },
-                            new Ingredient() {Text = "2 garlic cloves, finely chopped" },
-                            new Ingredient() {Text = "1 small onion" },
-                            new Ingredient() {Text = "4 large eggs, lightly beaten" },
-                            new Ingredient() {Text = "1 tablespoon plus 1 teaspoon fresh thyme leaves, divided" },
+                            new Ingredient() { Text = "9 medium russet potatoes (about 4 1/2 pounds), peeled" },
+                            new Ingredient() { Text = "7 tablespoons vegetable oil, divided" },
+                            new Ingredient() { Text = "3 medium leeks, white and pale-green parts only, thinly sliced crosswise" },
+                            new Ingredient() { Text = "2 1/2 teaspoons kosher salt, divided, plus more" },
+                            new Ingredient() { Text = "3/4 teaspoon freshly ground black pepper, divided" },
+                            new Ingredient() { Text = "2 garlic cloves, finely chopped" },
+                            new Ingredient() { Text = "1 small onion" },
+                            new Ingredient() { Text = "4 large eggs, lightly beaten" },
+                            new Ingredient() { Text = "1 tablespoon plus 1 teaspoon fresh thyme leaves, divided" },
                         },
-                        Ratings = new List<Rating> { new Rating() { Value = 5}, new Rating() { Value = 9} },
-                        Tags = new List<Tag> {new Tag() { Text = "potatoe" }, new Tag() { Text = "eggs" } }
+                        Ratings = new List<Rating> { new Rating() { Value = 5 }, new Rating() { Value = 9 } },
+                        Tags = new List<Tag> { new Tag() { Text = "potatoe" }, new Tag() { Text = "eggs" } }
                     }
                 }
             };

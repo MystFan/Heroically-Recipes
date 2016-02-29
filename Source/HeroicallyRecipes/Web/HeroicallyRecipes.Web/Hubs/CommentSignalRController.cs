@@ -3,18 +3,17 @@
     using System;
     using System.Linq;
 
-    using Microsoft.AspNet.SignalR;
-
     using HeroicallyRecipes.Data;
     using HeroicallyRecipes.Data.Models;
+    using Microsoft.AspNet.SignalR;
 
     public class CommentSignalRController : Hub
     {
-        HeroicallyRecipesDbContext db = new HeroicallyRecipesDbContext();
+        private HeroicallyRecipesDbContext db = new HeroicallyRecipesDbContext();
 
         public void GetComment(int articleId, string userId, string comment)
         {
-            if(comment.Length < 10)
+            if (comment.Length < 10)
             {
                 var connectId = Context.ConnectionId;
                 IHubContext context = GlobalHost.ConnectionManager.GetHubContext<CommentSignalRController>();
@@ -22,25 +21,25 @@
                 return;
             }
 
-            if(userId != null && comment != null)
+            if (userId != null && comment != null)
             {
-                var article = db.Articles.FirstOrDefault(a => a.Id == articleId);
+                var article = this.db.Articles.FirstOrDefault(a => a.Id == articleId);
 
-                if(article == null)
+                if (article == null)
                 {
                     throw new ArgumentNullException();
                 }
 
-                var newComment = (new Comment()
+                var newComment = new Comment()
                 {
                     Content = comment,
                     AuthorId = userId,
                     ArticleId = articleId,
                     CreatedOn = DateTime.Now
-                });
+                };
 
-                db.Comments.Add(newComment);
-                db.SaveChanges();
+                this.db.Comments.Add(newComment);
+                this.db.SaveChanges();
             }
         }
     }

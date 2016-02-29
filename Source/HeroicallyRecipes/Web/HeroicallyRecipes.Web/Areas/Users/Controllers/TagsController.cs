@@ -35,9 +35,10 @@
         public ActionResult All()
         {
             var allTags = this.Cache
-                .Get(TagsListKey,
-                    () => this.tags.InRecipe().Select(t => t.Text).ToList(),
-                    TagsCacheDuration);
+                .Get(
+                TagsListKey,
+                () => this.tags.InRecipe().Select(t => t.Text).ToList(),
+                TagsCacheDuration);
 
             return this.PartialView("_TagsListPartial", allTags);
         }

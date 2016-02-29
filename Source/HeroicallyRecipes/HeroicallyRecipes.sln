@@ -31,10 +31,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeroicallyRecipes.Services.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeroicallyRecipes.Tests", "Tests\HeroicallyRecipes.Tests\HeroicallyRecipes.Tests.csproj", "{7ED60F60-05E5-4515-A66D-AA7F892C18ED}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{50BD4113-5DD8-4966-89B8-A297F0B7B473}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crawler", "Crawler\Crawler.csproj", "{0581AA69-2250-45F2-B8CA-6976F5784797}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,10 +73,6 @@ Global
 		{7ED60F60-05E5-4515-A66D-AA7F892C18ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7ED60F60-05E5-4515-A66D-AA7F892C18ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7ED60F60-05E5-4515-A66D-AA7F892C18ED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0581AA69-2250-45F2-B8CA-6976F5784797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0581AA69-2250-45F2-B8CA-6976F5784797}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0581AA69-2250-45F2-B8CA-6976F5784797}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0581AA69-2250-45F2-B8CA-6976F5784797}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +87,5 @@ Global
 		{5886B247-1B50-42A3-BB97-B09A94945EB9} = {EBA9A9B7-08B4-4E08-943D-BCB4071F3FF4}
 		{320D99E2-83DB-4D3B-8313-C89C037CE5D5} = {EBA9A9B7-08B4-4E08-943D-BCB4071F3FF4}
 		{7ED60F60-05E5-4515-A66D-AA7F892C18ED} = {12ECCF29-92ED-491D-8ED4-75011F40CDCE}
-		{0581AA69-2250-45F2-B8CA-6976F5784797} = {50BD4113-5DD8-4966-89B8-A297F0B7B473}
 	EndGlobalSection
 EndGlobal

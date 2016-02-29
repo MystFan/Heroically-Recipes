@@ -1,10 +1,11 @@
 namespace HeroicallyRecipes.Data.Migrations
 {
-    using System.Linq;
     using System.Data.Entity.Migrations;
+    using System.Linq;
+
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using Models;
+    using HeroicallyRecipes.Data.Models;
 
     public sealed class Configuration : DbMigrationsConfiguration<HeroicallyRecipesDbContext>
     {

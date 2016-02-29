@@ -3,10 +3,9 @@
     using System.Linq;
     using System.Web.Mvc;
 
-    using Microsoft.AspNet.Identity;
-
     using HeroicallyRecipes.Services.Data.Contracts;
     using HeroicallyRecipes.Web.Infrastructure.CustomFilters;
+    using Microsoft.AspNet.Identity;
 
     public class VotesController : UsersBaseController
     {

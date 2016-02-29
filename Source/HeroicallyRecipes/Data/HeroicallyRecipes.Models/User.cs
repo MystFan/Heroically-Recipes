@@ -1,14 +1,13 @@
 ﻿namespace HeroicallyRecipes.Data.Models
 {
     using System.Collections.Generic;
-    using System.Security.Claims;
     using System.ComponentModel.DataAnnotations;
+    using System.Security.Claims;
     using System.Threading.Tasks;
 
+    using HeroicallyRecipes.Common.Validation;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-
-    using HeroicallyRecipes.Common.Validation;
 
     public class User : IdentityUser
     {
