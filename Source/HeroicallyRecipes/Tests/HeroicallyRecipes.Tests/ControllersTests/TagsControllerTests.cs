@@ -2,24 +2,20 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Security.Claims;
-    using System.Security.Principal;
     using System.Web;
-    using System.Web.Http;
-
-    using NUnit.Framework;
-    using TestStack.FluentMVCTesting;
 
     using HeroicallyRecipes.Services.Data.Contracts;
     using HeroicallyRecipes.Services.Web;
     using HeroicallyRecipes.Tests.TestObjects;
     using HeroicallyRecipes.Web;
     using HeroicallyRecipes.Web.Areas.Users.Controllers;
+    using NUnit.Framework;
+    using TestStack.FluentMVCTesting;
 
     [TestFixture]
     public class TagsControllerTests
     {
-        private ITagsService tags;
+        private ITagsService tagsServiceMock;
         private TagsController controller;
 
         [TestFixtureSetUp]
@@ -27,8 +23,8 @@
         {
             AutoMapperConfig.RegisterMappings();
 
-            this.tags = ServicesObjectFactory.GetTagsService();
-            this.controller = new TagsController(this.tags);
+            this.tagsServiceMock = ServicesObjectFactory.GetTagsService();
+            this.controller = new TagsController(this.tagsServiceMock);
             this.controller.Cache = new HttpCacheService();
         }
 
@@ -82,9 +78,11 @@
         [Test]
         public void AllActionShouldHaveAllowAnonymousAttribute()
         {
-            var type = this.controller.GetType();
-            var methodInfo = type.GetMethod("All");
-            var attributes = methodInfo.GetCustomAttributes(true).Select(a => a.GetType().Name);
+            var controllerType = this.controller.GetType();
+            var methodInfo = controllerType.GetMethod("All");
+            var attributes = methodInfo.GetCustomAttributes(true)
+                .Select(a => a.GetType().Name);
+
             Assert.IsTrue(attributes.Any(a => a == "AllowAnonymousAttribute"));
         }
     }

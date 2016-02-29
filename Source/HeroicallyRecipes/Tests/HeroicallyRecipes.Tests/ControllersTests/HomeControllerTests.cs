@@ -3,45 +3,41 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using NUnit.Framework;
-    using TestStack.FluentMVCTesting;
-
-    using HeroicallyRecipes.Services.Data.Contracts;
-    using HeroicallyRecipes.Web;
     using HeroicallyRecipes.Common.Providers;
+    using HeroicallyRecipes.Services.Data.Contracts;
+    using HeroicallyRecipes.Tests.TestObjects;
+    using HeroicallyRecipes.Web;
     using HeroicallyRecipes.Web.Controllers;
     using HeroicallyRecipes.Web.Models.RecipeViewModels;
-    using HeroicallyRecipes.Tests.TestObjects;
+    using NUnit.Framework;
+    using TestStack.FluentMVCTesting;
 
     [TestFixture]
     public class HomeControllerTests
     {
-        private IRecipesService recipes;
-        private IImagesService images;
-        private IArticlesService articles;
+        private IRecipesService recipesServiceMock;
+        private IImagesService imagesServiceMock;
+        private IArticlesService articlesServiceMock;
+        private HomeController controller;
 
         [TestFixtureSetUp]
         public void TestsSetup()
         {
             AutoMapperConfig.RegisterMappings();
 
-            this.recipes = ServicesObjectFactory.GetRecipeService();
-            this.images = ServicesObjectFactory.GetRecipeImagesService();
-            this.articles = ServicesObjectFactory.GetArticlesService();
+            this.recipesServiceMock = ServicesObjectFactory.GetRecipeService();
+            this.imagesServiceMock = ServicesObjectFactory.GetRecipeImagesService();
+            this.articlesServiceMock = ServicesObjectFactory.GetArticlesService();
+            this.controller = new HomeController(this.imagesServiceMock, this.recipesServiceMock, this.articlesServiceMock);
         }
 
         [Test]
         public void GetTopRecipesShouldWorkCorrectly()
         {
-            var recipesServiceMock = this.recipes;
-            var imagesServiceMock = this.images;
-            var articlesServiceMock = this.articles;
-
-            var controller = new HomeController(imagesServiceMock, recipesServiceMock, articlesServiceMock);
             IdentifierProvider idProvider = new IdentifierProvider();
             string id = idProvider.EncodeId(1);
 
-            controller.WithCallTo(x => x.GetTopRecipes())
+            this.controller.WithCallTo(x => x.GetTopRecipes())
                 .ShouldRenderPartialView("_SliderPartial")
                             .WithModel<IEnumerable<RecipeHomeViewModel>>(
                                 viewModel =>
@@ -56,13 +52,7 @@
         [Test]
         public void ControllerShouldHaveChildActionOnlyGetTopRecipes()
         {
-            var recipesServiceMock = this.recipes;
-            var imagesServiceMock = this.images;
-            var articlesServiceMock = this.articles;
-
-            var controller = new HomeController(imagesServiceMock, recipesServiceMock, articlesServiceMock);
-
-            controller.WithCallToChild(a => a.GetTopRecipes());
+            this.controller.WithCallToChild(a => a.GetTopRecipes());
         }
     }
 }

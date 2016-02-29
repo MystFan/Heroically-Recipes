@@ -5,11 +5,10 @@
     using System.Linq;
     using System.Web;
 
-    using Moq;
-
     using HeroicallyRecipes.Common.Globals;
     using HeroicallyRecipes.Data.Models;
     using HeroicallyRecipes.Services.Data.Contracts;
+    using Moq;
 
     public class ServicesObjectFactory
     {
@@ -31,7 +30,8 @@
                 .Returns(TestObjectsFactory.GetRecipeRepositiry(2).All());
 
             recipesServiceMock.Setup(rs =>
-                rs.Add(It.IsAny<string>(),
+                rs.Add(
+                    It.IsAny<string>(),
                        It.IsAny<string>(),
                        It.IsAny<int>(),
                        It.IsAny<string>(),

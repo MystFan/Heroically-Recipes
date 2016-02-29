@@ -51,8 +51,8 @@
                 throw new ArgumentNullException("No such entity");
             }
 
-            var dbEntity = this.data.FirstOrDefault(e => e.Id == entity.Id);
-            dbEntity.IsDeleted = true;
+            var databaseEntity = this.data.FirstOrDefault(e => e.Id == entity.Id);
+            databaseEntity.IsDeleted = true;
         }
 
         public void HardDelete(T entity)

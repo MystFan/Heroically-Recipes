@@ -2,11 +2,10 @@
 {
     using System.Web.Routing;
 
+    using HeroicallyRecipes.Web.Areas.Users;
     using MvcRouteTester;
     using MvcRouteUnitTester;
     using NUnit.Framework;
-
-    using HeroicallyRecipes.Web.Areas.Users;
 
     public class ArticlesControllerRouteTests
     {

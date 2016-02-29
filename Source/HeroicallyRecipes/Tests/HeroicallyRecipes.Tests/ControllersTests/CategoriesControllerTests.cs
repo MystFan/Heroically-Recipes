@@ -4,16 +4,15 @@
     using System.Linq;
     using System.Web;
 
-    using Moq;
-    using NUnit.Framework;
-    using TestStack.FluentMVCTesting;
-
     using HeroicallyRecipes.Data.Models;
     using HeroicallyRecipes.Services.Data.Contracts;
     using HeroicallyRecipes.Services.Web;
     using HeroicallyRecipes.Web;
     using HeroicallyRecipes.Web.Areas.Users.Controllers;
     using HeroicallyRecipes.Web.Models.Categories;
+    using Moq;
+    using NUnit.Framework;
+    using TestStack.FluentMVCTesting;
 
     [TestFixture]
     public class CategoriesControllerTests
@@ -35,7 +34,6 @@
                     })
                     .AsQueryable());
 
-
             var controller = new CategoriesController(categoriesServiceMock.Object);
             controller.Cache = new HttpCacheService();
             HttpRuntime.Cache["Categories"] = categoriesServiceMock.Object.GetAll().Select(c => new CategoryViewModel { Name = c.Name }).ToList();
@@ -49,6 +47,5 @@
                                     Assert.AreEqual("Category5", viewModel.LastOrDefault().Name);
                                 }).AndNoModelErrors();
         }
-
     }
 }

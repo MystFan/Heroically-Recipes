@@ -2,13 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Web;
 
-    using Moq;
-    using HeroicallyRecipes.Common.Globals;
     using HeroicallyRecipes.Data.Models;
-    using HeroicallyRecipes.Services.Data.Contracts;
+    using Moq;
     using Web.Models.RecipeViewModels;
 
     public class TestObjectsFactory
@@ -65,7 +62,7 @@
                     Preparation = "Preparation " + i,
                     Category = new Category() { Name = "Vegetarian" },
                     CreatedOn = date,
-                    Tags = new List<Tag>() { new Tag() { Text = "default"} },
+                    Tags = new List<Tag>() { new Tag() { Text = "default" } },
                     Creator = new User() { NickName = "Creator " + i },
                     Images = new List<RecipeImage>() { new RecipeImage() { OriginalName = "image" + i + ".png", Extension = ".png" } }
                 });
@@ -108,14 +105,14 @@
                 var date = DateTime.Now;
                 date.AddDays(i);
 
-                var article = (new Article()
+                var article = new Article()
                 {
                     Id = i,
                     Title = "Title " + i,
                     Content = "Content " + i,
                     CreatedOn = date,
                     Author = new User() { NickName = "User " + i }
-                });
+                };
 
                 for (int j = 0; j < 10; j++)
                 {
@@ -141,7 +138,7 @@
                 Id = 2,
                 Title = "Title " + 2,
                 Preparation = "Preparation " + 2,
-                Ingredients = new List<Ingredient>() { new Ingredient() { Text = "2 cups sugar"} },
+                Ingredients = new List<Ingredient>() { new Ingredient() { Text = "2 cups sugar" } },
                 CreatedOn = DateTime.Now,
                 Creator = new User() { NickName = "User " + 1 }
             };

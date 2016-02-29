@@ -2,9 +2,9 @@
 {
     using System.Web.Routing;
 
+    using HeroicallyRecipes.Web.Areas.Users;
     using MvcRouteUnitTester;
     using NUnit.Framework;
-    using HeroicallyRecipes.Web.Areas.Users;
 
     public class VotesControllerRouteTests
     {

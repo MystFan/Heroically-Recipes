@@ -5,10 +5,7 @@
     using System.Web;
 
     using AutoMapper;
-    using NUnit.Framework;
     using AutoMapper.QueryableExtensions;
-    using TestStack.FluentMVCTesting;
-
     using HeroicallyRecipes.Common.Globals;
     using HeroicallyRecipes.Services.Data.Contracts;
     using HeroicallyRecipes.Services.Web;
@@ -16,6 +13,8 @@
     using HeroicallyRecipes.Web;
     using HeroicallyRecipes.Web.Areas.Users.Controllers;
     using HeroicallyRecipes.Web.Models.Articles;
+    using NUnit.Framework;
+    using TestStack.FluentMVCTesting;
 
     [TestFixture]
     public class ArticlesControllerTests
@@ -42,7 +41,7 @@
                 .ProjectTo<ArticleViewModel>()
                 .ToList();
 
-            controller.WithCallTo(x => x.Index(page))
+            this.controller.WithCallTo(x => x.Index(page))
                 .ShouldRenderView("Index")
                             .WithModel<ArticleListViewModel>(
                                 viewModel =>

@@ -1,10 +1,11 @@
 ﻿namespace HeroicallyRecipes.Tests.RouteTests
 {
     using System.Web.Routing;
-    using MvcRouteTester;
-    using NUnit.Framework;
+
     using HeroicallyRecipes.Web;
     using HeroicallyRecipes.Web.Controllers;
+    using MvcRouteTester;
+    using NUnit.Framework;
 
     [TestFixture]
     public class HomeControllerRouteTests
@@ -20,33 +21,33 @@
         [Test]
         public void HomeShouldMapRouteDefaultIndex()
         {
-            const string Url = "/Home/Index";
+            string url = "/Home/Index";
 
             RouteConfig.RegisterRoutes(this.routeCollection);
 
-            routeCollection.ShouldMap(Url)
+            this.routeCollection.ShouldMap(url)
                 .To<HomeController>(c => c.Index());
         }
 
         [Test]
         public void HomeShouldMapRouteGetImage()
         {
-            const string Url = "/Home/GetImage/NC4xMjMxMjMxMzEyMw%3d%3d";
+            string url = "/Home/GetImage/NC4xMjMxMjMxMzEyMw%3d%3d";
 
             RouteConfig.RegisterRoutes(this.routeCollection);
 
-            routeCollection.ShouldMap(Url)
+            this.routeCollection.ShouldMap(url)
                 .To<HomeController>(c => c.GetImage("NC4xMjMxMjMxMzEyMw%3d%3d"));
         }
 
         [Test]
         public void HomeShouldMapRouteChildActionGetTopRecipes()
         {
-            const string Url = "/Home/GetTopRecipes";
+            string url = "/Home/GetTopRecipes";
 
             RouteConfig.RegisterRoutes(this.routeCollection);
 
-            routeCollection.ShouldMap(Url)
+            this.routeCollection.ShouldMap(url)
                 .To<HomeController>(c => c.GetTopRecipes());
         }
     }

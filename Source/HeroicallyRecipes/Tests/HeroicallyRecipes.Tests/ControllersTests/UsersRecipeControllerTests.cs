@@ -3,30 +3,28 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Security.Principal;
     using System.Security.Claims;
-    using System.Web.Routing;
+    using System.Security.Principal;
     using System.Web;
     using System.Web.Mvc;
+    using System.Web.Routing;
 
     using AutoMapper.QueryableExtensions;
-    using TestStack.FluentMVCTesting;
-    using NUnit.Framework;
-    using Moq;
-
     using HeroicallyRecipes.Common.Globals;
-    using HeroicallyRecipes.Common.Validation;
     using HeroicallyRecipes.Services.Data.Contracts;
     using HeroicallyRecipes.Services.Web;
     using HeroicallyRecipes.Tests.TestObjects;
     using HeroicallyRecipes.Web;
     using HeroicallyRecipes.Web.Areas.Users.Controllers;
     using HeroicallyRecipes.Web.Models.RecipeViewModels;
+    using Moq;
+    using NUnit.Framework;
+    using TestStack.FluentMVCTesting;
 
     [TestFixture]
     public class UsersRecipeControllerTests
     {
-        private int DefaultPageSize = GlobalConstants.RecipeDefaultPageSize;
+        private int defaultPageSize = GlobalConstants.RecipeDefaultPageSize;
         private IRecipesService recipes;
         private RecipesController controller;
 
@@ -50,13 +48,13 @@
                 .ProjectTo<RecipeViewModel>()
                 .ToList();
 
-            controller.WithCallTo(x => x.All(page))
+            this.controller.WithCallTo(x => x.All(page))
                 .ShouldRenderView("All")
                             .WithModel<RecipeListViewModel>(
                                 viewModel =>
                                 {
                                     Assert.AreEqual(page, viewModel.CurrentPage);
-                                    Assert.AreEqual((int)Math.Ceiling(13 / (decimal)DefaultPageSize), viewModel.TotalPages);
+                                    Assert.AreEqual((int)Math.Ceiling(13 / (decimal)defaultPageSize), viewModel.TotalPages);
                                     Assert.AreEqual(3, viewModel.Recipes.Count());
                                     Assert.AreEqual("Tandoori Carrots", viewModel.Recipes.FirstOrDefault().Title);
                                 }).AndNoModelErrors();
@@ -71,23 +69,22 @@
                 .ProjectTo<RecipeViewModel>()
                 .ToList();
 
-            controller.WithCallTo(x => x.All(page))
+            this.controller.WithCallTo(x => x.All(page))
                 .ShouldRenderView("All")
                             .WithModel<RecipeListViewModel>(
                                 viewModel =>
                                 {
                                     Assert.AreEqual(page, viewModel.CurrentPage);
-                                    Assert.AreEqual((int)Math.Ceiling(13 / (decimal)DefaultPageSize), viewModel.TotalPages);
+                                    Assert.AreEqual((int)Math.Ceiling(13 / (decimal)defaultPageSize), viewModel.TotalPages);
                                     Assert.AreEqual(1, viewModel.Recipes.Count());
                                     Assert.AreEqual("Salad with butter and basted mushrooms 13", viewModel.Recipes.FirstOrDefault().Title);
                                 }).AndNoModelErrors();
         }
 
-
         [Test]
         public void ControllerActionCreateGetShouldReturnView()
         {
-            controller.WithCallTo(x => x.Create())
+            this.controller.WithCallTo(x => x.Create())
                 .ShouldRenderView("Create");
         }
 
@@ -96,12 +93,12 @@
         {
             var validRecipeCreateViewModel = TestObjectsFactory.GetValidRecipeCreateViewModel();
 
-            MockIdentity();
+            this.MockIdentity();
 
             var validationController = new ModelStateTestController();
             validationController.TestTryValidateModel(validRecipeCreateViewModel);
 
-            controller.WithCallTo(a => a.Create(validRecipeCreateViewModel))
+            this.controller.WithCallTo(a => a.Create(validRecipeCreateViewModel))
                     .ShouldRedirectTo<RecipesController>(c => c.All(1));
 
             var modelState = validationController.ModelState;
@@ -114,12 +111,12 @@
         {
             var invalidRecipeCreateViewModel = TestObjectsFactory.GetInvalidRecipeCreateViewModel();
 
-            MockIdentity();
+            this.MockIdentity();
 
             var validationController = new ModelStateTestController();
             validationController.TestTryValidateModel(invalidRecipeCreateViewModel);
 
-            var errorMessages = GetErrorMessages(validationController.ModelState);
+            var errorMessages = this.GetErrorMessages(validationController.ModelState);
 
             Assert.AreEqual("The Title must be at least 3 characters long.", errorMessages[0]);
             Assert.AreEqual("The field Preparation must be a string or array type with a minimum length of '100'.", errorMessages[1]);
@@ -134,6 +131,7 @@
             var type = this.controller.GetType();
             var methodInfo = type.GetMethod("SearchByTitle");
             var attributes = methodInfo.GetCustomAttributes(true).Select(a => a.GetType().Name);
+
             Assert.IsTrue(attributes.Any(a => a == "AjaxOnlyAttribute"));
             Assert.IsTrue(attributes.Any(a => a == "ValidateAntiForgeryTokenAttribute"));
         }

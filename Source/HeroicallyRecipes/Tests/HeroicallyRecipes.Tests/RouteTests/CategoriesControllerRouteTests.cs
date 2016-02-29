@@ -2,9 +2,9 @@
 {
     using System.Web.Routing;
 
-    using NUnit.Framework;
-    using MvcRouteUnitTester;
     using HeroicallyRecipes.Web.Areas.Users;
+    using MvcRouteUnitTester;
+    using NUnit.Framework;
 
     [TestFixture]
     public class CategoriesControllerRouteTests

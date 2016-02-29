@@ -1,21 +1,21 @@
 ﻿namespace HeroicallyRecipes.Tests.ControllersTests
 {
+    using System.Linq;
     using System.Security.Claims;
     using System.Security.Principal;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
 
-    using Moq;
-    using NUnit.Framework;
-    using TestStack.FluentMVCTesting;
-
     using HeroicallyRecipes.Services.Data.Contracts;
     using HeroicallyRecipes.Services.Web;
     using HeroicallyRecipes.Tests.TestObjects;
     using HeroicallyRecipes.Web;
     using HeroicallyRecipes.Web.Areas.Users.Controllers;
-    using System.Linq;
+    using Moq;
+    using NUnit.Framework;
+    using TestStack.FluentMVCTesting;
+
     [TestFixture]
     public class VotesControllerTests
     {
@@ -35,7 +35,7 @@
         [Test]
         public void VoteActionWithValidParametersShouldWorkCorectly()
         {
-            MockIdentity();
+            this.MockIdentity();
 
             int recipeId = 2;
             int vote = 1;
@@ -50,7 +50,7 @@
         [Test]
         public void VoteActionWithInvalidParameterVoteShouldWorkCorectly()
         {
-            MockIdentity();
+            this.MockIdentity();
 
             int recipeId = 1;
             int vote = -2;
